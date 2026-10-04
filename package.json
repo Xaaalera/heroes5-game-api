@@ -1,0 +1,22 @@
+{
+  "name": "heroes5-game-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "cmake -S . -B .local/build -A Win32 && cmake --build .local/build --config Release && ctest --test-dir .local/build -C Release --output-on-failure",
+    "check": "node --test scripts/review-docs.test.mjs",
+    "prepare": "node scripts/install-hooks.mjs",
+    "review:info": "node scripts/review-check.mjs --info",
+    "review:gate": "node scripts/review-check.mjs",
+    "review:secrets": "review-gate --secrets-only",
+    "review:attest": "node scripts/review-check.mjs --attest",
+    "check:docs": "python -X utf8 scripts/docs-check.py --structure-only"
+  },
+  "devDependencies": {
+    "bladeforge-review-harness": "0.3.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -5,7 +5,8 @@
     "live": {"root": "docs/mechanisms", "requiredFields": ["Purpose", "Operation", "Limits", "Verification"]}
   },
   "mechanisms": [
-    {"id": "game-bindings", "paths": ["include/h5/*", "tests/*", "CMakeLists.txt"], "doc": "docs/mechanisms/game-bindings.md"}
+    {"id": "game-bindings", "paths": ["include/h5/*", "tests/*", "CMakeLists.txt"], "doc": "docs/mechanisms/game-bindings.md"},
+    {"id": "review", "paths": ["package*.json", "scripts/review*", "scripts/install-hooks.mjs", ".githooks/*", ".github/workflows/*", ".claude/review*", ".agents/*"], "doc": "docs/mechanisms/review.md"}
   ],
   "surfaceRules": {"paths": ["AGENTS.md"], "lineCap": 200}
 }
