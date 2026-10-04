@@ -1,0 +1,40 @@
+# Heroes V Game API
+
+## RU
+
+RU: общая C++ библиотека проверенных точек подключения и функций Heroes V Universe. Один источник для SDK, предиктора и справочника. Начальный набор извлечён из работающих проектов; алгоритм расстановки и игровые ресурсы сюда не входят.
+
+Проверка версии и идентичности процесса обязательна; адреса не универсальны для всех сборок. Используйте CMake target heroes5_game_api и закрывайте возвращённый handle. Документация и нативные проверки описаны ниже. Файлы игры библиотека не распространяет.
+
+## EN
+
+Shared header-only C++20 library for the pinned Windows x86 Universe build. It owns build verification, known hook sites and explicit owned-process identity checks. Devkit owns launch/build/HMR orchestration; plugins own gameplay behavior.
+
+## Use / Подключение
+
+Add this repository as `game-api`, then `add_subdirectory(game-api)` and link `heroes5_game_api`. Headers: `h5/build.hpp`, `h5/hooks.hpp`, `h5/process.hpp`. The CMake target supplies headers and bcrypt. Include paths can also be passed directly to MSVC.
+
+RU: сначала VerifyGame проверяет поддержанную сборку. Hook catalog описывает адрес/исходные bytes/источник доказательств, а не устанавливает произвольный detour. OpenOwnedProcess требует PID, creation time и путь из собственного запуска; handle закрывает вызывающий. Несовместимая версия/процесс отклоняется.
+
+EN: Do not treat an address as a stable cross-version API. Do not attach by process name alone. Call-site ABI, thread affinity and lifecycle remain the consumer's obligations. [Contracts and evidence](docs/mechanisms/game-bindings.md).
+
+## Checks / Проверки
+
+```powershell
+cmake -S . -B .local/build -A Win32
+cmake --build .local/build --config Release
+ctest --test-dir .local/build -C Release --output-on-failure
+python -X utf8 scripts/docs-check.py --structure-only
+```
+
+## Public projects / Публичные проекты
+
+- [Game API](https://github.com/Xaaalera/heroes5-game-api) — this library / эта библиотека.
+- [Devkit](https://github.com/Xaaalera/heroes5-mod-devkit) — build, launch, HMR.
+- [Deployment Preview](https://github.com/Xaaalera/heroes5-deployment-preview) — predictor / предиктор.
+- [Bank Reference](https://github.com/Xaaalera/heroes5-bank-reference) — справочник.
+- [Knowledge](https://github.com/Xaaalera/heroes5-knowledge) · [site](https://xaaalera.github.io/heroes5-knowledge/).
+- [Xaaalera](https://github.com/Xaaalera) · [email](mailto:dampirsimpl@gmail.com) · [Telegram](https://t.me/Victima).
+- [Heroes V Universe / Heroes Lobby](https://h5lobby.com/).
+
+Author projects, not official Universe products. / Проекты автора, не официальные продукты Universe.

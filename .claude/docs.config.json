@@ -1,0 +1,11 @@
+{
+  "$schema": "./docs.config.schema.json",
+  "schemaVersion": "1",
+  "layers": {
+    "live": {"root": "docs/mechanisms", "requiredFields": ["Purpose", "Operation", "Limits", "Verification"]}
+  },
+  "mechanisms": [
+    {"id": "game-bindings", "paths": ["include/h5/*", "tests/*", "CMakeLists.txt"], "doc": "docs/mechanisms/game-bindings.md"}
+  ],
+  "surfaceRules": {"paths": ["AGENTS.md"], "lineCap": 200}
+}
