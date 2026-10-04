@@ -11,7 +11,7 @@
     "review:gate": "node scripts/review-check.mjs",
     "review:secrets": "review-gate --secrets-only",
     "review:attest": "node scripts/review-check.mjs --attest",
-    "check:docs": "python -X utf8 scripts/docs-check.py --structure-only"
+    "check:docs": "python -X utf8 scripts/docs-check.py"
   },
   "devDependencies": {
     "bladeforge-review-harness": "0.3.0"

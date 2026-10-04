@@ -11,7 +11,11 @@ Five independent lenses assess craft, architecture, tests, docs and security. np
 ## Purpose
 Bind publication to actual independent review of the selected Git diff plus deterministic checks.
 
+The configured docs command checks declared code/document pairs as well as structure; --structure-only is a local bootstrap diagnostic, not the publication check.
+
 RU: публикация требует фактического независимого ревью выбранного Git diff и машинных проверок.
+
+Настроенная команда docs проверяет пары код/документ и структуру. --structure-only служит локальной диагностикой при создании репозитория, а не проверкой публикации.
 
 ## Operation
 review:info reports base/hash and Markdown paths. Reviewers read their .agents/review contracts; project-review coordinates read-only assessments. review:attest validates actual results, documentation criteria, secrets and native/docs gates. The pre-push hook calls review:gate; GitHub workflow runs checks using pinned actions and package-lock dependencies. The initial library source at dc8d775 is also reviewed as a full-tree baseline, rather than silently assumed covered by a later setup-only diff.
