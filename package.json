@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "cmake -S . -B .local/build -A Win32 && cmake --build .local/build --config Release && ctest --test-dir .local/build -C Release --output-on-failure",
-    "check": "node --test scripts/review-docs.test.mjs",
+    "check": "node --test scripts/review-docs.test.mjs scripts/review-gate.test.mjs",
     "prepare": "node scripts/install-hooks.mjs",
     "review:info": "node scripts/review-check.mjs --info",
     "review:gate": "node scripts/review-check.mjs",

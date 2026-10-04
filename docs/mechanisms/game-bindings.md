@@ -30,4 +30,6 @@ Windows x86 and the exact hashed Universe build only. Signatures identify sites,
 RU: расширять каталог по мере подтверждения. Typed wrappers и layouts добавлять только после доказанной сигнатуры, calling convention, границ lifetime и теста. Непроверенные гипотезы хранить в research, не выдавать за готовый API.
 
 ## Verification
-Native test: known SHA vector, wrong executable/build, wrong process creation, hook resume addresses and decoded CALL target. Consumers compile against the canonical headers. Existing source/DLL accuracy evidence remains tied to its original hashes; extracting constants does not transfer it to a rebuilt predictor.
+Native test: known SHA vector, corrupt correctly-named H5_Game.exe, wrong process creation, wrong path with correct creation, failed-open handle cleanup, hook resume addresses and decoded CALL target. Consumers compile against the canonical headers. Existing source/DLL accuracy evidence remains tied to its original hashes; extracting constants does not transfer it to a rebuilt predictor.
+
+RU: тест теперь доходит до проверки хеша правильно названного H5_Game.exe и пути процесса с правильным creation time; также сверяет отсутствие утечки handle при отказе. Проверка имени файла не подменяет проверку хеша.
