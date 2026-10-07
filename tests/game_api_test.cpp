@@ -5,10 +5,71 @@
 #include <h5/graphics_lifetime.hpp>
 #include <h5/script_observers.hpp>
 #include <h5/camera_input.hpp>
+#include <h5/console.hpp>
 #include <xmmintrin.h>
 #include <iostream>
+#include <future>
+#include <thread>
 
 namespace {
+void VerifyConsoleAdmission() {
+    const auto window = CreateWindowExW(0, L"STATIC", L"", 0, 0, 0, 1, 1, nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
+    if (!window) { throw std::runtime_error("Console admission fixture window failed"); }
+    h5::ConsoleCommandRequest request;
+    wcscpy_s(request.text, L"help");
+    bool valid = h5::detail::AllowsConsoleDispatch(window, request);
+    valid = valid && !h5::DispatchConsoleCommand(window, request); // Test host lacks pinned game sites.
+    request.size = 0;
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request);
+    request = {};
+    wcscpy_s(request.text, L"help");
+    request.version = 2;
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request);
+    request = {};
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request);
+    std::fill(std::begin(request.text), std::end(request.text), L'x');
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request);
+    request.text[4095] = L'\0';
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request);
+    request = {};
+    wcscpy_s(request.text, L"help");
+    valid = valid && !h5::detail::AllowsConsoleDispatch(nullptr, request);
+    std::promise<HWND> ready;
+    std::promise<void> finish;
+    auto completion = finish.get_future();
+    std::thread worker([&]() {
+        const auto otherWindow = CreateWindowExW(0, L"STATIC", L"", 0, 0, 0, 1, 1, nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
+        ready.set_value(otherWindow);
+        completion.wait();
+        if (otherWindow) { DestroyWindow(otherWindow); }
+    });
+    const auto otherWindow = ready.get_future().get();
+    valid = valid && otherWindow && !h5::detail::AllowsConsoleDispatch(otherWindow, request);
+    finish.set_value();
+    worker.join();
+    DestroyWindow(window);
+    if (!valid) { throw std::runtime_error("Console ownership/thread/request admission failed"); }
+}
+
+void VerifyGeneratedScriptObserver() {
+    static unsigned originalCalls = 0, observerCalls = 0;
+    const auto original = +[]() { ++originalCalls; };
+    const auto observer = +[]() { ++observerCalls; };
+    auto* storage = h5::hooks::CreateScriptObserverStorage(reinterpret_cast<uintptr_t>(original), reinterpret_cast<uintptr_t>(original));
+    if (!storage) { throw std::runtime_error("Generated script dispatcher allocation failed"); }
+    const auto invoke = reinterpret_cast<void (__cdecl*)()>(reinterpret_cast<uintptr_t>(storage) - h5::hooks::ScriptObserverDescriptorOffset);
+    invoke();
+    auto* slot = h5::hooks::AddScriptObserver(*storage, observer);
+    if (!slot) { throw std::runtime_error("Generated script subscriber registration failed"); }
+    invoke();
+    if (!h5::hooks::RemoveScriptObserver(slot, observer)) { throw std::runtime_error("Generated script subscriber removal failed"); }
+    invoke();
+    if (originalCalls != 3 || observerCalls != 1) {
+        throw std::runtime_error("Generated tail jump or callback retirement failed");
+    }
+    // Resident storage deliberately survives until this isolated test process exits.
+}
+
 void VerifyGraphicsTransaction() {
     struct FailureCase { const char* name; int commitFailure; int rollbackFailure; };
     const std::array<FailureCase, 10> cases{{
@@ -139,6 +200,8 @@ void VerifyCameraInputDispatcher() {
 
 int main() {
     try {
+        VerifyConsoleAdmission();
+        VerifyGeneratedScriptObserver();
         VerifyGraphicsTransaction();
         VerifyCameraInputDispatcher();
         static_assert(h5::hooks::BankLayout.Resume() == 0x5f8806);

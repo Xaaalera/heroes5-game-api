@@ -25,14 +25,18 @@ template<size_t Size> inline bool MatchesConsoleSite(const hooks::Site<Size>& si
     return hooks::ObserverMemory(site.address, Size, PAGE_EXECUTE_READ) &&
         std::memcmp(reinterpret_cast<const void*>(site.address), site.expected, Size) == 0;
 }
+// Admission alone does not verify instruction sites or execute game code.
+inline bool AllowsConsoleDispatch(HWND gameWindow, const ConsoleCommandRequest& request) {
+    DWORD owner = 0;
+    const auto thread = GetWindowThreadProcessId(gameWindow, &owner);
+    return thread && thread == GetCurrentThreadId() && owner == GetCurrentProcessId() &&
+        request.size == sizeof(request) && request.version == 1 && request.text[0] &&
+        wcsnlen_s(request.text, 4096) < 4096;
+}
 }
 
 inline bool DispatchConsoleCommand(HWND gameWindow, const ConsoleCommandRequest& request) {
-    DWORD owner = 0;
-    const auto thread = GetWindowThreadProcessId(gameWindow, &owner);
-    if (!thread || thread != GetCurrentThreadId() || owner != GetCurrentProcessId() ||
-        request.size != sizeof(request) || request.version != 1 || !request.text[0] ||
-        wcsnlen_s(request.text, 4096) == 4096) { return false; }
+    if (!detail::AllowsConsoleDispatch(gameWindow, request)) { return false; }
     if (!detail::MatchesConsoleSite(detail::ConsoleStringConstructor) ||
         !detail::MatchesConsoleSite(detail::ConsoleDispatcher) ||
         !detail::MatchesConsoleSite(detail::ConsoleStringRelease)) { return false; }

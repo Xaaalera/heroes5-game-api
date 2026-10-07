@@ -38,7 +38,11 @@ RU/EN, 2026-10-06: fresh SDK-environment diagnostic baseline captured positive-r
 
 RU/EN, 2026-10-06 follow-up: named ConsoleCommand export is verified after core HMR, including automatic source-watch rebuild/apply in one owned process with state counter7 retained. This supersedes the new-export-HMR-pending scope below. Independent final archive and ordinary player acceptance remainopen; the control uses the repaired developer sandbox.
 
-RU/EN, 2026-10-06 follow-up: the SDK now exposes xkit game map through a restricted borrowed-core client. It retains the exact resident module through dispatch, does not stop payloads and refuses to reconnect a stopped core. CLI live map loading and eight-hero reply preserve payload counter7/generation1. This supersedes public-CLI-pending below; new-export HMR and player acceptance remain open.
+RU/EN, earlier 2026-10-06 snapshot, before the export-HMR check above: the SDK exposed xkit game map through a restricted borrowed-core client. It retained the exact resident module through dispatch, did not stop payloads and refused to reconnect a stopped core. CLI live map loading and eight-hero reply preserved payload counter7/generation1. At that time, new-export HMR and player acceptance remained open. The later check above supersedes that HMR status.
+
+RU: нативные локальные проверки отдельно проверяют допуск запроса: свой поток окна, форму запроса и границы текста. Это не разрешение выполнить команду: `DispatchConsoleCommand` дополнительно проверяет инструкции игры. Сгенерированный script dispatcher исполняется в тестовом процессе с настоящим хвостовым переходом, включая отключение callback. Игра для этих проверок не запускается.
+
+EN: Local native checks isolate console request admission: window thread ownership, request shape and text bounds. Admission does not authorize execution; `DispatchConsoleCommand` additionally validates game instruction sites. Tests execute the generated script dispatcher with its actual tail jump and callback removal. These checks do not launch the game.
 
 RU, 2026-10-06: экспериментальная привязка `h5::DispatchConsoleCommand` в `include/h5/console.hpp` использует штатные создание строки, разбор команды и освобождение памяти игры. Вызывающий сначала проверяет поддерживаемую сборку. Все три операции выполняются на одном подтверждённом потоке игрового окна: allocator игры использует TLS. Текст — непустая UTF-16 строка до 4095 символов в запросе фиксированного размера и версии. Неизвестные сигнатуры, поток, процесс или форма запроса отклоняются.
 

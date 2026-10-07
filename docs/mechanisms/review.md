@@ -18,6 +18,11 @@ RU: публикация требует фактического независ�
 Настроенная команда docs проверяет пары код/документ и структуру. --structure-only служит локальной диагностикой при создании репозитория, а не проверкой публикации.
 
 ## Operation
+
+RU: каждая линза читает назначенные ей руководства из конфигурации и применяет их к соответствующему языку и области изменений. Ревью проверяет самостоятельность README/AGENTS, связи с другими репозиториями и понятность использования без ИИ. В описаниях нужны имена и назначение функций; числовые привязки к памяти остаются в исходниках и приватных доказательствах. Пробелы в проверке и недоступные руководства указываются явно.
+
+EN: Each lens loads its configured guides and applies them to the relevant language and changed area. Review checks standalone README/AGENTS, ecosystem links and usability without AI. Human explanations use function names and purpose; numeric memory bindings stay in source and private evidence. Missing guides and verification limits must be reported explicitly.
+
 review:info reports base/hash and Markdown paths. Reviewers read their .agents/review contracts; project-review coordinates read-only assessments. review:attest validates actual results, documentation criteria, secrets and native/docs gates. The pre-push hook calls review:gate; GitHub workflow runs checks using pinned actions and package-lock dependencies. The initial library source at dc8d775 is also reviewed as a full-tree baseline, rather than silently assumed covered by a later setup-only diff.
 
 RU: review:info возвращает base/hash и Markdown пути. Рецензенты используют контракты .agents/review; project-review организует независимое чтение. review:attest проверяет реальные результаты, критерии документации, секреты и native/docs проверки. Pre-push вызывает review:gate; CI использует закреплённые actions и package-lock. Начальный код dc8d775 дополнительно проверяется целиком: он не считается проверенным лишь из-за последующего diff настройки. Внутренние контракты агентов написаны на английском; полный порядок для разработчика дан на русском и английском в project-review/CONTRIBUTING.
