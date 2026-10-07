@@ -5,7 +5,7 @@ namespace h5 {
 // The caller supplies provenance from its own launch. This function validates
 // identity; it never searches for or authorizes attachment to someone else's game.
 inline HANDLE OpenOwnedProcess(DWORD pid, uint64_t creation, const std::filesystem::path& executable,
-    DWORD access) {
+    DWORD access, const std::string& facadeSha256 = {}) {
     const auto process = OpenProcess(access | PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid);
     if (!process) { throw std::runtime_error("owned_process_missing"); }
     try {
@@ -18,7 +18,7 @@ inline HANDLE OpenOwnedProcess(DWORD pid, uint64_t creation, const std::filesyst
         wchar_t path[32768]{}; DWORD length = 32768;
         if (!QueryFullProcessImageNameW(process, 0, path, &length)) { throw std::runtime_error("game_path_read_failed"); }
         if (!std::filesystem::equivalent(path, executable)) { throw std::runtime_error("game_path_mismatch"); }
-        VerifyGame(path);
+        VerifyGame(path, facadeSha256);
         return process; // Caller owns CloseHandle.
     } catch (...) {
         CloseHandle(process);
