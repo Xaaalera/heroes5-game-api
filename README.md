@@ -1,5 +1,7 @@
 # Heroes V Game API
 
+RU: общий диспетчер поддерживает несколько наблюдателей в HMR и готовых DLL-модах; отдельный девкит для запуска готового мода не нужен. Текущая графическая цепочка проверена в обычном запуске двух отдельных пакетов. EN: Shared observers are verified in native HMR and ordinary same-source player DLL startup with the current graphics chain. See [contract and evidence](docs/mechanisms/game-bindings.md#shared-script-observers--общие-наблюдатели-диспетчера).
+
 ## RU
 
 RU: общая C++ библиотека проверенных точек подключения и функций Heroes V Universe. Один источник для SDK, предиктора и справочника. Начальный набор извлечён из работающих проектов; алгоритм расстановки и игровые ресурсы сюда не входят.
@@ -38,3 +40,14 @@ python -X utf8 scripts/docs-check.py --structure-only
 - [Heroes V Universe / Heroes Lobby](https://h5lobby.com/).
 
 Author projects, not official Universe products. / Проекты автора, не официальные продукты Universe.
+
+## Standalone use / Работа вне мастерской
+
+RU: этот репозиторий можно использовать отдельно. Начни с его README и AGENTS.md; глобальная папка мастерской не обязательна. Если есть .gitmodules, выполни `git submodule update --init --recursive` после клонирования. В связанной мастерской используй её sync-subrepos вместо создания вторых checkout.
+EN: This repository can be used independently. Start with its README and AGENTS.md; the global workshop is optional. If .gitmodules exists, initialize pinned dependencies with `git submodule update --init --recursive`. In a linked workshop use its canonical dependency synchronization.
+
+- [Devkit commands / команды SDK](https://github.com/Xaaalera/heroes5-mod-devkit/blob/main/docs/commands.md).
+- [Game API contracts / контракты библиотеки](https://github.com/Xaaalera/heroes5-game-api/blob/main/docs/mechanisms/game-bindings.md).
+- [Research index / карта исследований](https://xaaalera.github.io/heroes5-knowledge/reference/research-index/).
+
+[Code standards / стандарты кода](https://github.com/Xaaalera/claude-skills).
