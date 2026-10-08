@@ -1,5 +1,19 @@
 # Game bindings / Привязки к игре
 
+## Local named event and script dispatch / Локальный вызов события и скрипта
+
+RU: новая локальная привязка повторяет существующие маршруты mailbox: именованное игровое событие и скрипт карты. Строка создаётся и освобождается игровым аллокатором на проверенном потоке окна. Вызов `screenshot` запускает игровой захват без системного PrintScreen. Возврат обработчика означает передачу команды; результат проверяется отдельно по новому файлу или состоянию игры.
+
+EN: The local binding reuses the existing mailbox routes for named game events and adventure scripts. Game-thread string construction/release uses the game's allocator. The named screenshot event avoids the OS PrintScreen handler. A returned dispatch does not prove the effect; verify a new file or game state separately.
+
+RU: `DispatchGameText` принимает тип 1 для имени события (буквы ASCII, цифры и подчёркивание, до 127 символов), тип 2 для скрипта карты (печатные символы ASCII, до 4095). Неизвестные типы, неподдерживаемая версия запроса и вызов с чужого потока отклоняются. Тип 0 остаётся отдельным `DispatchConsoleCommand`; произвольный Unicode допускается только этим широкостроковым маршрутом.
+
+EN: `DispatchGameText` accepts kind 1 for event names (ASCII letters, digits and underscore, at most 127 characters) and kind 2 for adventure scripts (printable ASCII, at most 4095 characters). Unknown kinds, unsupported request versions and calls from another thread are refused. Kind 0 remains the separate `DispatchConsoleCommand`; only that wide-string route accepts arbitrary Unicode.
+
+RU: частная проверка обычного игрового пакета справочника получила настоящую карточку склепа после диагностического позиционирования. DLL и H5U совпали с выпущенным архивом; код установленного обработчика не изменился. Это проверка одного объекта и русского интерфейса, не всех скриптов/событий. Новый маршрут ещё не прошёл полный выпускной review gate.
+
+EN: An exact ordinary bank player package produced a rendered crypt card after diagnostic positioning. Installed DLL/H5U match the released archive and selector code stays unchanged. This verifies one object and Russian interface, not every script/event. The new transport has not passed its full publication gate.
+
 ## Adventure keyboard capture / Захват клавиатуры на карте
 
 RU: новый локальный механизм перехватывает подтверждённое событие нажатия до игровых обработчиков карты. При видимом окне консоли с фокусом это событие считается обработанным; при скрытой консоли выполняется исходный обработчик. Служебные, периодические и неизвестные события проходят без изменений. Публичные функции: `CreateAdventureInputGate` и `FindAdventureInputGate`. Текущее окно консоли определяется при каждом вызове по свойству окна игры.

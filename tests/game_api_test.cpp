@@ -95,6 +95,28 @@ void VerifyConsoleAdmission() {
     wcscpy_s(request.text, L"help");
     bool valid = h5::detail::AllowsConsoleDispatch(window, request);
     valid = valid && !h5::DispatchConsoleCommand(window, request); // Test host lacks pinned game sites.
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 1);
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 2);
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 3);
+    valid = valid && !h5::DispatchGameText(window, request, 0);
+    valid = valid && !h5::DispatchGameText(window, request, 1);
+    valid = valid && !h5::DispatchGameText(window, request, 2);
+    for (const auto text : {L"event name", L"event-name", L"print(1)", L"\u0441\u043d\u0438\u043c\u043e\u043a", L"event\n"}) {
+        wcscpy_s(request.text, text);
+        valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 1);
+    }
+    wcscpy_s(request.text, L"print('test')");
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 2);
+    for (const auto text : {L"print(1)\n", L"\u0441\u043a\u0440\u0438\u043f\u0442", L"\x7f"}) {
+        wcscpy_s(request.text, text);
+        valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 2);
+    }
+    std::fill(std::begin(request.text), std::end(request.text), L'x');
+    request.text[127] = L'\0';
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 1);
+    request.text[127] = L'x';
+    request.text[128] = L'\0';
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 1);
     request.size = 0;
     valid = valid && !h5::detail::AllowsConsoleDispatch(window, request);
     request = {};
@@ -121,6 +143,8 @@ void VerifyConsoleAdmission() {
     });
     const auto otherWindow = ready.get_future().get();
     valid = valid && otherWindow && !h5::detail::AllowsConsoleDispatch(otherWindow, request);
+    valid = valid && !h5::detail::AllowsConsoleDispatch(otherWindow, request, 1);
+    valid = valid && !h5::detail::AllowsConsoleDispatch(otherWindow, request, 2);
     finish.set_value();
     worker.join();
     DestroyWindow(window);
