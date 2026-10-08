@@ -1,0 +1,85 @@
+{
+  "diffHash": "0099441e5b919f9107e8455a71b9849974dd8c783a341266d252105982d07577",
+  "commitSha": "6e83a88a7d2459bff0958b4771622172f81bcf2b",
+  "perAgent": {
+    "craft": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/article_accuracy_critic"
+    },
+    "architecture": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/article_gate_arch_review"
+    },
+    "tests": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/article_gate_tests_review"
+    },
+    "docs": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/article_newcomer_critic",
+      "review": {
+        "reviewer": "/root/article_newcomer_critic",
+        "files": [
+          ".agents/review/docs-auditor.md",
+          ".agents/review/review-architecture.md",
+          ".agents/review/review-craft.md",
+          ".agents/review/review-docs.md",
+          ".agents/review/review-security.md",
+          ".agents/review/review-tests.md",
+          ".agents/skills/project-review/SKILL.md",
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          "README.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md"
+        ],
+        "criteria": {
+          "purpose": {
+            "evidence": "README identifies Game API as a supported-build C++20 header library; API owns bindings/identity checks while SDK owns launch/HMR and plugins own gameplay. Reviewer contracts each identify their subject.",
+            "verdict": "PASS"
+          },
+          "structure": {
+            "evidence": "All12 listed Markdown files assessed, including seven .agents contracts/skill, AGENTS, contribution pointer, README and two mechanism pointers; live-layer README/config also inspected. Shared reviewer boilerplate read once and per-lens content separately.",
+            "verdict": "PASS"
+          },
+          "specificity": {
+            "evidence": "Canonical links lead to integration/toolchain, native-test and callback/loader contracts already independently reviewed; agent rules identify supported-build/thread/ABI evidence duties and owned-process guards.",
+            "verdict": "PASS"
+          },
+          "reproducibility": {
+            "evidence": "Standalone MSVCx86/CMake3.21 prerequisites and canonical integration/test handoff are explicit; contribution guidance tells readers to use this repository gate configuration rather than the site command list. No integration/native tests executed here.",
+            "verdict": "PASS"
+          },
+          "evidence": {
+            "evidence": "Parent-provided native1, Node9 and docs-pair checks PASS4.496s; not executed by this reviewer. Source-only review preserves historical records and does not turn unit/emulation checks into new game acceptance.",
+            "verdict": "PASS"
+          },
+          "applicability": {
+            "evidence": "Supported Windowsx86 build and cataloged versus verified hooks are distinct; API source publication does not certify arbitrary hooks or current player delivery. Source numeric bindings remain separate from human descriptions.",
+            "verdict": "PASS"
+          },
+          "translations": {
+            "evidence": "RU/EN README, contribution/agent guidance and mechanism pointers agree on ownership, prerequisites and evidence limits. English reviewer contracts are intentionally agent-internal, not untranslated player procedures.",
+            "verdict": "PASS"
+          },
+          "maintenance": {
+            "evidence": "Canonical site ownership is explicit in README/AGENTS/contribution/mechanism pointers; config still pairs bindings and review mechanisms with source-to-site pointers. Contract changes require canonical article update and independent final-text review.",
+            "verdict": "PASS"
+          }
+        },
+        "findings": []
+      }
+    },
+    "security": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/article_translation_critic"
+    }
+  },
+  "overall": "PASS",
+  "timestamp": "2026-10-08T14:16:46.358Z"
+}
