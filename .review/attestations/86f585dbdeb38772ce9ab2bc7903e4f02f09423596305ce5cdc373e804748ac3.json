@@ -1,6 +1,6 @@
 {
-  "diffHash": "0099441e5b919f9107e8455a71b9849974dd8c783a341266d252105982d07577",
-  "commitSha": "6e83a88a7d2459bff0958b4771622172f81bcf2b",
+  "diffHash": "86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3",
+  "commitSha": "58ee00d8ed7f831bdd791d5d00c5dc8a2f3d1280",
   "perAgent": {
     "craft": {
       "verdict": "PASS",
@@ -51,7 +51,7 @@
             "verdict": "PASS"
           },
           "reproducibility": {
-            "evidence": "Standalone MSVCx86/CMake3.21 prerequisites and canonical integration/test handoff are explicit; contribution guidance tells readers to use this repository gate configuration rather than the site command list. No integration/native tests executed here.",
+            "evidence": "Standalone MSVCx86/CMake3.21 and canonical integration/test handoff remain explicit. Corrected RU/EN standalone AGENTS initializes only declared direct dependencies with git submodule update --init; linked-workshop canonical synchronization remains separate. No integration/native tests executed here.",
             "verdict": "PASS"
           },
           "evidence": {
@@ -81,5 +81,5 @@
     }
   },
   "overall": "PASS",
-  "timestamp": "2026-10-08T14:16:46.358Z"
+  "timestamp": "2026-10-08T15:04:21.629Z"
 }
