@@ -1,38 +1,30 @@
-# Repository review
+# Ревью репозитория / Repository review
 
 ## RU
 
-Пять независимых линз проверяют код, архитектуру, тесты, документацию и безопасность. Установка через npm ci включает локальный pre-push hook. Все конфигурации и контракты входят в репозиторий; работа с готовым модом не требует этих инструментов.
+Единственный текущий порядок работы с документацией и публикационным ревью находится на сайте.
+[Каноническая инструкция](https://xaaalera.github.io/heroes5-knowledge/contributing/).
 
 ## EN
 
-Five independent lenses assess craft, architecture, tests, docs and security. npm ci installs dependencies and the pre-push hook. Configuration/contracts are included; player use does not depend on this tooling.
+The site owns current documentation and publication-review instructions.
+[Canonical guide](https://xaaalera.github.io/heroes5-knowledge/en/contributing/).
 
 ## Purpose
-Bind publication to actual independent review of the selected Git diff plus deterministic checks.
 
-The configured docs command checks declared code/document pairs as well as structure; --structure-only is a local bootstrap diagnostic, not the publication check.
-
-RU: публикация требует фактического независимого ревью выбранного Git diff и машинных проверок.
-
-Настроенная команда docs проверяет пары код/документ и структуру. --structure-only служит локальной диагностикой при создании репозитория, а не проверкой публикации.
+Связать механизм с единственным руководством / Map this mechanism to its sole living guide.
 
 ## Operation
 
-RU: каждая линза читает назначенные ей руководства из конфигурации и применяет их к соответствующему языку и области изменений. Ревью проверяет самостоятельность README/AGENTS, связи с другими репозиториями и понятность использования без ИИ. В описаниях нужны имена и назначение функций; числовые привязки к памяти остаются в исходниках и приватных доказательствах. Пробелы в проверке и недоступные руководства указываются явно.
-
-EN: Each lens loads its configured guides and applies them to the relevant language and changed area. Review checks standalone README/AGENTS, ecosystem links and usability without AI. Human explanations use function names and purpose; numeric memory bindings stay in source and private evidence. Missing guides and verification limits must be reported explicitly.
-
-review:info reports base/hash and Markdown paths. Reviewers read their .agents/review contracts; project-review coordinates read-only assessments. review:attest validates actual results, documentation criteria, secrets and native/docs gates. The pre-push hook calls review:gate; GitHub workflow runs checks using pinned actions and package-lock dependencies. The initial library source at dc8d775 is also reviewed as a full-tree baseline, rather than silently assumed covered by a later setup-only diff.
-
-RU: review:info возвращает base/hash и Markdown пути. Рецензенты используют контракты .agents/review; project-review организует независимое чтение. review:attest проверяет реальные результаты, критерии документации, секреты и native/docs проверки. Pre-push вызывает review:gate; CI использует закреплённые actions и package-lock. Начальный код dc8d775 дополнительно проверяется целиком: он не считается проверенным лишь из-за последующего diff настройки. Внутренние контракты агентов написаны на английском; полный порядок для разработчика дан на русском и английском в project-review/CONTRIBUTING.
+Правила конкретного репозитория находятся в AGENTS.md, .claude/review.config.json и контрактах .agents/review. README даёт ссылки на сайт; здесь нет второй инструкции.
+Repository-specific working rules remain in AGENTS.md, review configuration and reviewer contracts. README links to the site; this file does not maintain another procedure.
 
 ## Limits
-Attestations record judgments, not cryptographic identities. CI does not run models or the game. A local hook can be bypassed; remote branch policy is separate. Reject dirty source before attesting. C++ tests validate synthetic boundaries, not live-game behavior.
 
-RU: аттестация хранит оценки, не криптографическое доказательство личности. CI не запускает модели/игру. Локальный hook обходится; серверные правила отдельно. Незакоммиченный код блокирует аттестацию. C++ тесты проверяют искусственные границы, не живую игру.
+Аттестация хранит реальные оценки, а не криптографическое доказательство личности. CI не запускает модели или игру; локальный hook не заменяет серверные правила. / An attestation records judgments, not cryptographic identities. CI runs neither models nor the game; local hooks do not replace remote policy.
+Прежние датированные результаты сохранены в истории Git и архиве исследования. / Prior dated evidence remains in Git history and the retained research archive.
 
 ## Verification
-Before first publication demonstrate rejection without a valid attestation, run configured tests, obtain all five real independent results and recheck the final hash. The docs auditor is an additional unscored pass over declared live docs. No fabricated results or manually forged attestations.
 
-RU: до первой публикации подтвердить отказ без аттестации, выполнить тесты, получить пять независимых результатов и сверить итоговый hash. Аудитор документации делает дополнительную проверку без оценки. Результаты/аттестации не подделывать. Регрессия review-gate.test.mjs проверяет отказ ниже порога и успешный проход ровно на пороге через настоящий adapter в отдельном тестовом репозитории.
+Обновление механизма требует сверить соответствующую каноническую статью и правила репозитория. Детерминированные проверки дополняют независимое ревью и не подтверждают игровые выводы.
+Mechanism changes require checking the canonical article and repository rules. Deterministic checks complement independent review rather than prove gameplay claims.

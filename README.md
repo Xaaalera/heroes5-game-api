@@ -1,53 +1,38 @@
 # Heroes V Game API
 
-RU: общий диспетчер поддерживает несколько наблюдателей в HMR и готовых DLL-модах; отдельный девкит для запуска готового мода не нужен. Текущая графическая цепочка проверена в обычном запуске двух отдельных пакетов. EN: Shared observers are verified in native HMR and ordinary same-source player DLL startup with the current graphics chain. See [contract and evidence](docs/mechanisms/game-bindings.md#shared-script-observers--общие-наблюдатели-диспетчера).
-
 ## RU
 
-RU: общая C++ библиотека проверенных точек подключения и функций Heroes V Universe. Один источник для SDK, предиктора и справочника. Начальный набор извлечён из работающих проектов; алгоритм расстановки и игровые ресурсы сюда не входят.
-
-Проверка версии и идентичности процесса обязательна; адреса не универсальны для всех сборок. Используйте CMake target heroes5_game_api и закрывайте возвращённый handle. Документация и нативные проверки описаны ниже. Файлы игры библиотека не распространяет.
+Общая C++20 библиотека заголовков для проверенной Windows x86 сборки Universe. Она хранит проверки версии и процесса, известные hooks и общие подписки. SDK управляет запуском и HMR, отдельные плагины — игровым поведением. Библиотека не распространяет файлы игры.
 
 ## EN
 
-Shared header-only C++20 library for the pinned Windows x86 Universe build. It owns build verification, known hook sites and explicit owned-process identity checks. Devkit owns launch/build/HMR orchestration; plugins own gameplay behavior.
+Shared C++20 header library for the studied Windows x86 Universe build: build/process checks, known hooks and shared subscriptions. The SDK owns launch/HMR; plugins own gameplay behavior. No game files are redistributed.
 
-## Use / Подключение
+## Документация / Documentation
 
-Add this repository as `game-api`, then `add_subdirectory(game-api)` and link `heroes5_game_api`. Headers: `h5/build.hpp`, `h5/hooks.hpp`, `h5/process.hpp`. The CMake target supplies headers and bcrypt. Include paths can also be passed directly to MSVC.
+- [Контракты Game API, подключение и тесты](https://xaaalera.github.io/heroes5-knowledge/reference/game-api/) · [English](https://xaaalera.github.io/heroes5-knowledge/en/reference/game-api/).
+- [SDK xkit](https://xaaalera.github.io/heroes5-knowledge/modding/devkit/).
+- [Команды SDK / SDK commands](https://xaaalera.github.io/heroes5-knowledge/reference/xkit-commands/).
+- [Карта исследований / Research index](https://xaaalera.github.io/heroes5-knowledge/reference/research-index/).
 
-RU: сначала VerifyGame проверяет поддержанную сборку. Hook catalog описывает адрес/исходные bytes/источник доказательств, а не устанавливает произвольный detour. OpenOwnedProcess требует PID, creation time и путь из собственного запуска; handle закрывает вызывающий. Несовместимая версия/процесс отклоняется.
+Руководства находятся только на сайте. Привязки относятся к поддерживаемой сборке; наличие имени в каталоге не делает произвольный hook безопасным.
 
-EN: Do not treat an address as a stable cross-version API. Do not attach by process name alone. Call-site ABI, thread affinity and lifecycle remain the consumer's obligations. [Contracts and evidence](docs/mechanisms/game-bindings.md).
-
-## Checks / Проверки
-
-```powershell
-cmake -S . -B .local/build -A Win32
-cmake --build .local/build --config Release
-ctest --test-dir .local/build -C Release --output-on-failure
-python -X utf8 scripts/docs-check.py --structure-only
-```
-
-## Public projects / Публичные проекты
-
-- [Game API](https://github.com/Xaaalera/heroes5-game-api) — this library / эта библиотека.
-- [Devkit](https://github.com/Xaaalera/heroes5-mod-devkit) — build, launch, HMR.
-- [Deployment Preview](https://github.com/Xaaalera/heroes5-deployment-preview) — predictor / предиктор.
-- [Bank Reference](https://github.com/Xaaalera/heroes5-bank-reference) — справочник.
-- [Knowledge](https://github.com/Xaaalera/heroes5-knowledge) · [site](https://xaaalera.github.io/heroes5-knowledge/).
-- [Xaaalera](https://github.com/Xaaalera) · [email](mailto:dampirsimpl@gmail.com) · [Telegram](https://t.me/Victima).
-- [Heroes V Universe / Heroes Lobby](https://h5lobby.com/).
-
-Author projects, not official Universe products. / Проекты автора, не официальные продукты Universe.
+The website owns the living guides. Bindings target the supported build; catalog inclusion does not make arbitrary hooks safe.
 
 ## Standalone use / Работа вне мастерской
 
-RU: этот репозиторий можно использовать отдельно. Начни с его README и AGENTS.md; глобальная папка мастерской не обязательна. Если есть .gitmodules, выполни `git submodule update --init --recursive` после клонирования. В связанной мастерской используй её sync-subrepos вместо создания вторых checkout.
-EN: This repository can be used independently. Start with its README and AGENTS.md; the global workshop is optional. If .gitmodules exists, initialize pinned dependencies with `git submodule update --init --recursive`. In a linked workshop use its canonical dependency synchronization.
+Библиотеку можно клонировать отдельно, глобальная мастерская не нужна. Для C++ нужны MSVC x86 и CMake 3.21+. Следуй инструкции подключения и тестов на сайте. Рабочие правила находятся в [AGENTS.md](AGENTS.md).
 
-- [Devkit commands / команды SDK](https://github.com/Xaaalera/heroes5-mod-devkit/blob/main/docs/commands.md).
-- [Game API contracts / контракты библиотеки](https://github.com/Xaaalera/heroes5-game-api/blob/main/docs/mechanisms/game-bindings.md).
-- [Research index / карта исследований](https://xaaalera.github.io/heroes5-knowledge/reference/research-index/).
+Clone this library independently; the global workshop is optional. C++ use requires MSVC x86 and CMake 3.21+. Follow the site's integration and test guide; agent working rules live in AGENTS.md.
 
-[Code standards / стандарты кода](https://github.com/Xaaalera/claude-skills).
+## Проекты и контакты / Projects and contacts
+
+- [Game API source](https://github.com/Xaaalera/heroes5-game-api).
+- [SDK xkit](https://github.com/Xaaalera/heroes5-mod-devkit).
+- [Предиктор / Deployment predictor](https://github.com/Xaaalera/heroes5-deployment-preview).
+- [Справочник / Bank reference](https://github.com/Xaaalera/heroes5-bank-reference).
+- [Исходники базы / Knowledge source](https://github.com/Xaaalera/heroes5-knowledge) · [сайт / website](https://xaaalera.github.io/heroes5-knowledge/).
+- [Стандарты кода / Code standards](https://github.com/Xaaalera/claude-skills).
+- [Universe / Heroes Lobby](https://h5lobby.com/).
+
+[Xaaalera](https://github.com/Xaaalera) · [email](mailto:dampirsimpl@gmail.com) · [Telegram](https://t.me/Victima). Наши проекты не являются официальными продуктами Universe. / Our projects are unofficial Universe tools.
