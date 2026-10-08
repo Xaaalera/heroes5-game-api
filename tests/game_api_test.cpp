@@ -101,11 +101,15 @@ void VerifyConsoleAdmission() {
     valid = valid && !h5::DispatchGameText(window, request, 0);
     valid = valid && !h5::DispatchGameText(window, request, 1);
     valid = valid && !h5::DispatchGameText(window, request, 2);
+    wcscpy_s(request.text, L"Event_123");
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 1);
     for (const auto text : {L"event name", L"event-name", L"print(1)", L"\u0441\u043d\u0438\u043c\u043e\u043a", L"event\n"}) {
         wcscpy_s(request.text, text);
         valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 1);
     }
     wcscpy_s(request.text, L"print('test')");
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 2);
+    wcscpy_s(request.text, L" ~");
     valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 2);
     for (const auto text : {L"print(1)\n", L"\u0441\u043a\u0440\u0438\u043f\u0442", L"\x7f"}) {
         wcscpy_s(request.text, text);
@@ -117,6 +121,10 @@ void VerifyConsoleAdmission() {
     request.text[127] = L'x';
     request.text[128] = L'\0';
     valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 1);
+    std::fill(std::begin(request.text), std::end(request.text), L'x');
+    valid = valid && !h5::detail::AllowsConsoleDispatch(window, request, 2);
+    request.text[4095] = L'\0';
+    valid = valid && h5::detail::AllowsConsoleDispatch(window, request, 2);
     request.size = 0;
     valid = valid && !h5::detail::AllowsConsoleDispatch(window, request);
     request = {};
