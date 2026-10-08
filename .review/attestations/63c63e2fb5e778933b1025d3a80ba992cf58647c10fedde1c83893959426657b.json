@@ -1,0 +1,1211 @@
+{
+  "diffHash": "63c63e2fb5e778933b1025d3a80ba992cf58647c10fedde1c83893959426657b",
+  "commitSha": "a9275e6b2b7ea19aff40fd2e4ec65e5a77975cf4",
+  "perAgent": {
+    "craft": {
+      "agent": "craft",
+      "verdict": "PASS",
+      "score": 10,
+      "counts": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "advisory": 0
+      },
+      "one_line": "PASS 10/10: no concrete dead-code, duplication, naming, placement or responsibility defect found in the cumulative 35-path Game API scope including the untracked keyboard gate.",
+      "reviewer": "/root/game_api_craft",
+      "review": {
+        "reviewer": "/root/game_api_craft",
+        "scope": {
+          "repository": "game-api",
+          "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+          "head": "2aa326d4463243e7b7d43aea6f8b389592966681",
+          "tracked_worktree_patch_sha256": "1da8313805925369e471dd425313d6c49c5de2cf606b519baeab4c4fff331a0c",
+          "untracked_files": [
+            {
+              "path": "include/h5/adventure_input.hpp",
+              "sha256": "9b5ac36a792af72adb8b71a36e10de0c3e8ff3438269474a14c5f47856576418"
+            }
+          ],
+          "changed_paths": 35,
+          "description": "Configured fixed-base cumulative current worktree, explicitly including the untracked keyboard gate. Full-path shallow triage followed by depth on all changed native bindings, tests and current binding/human documentation."
+        },
+        "skills": {
+          "loaded": [
+            "triage",
+            "solid",
+            "ockham",
+            "conventions",
+            "ui-strings",
+            "responsive-layout",
+            "standard"
+          ],
+          "applicability": "Configured guides were read in this session. SOLID/Ockham applied to native responsibilities and concrete reuse. Literal instruction positions and native POD offsets are ABI contracts, not JavaScript naming violations. No changed player layout/localization strings; native fixture descriptions and developer binding diagnostics do not require a UI catalog."
+        },
+        "triage": {
+          "method": "Stat/name/status/numstat covered all 34 tracked paths plus the untracked header. Review contracts, scripts, dependency lock and hook infrastructure were reconfirmed against their already-read prior snapshot; git diff from 2d75a347 to current HEAD confirmed those infrastructure files unchanged. Native binding additions and current keyboard delta received depth.",
+          "deep_paths": [
+            ".claude/review.config.json",
+            "AGENTS.md",
+            "CONTRIBUTING.md",
+            "README.md",
+            "docs/mechanisms/game-bindings.md",
+            "docs/mechanisms/review.md",
+            "include/h5/build.hpp",
+            "include/h5/camera_input.hpp",
+            "include/h5/console.hpp",
+            "include/h5/graphics_lifetime.hpp",
+            "include/h5/hooks.hpp",
+            "include/h5/image_placement.hpp",
+            "include/h5/process.hpp",
+            "include/h5/script_observers.hpp",
+            "tests/game_api_test.cpp",
+            "include/h5/adventure_input.hpp"
+          ],
+          "shallow_paths": [
+            ".agents/review/docs-auditor.md",
+            ".agents/review/review-architecture.md",
+            ".agents/review/review-craft.md",
+            ".agents/review/review-docs.md",
+            ".agents/review/review-security.md",
+            ".agents/review/review-tests.md",
+            ".agents/skills/project-review/SKILL.md",
+            ".claude/docs.config.json",
+            ".githooks/pre-push",
+            ".github/workflows/verify.yml",
+            ".gitignore",
+            ".review/attestations/5a84e06975fa96d73dfbaf8443ec3bf77d412c79f55fb9f0c5d88d42a742efc6.json",
+            "package-lock.json",
+            "package.json",
+            "scripts/install-hooks.mjs",
+            "scripts/review-check.mjs",
+            "scripts/review-docs.mjs",
+            "scripts/review-docs.test.mjs",
+            "scripts/review-gate.test.mjs"
+          ]
+        },
+        "findings": [],
+        "claims": [
+          {
+            "path": ".agents/review/docs-auditor.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".agents/review/review-architecture.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".agents/review/review-craft.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".agents/review/review-docs.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".agents/review/review-security.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".agents/review/review-tests.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".agents/skills/project-review/SKILL.md",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".claude/docs.config.json",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".claude/review.config.json",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": ".githooks/pre-push",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".github/workflows/verify.yml",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".gitignore",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": ".review/attestations/5a84e06975fa96d73dfbaf8443ec3bf77d412c79f55fb9f0c5d88d42a742efc6.json",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "AGENTS.md",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "CONTRIBUTING.md",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "README.md",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "docs/mechanisms/game-bindings.md",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "docs/mechanisms/review.md",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/build.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/camera_input.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/console.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/graphics_lifetime.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/hooks.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/image_placement.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/process.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/script_observers.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "package-lock.json",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "package.json",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "scripts/install-hooks.mjs",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "scripts/review-check.mjs",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "scripts/review-docs.mjs",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "scripts/review-docs.test.mjs",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "scripts/review-gate.test.mjs",
+            "disposition": "judged",
+            "depth": "shallow"
+          },
+          {
+            "path": "tests/game_api_test.cpp",
+            "disposition": "judged",
+            "depth": "deep"
+          },
+          {
+            "path": "include/h5/adventure_input.hpp",
+            "disposition": "judged",
+            "depth": "deep"
+          }
+        ],
+        "supporting_scope": [
+          "CMakeLists.txt baseline",
+          "Explicitly requested devkit/native/plugin_bridge.cpp keyboard integration and adjacent resident observer/event publication functions"
+        ],
+        "evidence": [
+          "Read current project AGENTS, CONTRIBUTING, configured craft rules and craft subject; loaded guides already available from the same reviewer session.",
+          "AdventureInputCode generates the ABI-specific resident bytes; CreateAdventureInputGate prepares POD storage and system exports; FindAdventureInputGate recognizes the expected descriptor and code. Names describe the operations and match adjacent Create/Find binding functions.",
+          "The new gate reuses ScriptObserverDescriptorOffset, ObserverMemory and ObserverCodeDigest rather than duplicating memory admission and SHA implementation. It has a concrete separate job: consume verified adventure key presses without retaining a hot SDK callback.",
+          "Compared camera/script observer contracts with the keyboard gate: camera subscriber votes and script callback arrays have different real callers and lifetimes, so a shared speculative dispatcher abstraction is not justified.",
+          "The explicitly requested SDK integration reuses CallBytes/WriteCall for validated JMP publication and enforces the main game thread. Game API keeps code generation/recognition; SDK RefreshEvents owns publication and current-window integration.",
+          "Native fixture calls production gate creation/recognition and actual generated code with a real HWND, then exercises property replacement/destruction, hidden state, descriptor seal, unknown events and non-press forwarding. No separate copied gate implementation was found.",
+          "Current binding docs name CreateAdventureInputGate/FindAdventureInputGate and explain process residency, dynamic current-console property, original dispatch and evidence limits. Source positions remain numeric ABI data.",
+          "Inspected input-gate-version-two-hmr-live.json: passed, duration 98.42510659992695 seconds, source restoration, same-owner core/console replacement context and normal session/game cleanup. Its scope is I suppression and normal map I after hide, not all input transitions.",
+          "Parent supplied held-PageDown evidence at 54.671 seconds: one hide/release transition with a later positive map baseline. This is kept as supplied bounded evidence and was not rerun.",
+          "git diff --check produced no output. No builds or tests were run by this reviewer."
+        ],
+        "limits": [
+          "Static craft review; no source edits, builds, tests, game launch, focus or input actions. Only this requested report was written.",
+          "Existing live receipts were read rather than reproduced. Held-key evidence is a supplied bounded control; no all-key, all-mouse, all-screen, release-wide or arbitrary-detour acceptance is asserted.",
+          "SDK integration coverage is limited to the explicitly requested plugin_bridge keyboard/event orchestration; the SDK entire cumulative publication diff was not independently reviewed here.",
+          "The new header is untracked and included through its separate recorded digest. Git diff alone excludes it; publication review/attestation must include its eventual committed bytes.",
+          "This is an actual craft result for the recorded worktree, not a generated attestation or a complete release-readiness verdict."
+        ],
+        "summary": {
+          "agent": "craft",
+          "verdict": "PASS",
+          "score": 10,
+          "counts": {
+            "blocker": 0,
+            "major": 0,
+            "minor": 0,
+            "advisory": 0
+          },
+          "one_line": "PASS 10/10: no concrete dead-code, duplication, naming, placement or responsibility defect found in the cumulative 35-path Game API scope including the untracked keyboard gate."
+        }
+      }
+    },
+    "architecture": {
+      "agent": "architecture",
+      "verdict": "PASS",
+      "score": 10,
+      "counts": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "advisory": 0
+      },
+      "one_line": "Canonical API boundaries, owned process/startup transactions, resident observer/input lifetime and configured publication enforcement satisfy the reviewed contracts.",
+      "reviewer": "/root/sdk_native_architecture_review (independent Codex architecture reviewer)",
+      "review": {
+        "reviewer": "/root/sdk_native_architecture_review (independent Codex architecture reviewer)",
+        "repository": "D:\\Pk\\Heroes5ModsFolder\\game-api",
+        "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+        "head": "2aa326d4463243e7b7d43aea6f8b389592966681",
+        "scope": "FULL current cumulative Game API worktree architecture review against configured fixed base, all35paths including untracked adventure_input.hpp. SDK plugin_bridge consumer boundary inspected as explicitly supplied context. Earlier bounded integration review is supporting history, not a substitute for this pass. One scored lens report, not full publication attestation.",
+        "findings": [],
+        "claims": [
+          {
+            "path": ".agents/review/docs-auditor.md",
+            "disposition": "declined",
+            "reason": "Shallow contract inventory confirms role separation; other reviewer-persona prose is outside native/library architecture correctness."
+          },
+          {
+            "path": ".agents/review/review-architecture.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".agents/review/review-craft.md",
+            "disposition": "declined",
+            "reason": "Shallow contract inventory confirms role separation; other reviewer-persona prose is outside native/library architecture correctness."
+          },
+          {
+            "path": ".agents/review/review-docs.md",
+            "disposition": "declined",
+            "reason": "Shallow contract inventory confirms role separation; other reviewer-persona prose is outside native/library architecture correctness."
+          },
+          {
+            "path": ".agents/review/review-security.md",
+            "disposition": "declined",
+            "reason": "Shallow contract inventory confirms role separation; other reviewer-persona prose is outside native/library architecture correctness."
+          },
+          {
+            "path": ".agents/review/review-tests.md",
+            "disposition": "declined",
+            "reason": "Shallow contract inventory confirms role separation; other reviewer-persona prose is outside native/library architecture correctness."
+          },
+          {
+            "path": ".agents/skills/project-review/SKILL.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".claude/docs.config.json",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".claude/review.config.json",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".githooks/pre-push",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".github/workflows/verify.yml",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".gitignore",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": ".review/attestations/5a84e06975fa96d73dfbaf8443ec3bf77d412c79f55fb9f0c5d88d42a742efc6.json",
+            "disposition": "declined",
+            "reason": "Historical attestation inventoried; not substituted for current architecture judgment or proof of reviewer identity."
+          },
+          {
+            "path": "AGENTS.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "CONTRIBUTING.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "README.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "docs/mechanisms/game-bindings.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "docs/mechanisms/review.md",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/adventure_input.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/build.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/camera_input.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/console.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/graphics_lifetime.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/hooks.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/image_placement.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/process.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "include/h5/script_observers.hpp",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "package-lock.json",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "package.json",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "scripts/install-hooks.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "scripts/review-check.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "scripts/review-docs.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed applicable canonical ownership, dependency direction, handle/code/data lifetime, supported-thread/ABI, review enforcement or human library-entry-point boundary."
+          },
+          {
+            "path": "scripts/review-docs.test.mjs",
+            "disposition": "judged",
+            "reason": "Read fixture assertions for the represented ownership/guard/seal/publication contracts; no test execution or comprehensive test-quality certification."
+          },
+          {
+            "path": "scripts/review-gate.test.mjs",
+            "disposition": "judged",
+            "reason": "Read fixture assertions for the represented ownership/guard/seal/publication contracts; no test execution or comprehensive test-quality certification."
+          },
+          {
+            "path": "tests/game_api_test.cpp",
+            "disposition": "judged",
+            "reason": "Read fixture assertions for the represented ownership/guard/seal/publication contracts; no test execution or comprehensive test-quality certification."
+          }
+        ],
+        "summary": {
+          "agent": "architecture",
+          "verdict": "PASS",
+          "score": 10,
+          "counts": {
+            "blocker": 0,
+            "major": 0,
+            "minor": 0,
+            "advisory": 0
+          },
+          "one_line": "Canonical API boundaries, owned process/startup transactions, resident observer/input lifetime and configured publication enforcement satisfy the reviewed contracts."
+        },
+        "triage": {
+          "total": 35,
+          "deep": [
+            "include/h5/build.hpp",
+            "include/h5/process.hpp",
+            "include/h5/image_placement.hpp",
+            "include/h5/graphics_lifetime.hpp",
+            "include/h5/console.hpp",
+            "include/h5/script_observers.hpp",
+            "include/h5/camera_input.hpp",
+            "include/h5/adventure_input.hpp",
+            "include/h5/hooks.hpp",
+            "scripts/review-check.mjs",
+            "scripts/review-docs.mjs",
+            "scripts/install-hooks.mjs",
+            ".githooks/pre-push",
+            ".github/workflows/verify.yml",
+            ".claude/review.config.json",
+            ".claude/docs.config.json",
+            "package.json",
+            "package-lock.json",
+            "docs/mechanisms/game-bindings.md",
+            "docs/mechanisms/review.md"
+          ],
+          "shallow": "All remaining paths explicitly inventoried with judged/declined disposition; test files read for contract assertions, historical attestations and other lens persona prose declined."
+        },
+        "architecture_evidence": [
+          {
+            "invariant": "Shared library owns known build/signature/ABI/process bindings; SDK owns launch/build/HMR orchestration; independent plugins retain their gameplay algorithms.",
+            "where": "README.md and include/h5/*",
+            "evidence": "Header-only canonical target and SDK consumer include paths; no game resources/algorithm payload copied into API. Actual CMake boundary inspected, including unchanged baseline target."
+          },
+          {
+            "invariant": "Borrowed versus owned HANDLE boundaries are explicit; process access requires caller-owned PID/creation/path and supported binary chain.",
+            "where": "include/h5/process.hpp:7",
+            "evidence": "OpenOwnedProcess validates creation and executable equivalence before VerifyGame; failure closes acquired handle. Sha256(HANDLE) maps supplied file without reopening path or changing cursor; path wrapper owns and closes its handle."
+          },
+          {
+            "invariant": "Startup image placement/graphics repair cannot become an arbitrary live repair API.",
+            "where": "include/h5/image_placement.hpp and graphics_lifetime.hpp",
+            "evidence": "Public wrappers validate owned process/file hashes/path/mapping/PE/range; internal repair borrows handle and assumes explicitly established stopped/fresh-image quiescence. Production repair transaction confirms write/protection/cache/readback and rollback or throws uncertainty; consumer facade/launch obligations documented."
+          },
+          {
+            "invariant": "Console dispatch uses exact supported ABI and verified own game-window thread; returned dispatch is separate from command effect.",
+            "where": "include/h5/console.hpp",
+            "evidence": "Bounded/versioned request, process/thread admission, three instruction-site signatures, native allocation/dispatch/release on same GUI thread. No new worker gameplay call is introduced."
+          },
+          {
+            "invariant": "Shared observers own resident executable/POD storage while consumer callbacks require serialized main-thread subscription removal before core stop.",
+            "where": "include/h5/script_observers.hpp and camera_input.hpp",
+            "evidence": "RX code/RW descriptors, sealed mapping/code/digest finders and original tail/virtual target preservation; same-game-thread nonreentrant contract, independent callback slots. Published allocation persists with zero subscribers; generic multi-thread detours not promised."
+          },
+          {
+            "invariant": "Adventure gate has no mutable worker-owned panel/thread pair or core callback lifetime dependency.",
+            "where": "include/h5/adventure_input.hpp and supplied SDK plugin_bridge.cpp:273",
+            "evidence": "126byte sealed resident JMP code resolves concrete user32 exports, currentFrameClass property/owner/visibility/focus and property recheck for each recognized pressed1 event. Bounded property comparison, focusbuffer cbSize, concretenonnullAPI equality and code/digest checked before reuse. x86 staticasserts enforce panelOwner80/focus84/hwndFocus<=127/GUITHREADINFO48. SDK installs on verified primarythread, compares originalsite and rejects differentgameWindow reuse; publication uncertainty retains prepared resident memory."
+          },
+          {
+            "invariant": "Unrecognized/tick/named/nonpress events preserve native dispatch; focus-scoped capture does not promise full key-state ownership.",
+            "where": "include/h5/adventure_input.hpp",
+            "evidence": "kind0/id<=255/pressed1 eligibility, recognized native consumedRET4, all others originaltailjump. No per-key ownership bitmap; heldkey behavior accepted only for actual scoped controls. Visible-unfocused fixture exercises fallback77 then refocus1."
+          },
+          {
+            "invariant": "Publication gate consumes exact configured range and real supplied lens results, with dirty-source rejection and explicit deterministic gates.",
+            "where": "scripts/review-check.mjs / .githooks/pre-push / workflows",
+            "evidence": "Explicitbase validation, cumulativehash, Markdown coverage, configuredlens threshold, eightcriteria validator, ancestry, dirtyworktree refusal, pinnedpackage/actions and gatecommands. Hook only permits checkedoutHEAD; foreign hooksPath preserved. Prior attestations and CI are not identities or livegame tests."
+          }
+        ],
+        "guides_read": [
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          ".claude/review.config.json",
+          ".agents/review/review-architecture.md",
+          ".agents/skills/project-review/SKILL.md",
+          "C:/Users/dampi/.codex/skills/solid/SKILL.md",
+          "C:/Users/dampi/.codex/skills/ockham/SKILL.md",
+          "C:/Users/dampi/.codex/skills/triage/SKILL.md",
+          "C:/Users/dampi/.codex/skills/conventions/SKILL.md"
+        ],
+        "evidence_receipts_read": [
+          {
+            "path": "game-api-visible-unfocused-fixture.json",
+            "supports": "Supplied nativePASS3.207236s; source assertions verify visibleconsole/outsidefocus returns77 and refocus returns1. No game/input used by reviewer."
+          },
+          {
+            "path": "input-gate-version-two-hmr-live.json",
+            "supports": "98.4251s same-owner actualcoreversion2 and consoleHWND replacement, pairedI suppression in console/works afterhide, normalgame/sessioncleanup. Bounded keyboard/control sequence only."
+          },
+          {
+            "path": "input-held-key-transition-accepted.json",
+            "supports": "54.6713s onePageDown hide/release transition with normalcleanup; expressly not arbitrarykeys or HMR whilekeyheld."
+          },
+          {
+            "path": "input-mouse-click-pair-accepted.json",
+            "supports": "48.9129s one ownedportrait click/doubleclickpair with normalcleanup; no rightdrag/allmouse/allscreen claim. Not evidence that the keyboardgate handlesmouseevents."
+          }
+        ],
+        "verification_limits": [
+          "Read-only source/diff/config/fixture/receipt review. No source edits, builds/tests, game launch or focus/mouse/keyboard use. ReviewJSON is the only written artifact.",
+          "Supplied machine/live results were not rerun by reviewer; failed earlieroperandpatch attempt remains separate history, not hidden by laterPASS.",
+          "Supported exactpinnedx86 sites, ownedgame and single nonreentrantprimarythread only. Arbitraryprologues/nativecrashes/foreignthreads/generalCOM or anyscreeninput behavior not certified.",
+          "RootHWND recreation and multithread/reentrant gateinvocation outside published fixedroot/mainthread contract. ResidentGUITHREADINFO scratch depends on that contract; frameHWND replacement is handled dynamically.",
+          "No universalinput/heldkeyownership assertion. Each live receipt accepted only for its named control and context.",
+          "This report includes current worktree/untrackedheader; publisher must commit matchingreviewedbytes and bind actualfinalgate/attestation to exactresult. No fabricated fullpublicationattestation.",
+          "Article factual accuracy/translation/literalclarity and testcoverage sufficiency are not silently certified by architecture PASS."
+        ],
+        "source_sha256": {
+          ".agents/review/docs-auditor.md": "9609d83bc660bd1836bd61c757f35fead102b21efa654c7c00cefbfa39ae210f",
+          ".agents/review/review-architecture.md": "4e8423abd83c08be5263f96a8d607379a8bd52d769f1a6540cba43fda4840bf7",
+          ".agents/review/review-craft.md": "db5d2fe12350ac2ce97b122b84d1199b1a8b98ffabe7c8e9ba93e408531df985",
+          ".agents/review/review-docs.md": "5ca0718c04cc2f342f97ff72dc38006fd807d3dbe2c37603880fadfbf0944acb",
+          ".agents/review/review-security.md": "ec84f797e009924fe56f69b7894a569b279c335f8c062e2e5c92bf735ff7d843",
+          ".agents/review/review-tests.md": "9e35faff15d59d6c95fa447ad2e9f4e54ba3126e0fc9180e8e01908c51b60b69",
+          ".agents/skills/project-review/SKILL.md": "2554528c8b18a430192cc78e728dffd7347b9ff91a0399e7650462d17829f314",
+          ".claude/docs.config.json": "f2708302cf236e75d74eadceb24a354d34c499a8bd479fbebce1f86769659977",
+          ".claude/review.config.json": "3e3eba1115e4575f3a518020165ab78aba5f9c83d671655ab0cbbf8a7ec0bf29",
+          ".githooks/pre-push": "9231700d6415779a70725e0fc551c1adb57a12eb171e704a5b1550f4f03cf2a5",
+          ".github/workflows/verify.yml": "a17b4ffa0c657eab1f8ed1712d966b8dfb62130ab2c533e9753ba9ee813b0510",
+          ".gitignore": "7cd7a21c0d1989343b0e3bca276cef4687d36549114ad956fd3053f35d2eb370",
+          ".review/attestations/5a84e06975fa96d73dfbaf8443ec3bf77d412c79f55fb9f0c5d88d42a742efc6.json": "9ea33f44c1e1dfa2ed843d98b200964329c556fb3a7f84add0daf57b539d5d61",
+          "AGENTS.md": "80092fab8ccfe6dae118a98082c3ef5f2f32eb8ef872895e7f88e2c9bc887061",
+          "CONTRIBUTING.md": "09b46ebf43c1dbb92ceed3d57ab1f2e1509d6ecec3390d4cd24df4b7279159d3",
+          "README.md": "5b9da5262c2d38ad8699fa377034f8e2af0e894d1ca29092aaa279f21d957d87",
+          "docs/mechanisms/game-bindings.md": "c428239435747174d1a6772f32c3c674865eff897a374c45d6fabda80fd6d136",
+          "docs/mechanisms/review.md": "781a3966651bcea44f7c2c9e3c69a1df8ee109a9a8f119c6a2b3034b55fbc218",
+          "include/h5/adventure_input.hpp": "9b5ac36a792af72adb8b71a36e10de0c3e8ff3438269474a14c5f47856576418",
+          "include/h5/build.hpp": "eae5225f397e9b338fdaa35988e58e5dd921c958585f09cfbccbc6a1487e1f88",
+          "include/h5/camera_input.hpp": "1184cb80af1dcd269459b6d504dbfdd7d62c4d37903256459aadd65ee7f3ab38",
+          "include/h5/console.hpp": "ada5eac79b86166b3a44a9238d301a12ad5d9f39449d435af5b781a93207650d",
+          "include/h5/graphics_lifetime.hpp": "ba3364f10332955ef62731b78b7b3e966fb753e6f13cd8f068167fecd0c58c9c",
+          "include/h5/hooks.hpp": "fa97c04184b12bee7b115248b10fb9b413100bfea3d8eb042a8625e2c861657d",
+          "include/h5/image_placement.hpp": "04b77a471c7920d3b3b4d1650c6d0bc864088c19280b9133730c302e0bf34a1c",
+          "include/h5/process.hpp": "6c3a5cf3aa2e5aa457b457fc724f8bd9fadb1ca0c07a4e5ad47c8567e53bd338",
+          "include/h5/script_observers.hpp": "c5bc53a7005e4cf404f1af02ff52be6832e15b48c19006f6d2086f379bdc8cdb",
+          "package-lock.json": "e8394f9b5e6f4b46e37cd4c0b36ca9083d5e27aa51d001e751f13d2ea7a45185",
+          "package.json": "23835e92954ce35f29530cca96b77d3744346d3abf486f62b9b088a19ae29c71",
+          "scripts/install-hooks.mjs": "cbc64e8763738a0cbaf12fddd5f7b83a388387bb007ce2da8345ca58b2f55470",
+          "scripts/review-check.mjs": "310dcdf64f844b9ea928663072ffa1364d4c7b5d9172d1d5b0d54397b2746768",
+          "scripts/review-docs.mjs": "10838aba0d2711e33416e1febeec45d4a5e163b92c483d81be903297ae3966e3",
+          "scripts/review-docs.test.mjs": "15dd8c4f61487127514d91ffa3b2d5027e7ead9a6209cbf5b9834b323d9f4df6",
+          "scripts/review-gate.test.mjs": "4e825dd779ea6516d58a54a5589e92351a623b9716e5133c9f2711fd138e1a37",
+          "tests/game_api_test.cpp": "967540d53da90d1cb017e784931a19e21a5f9ef671facf4c1f30158997843740"
+        },
+        "consumer_boundary": {
+          "path": "D:/Pk/Heroes5ModsFolder/devkit/native/plugin_bridge.cpp",
+          "sha256": "da5af3d6735c3e75b55b2a3c8379e42c2bc2f11b65a945b9c3d202c5000fd968"
+        },
+        "created_at": "2026-10-08T00:42:59.582692+00:00"
+      }
+    },
+    "tests": {
+      "agent": "tests",
+      "verdict": "PASS",
+      "score": 10,
+      "counts": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "advisory": 0
+      },
+      "one_line": "Visible-unfocused forwarding and subsequent recapture are now explicitly checked; no remaining finding in the recorded full tests-review scope.",
+      "reviewer": "/root/sdk_publication_tests",
+      "review": {
+        "reviewer_id": "/root/sdk_publication_tests",
+        "repository": "D:\\Pk\\Heroes5ModsFolder\\game-api",
+        "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+        "head": "2aa326d4463243e7b7d43aea6f8b389592966681",
+        "untracked_sources": {
+          "include/h5/adventure_input.hpp": "9b5ac36a792af72adb8b71a36e10de0c3e8ff3438269474a14c5f47856576418"
+        },
+        "findings": [],
+        "claims": [
+          {
+            "path": ".agents/review/docs-auditor.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".agents/review/review-architecture.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".agents/review/review-craft.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".agents/review/review-docs.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".agents/review/review-security.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".agents/review/review-tests.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".agents/skills/project-review/SKILL.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".claude/docs.config.json",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".claude/review.config.json",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": ".githooks/pre-push",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": ".github/workflows/verify.yml",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": ".gitignore",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": ".review/attestations/5a84e06975fa96d73dfbaf8443ec3bf77d412c79f55fb9f0c5d88d42a742efc6.json",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "AGENTS.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "CONTRIBUTING.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "README.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "docs/mechanisms/game-bindings.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "docs/mechanisms/review.md",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "include/h5/build.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/camera_input.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/console.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/graphics_lifetime.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/hooks.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/image_placement.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/process.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/script_observers.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "package-lock.json",
+            "disposition": "declined",
+            "reason": "N/A to executable coverage lens: prose/reviewer instructions, dependency metadata, ignore rules or stored attestation; not historical game-experiment certification."
+          },
+          {
+            "path": "package.json",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": "scripts/install-hooks.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": "scripts/review-check.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": "scripts/review-docs.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": "scripts/review-docs.test.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": "scripts/review-gate.test.mjs",
+            "disposition": "judged",
+            "reason": "Reviewed gate commands, real adapter test and docs-validator rejection cases; no removed check/skip/type escape or false-green change found."
+          },
+          {
+            "path": "tests/game_api_test.cpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          },
+          {
+            "path": "include/h5/adventure_input.hpp",
+            "disposition": "judged",
+            "reason": "Mapped cumulative native binding behavior to current synthetic native suite and explicit live limits. Keyboard gate/finder and actual HWND/property recreation received deeper review; remaining bindings assessed at coverage boundary level."
+          }
+        ],
+        "summary": {
+          "agent": "tests",
+          "verdict": "PASS",
+          "score": 10,
+          "counts": {
+            "blocker": 0,
+            "major": 0,
+            "minor": 0,
+            "advisory": 0
+          },
+          "one_line": "Visible-unfocused forwarding and subsequent recapture are now explicitly checked; no remaining finding in the recorded full tests-review scope."
+        },
+        "actual_review": [
+          "Read AGENTS, CONTRIBUTING, project-review workflow and local review-tests subject; configured installed tests-architecture guide was already read in this reviewer session. User/parent expressly requested review including uncommitted/untracked work, so none silently omitted.",
+          "Enumerated full fixed-base cumulative paths including untracked adventure_input.hpp.",
+          "Read generated AdventureInput machine code, finder seal checks, actual HWND fixture and recreation cases, camera dispatcher votes/virtual dispatch, graphics transaction rejection/rollback case table, owned-process/hash and observer ABI/digest/capacity checks.",
+          "Read review adapter/validator and real adapter test, package commands and CI/prepush gates.",
+          "Read SDK plugin_bridge.RefreshEvents caller: verifies game thread, discovers/creates resident gate and requires matching game HWND.",
+          "Read latest exact version2+new console same-owner HMR receipt and one PageDown transition receipt; scope preserved."
+        ],
+        "limits": [
+          "All35 current changed/untracked paths explicitly claimed or declined. No full attestation fabricated.",
+          "No source edits/build/tests/game/input; report evidence file writing only. Parent reported native CTest1 suite PASS was not independently rerun. One CTest entry bundles multiple native verification functions, not one individual assertion.",
+          "Live receipts support local owned keyboard isolation/I pair and one PageDown hide/release case; not all mouse gestures, arbitrary keys, other Windows/builds or HMR while a key remains held.",
+          "Retained version2 live receipt has passed=true and capture_exit_code1; successful source/core/window/owner checks and later captures remain recorded. No universal visual/physical PASS inferred from the root passed flag.",
+          "Native HWND tests explicitly fail if fixture focus cannot be established; they do not silently skip missing focus.",
+          "Headers governing live pinned game-image repair/console bindings include synthetic admission/transaction tests and external SDK receipts; local fixture PASS does not execute all game ABI routines.",
+          "Final score=max(0,10-20*0-3*0-0)=10; original minor retained under resolved_findings. This is bounded fix verification preserving the previous full35-path review, not a new full source pass."
+        ],
+        "resolved_findings": [
+          {
+            "severity": "minor",
+            "why_this_severity": "This is a missing regression case for a future edit (question5); current focus comparison is present and no present incorrect capture is alleged.",
+            "where": "tests/game_api_test.cpp:50; include/h5/adventure_input.hpp:32",
+            "occurrences": 1,
+            "problem": "Gate coverage omits a visible console whose focus has moved to another HWND. Existing negative tests bypass the focus comparison through hidden/absent/destroyed panel state.",
+            "scenario": "Remove the generated hwndFocus==panel comparison: current native focused-visible, hidden, cleared and destroyed tests remain green, as do the retained live map baselines which hide the console. A visible console that loses focus could then swallow a map key instead of forwarding it to the original game target.",
+            "confidence": "high",
+            "evidence": "Read VerifyAdventureInputGate in full: every visible live panel positive is given SetFocus(panel), and no visible panel is invoked with a different focused HWND. input-gate-version-two-hmr-live.json explicitly records console_hidden_by_physical_toggle before its map I baseline. input-held-key-transition-accepted.json is a hide/release transition, not visible-unfocused input. The generated gate currently compares the panel against focus; that branch has no checked negative case."
+          }
+        ],
+        "recheck_evidence": [
+          "tests/game_api_test.cpp:55 creates/shows a separate actual HWND, focuses it, validates GetGUIThreadInfo hwndFocus equals that outside HWND, and requires original result77 while the property panel remains visible. Refocusing the property panel must capture result1 again. This directly reaches the missing negative focus branch and then proves recovery.",
+          "game-api-visible-unfocused-fixture.json read as retained parent machine receipt; native build/CTest was not rerun by reviewer.",
+          "Parent reported input-mouse-click-pair-accepted.json owner3848 with paired covered/uncovered portrait clicks. This bounded regression recheck does not independently inspect those images or certify all mouse gestures/scenes."
+        ],
+        "source_file_sha256": {
+          "tests/game_api_test.cpp": "967540d53da90d1cb017e784931a19e21a5f9ef671facf4c1f30158997843740",
+          "include/h5/adventure_input.hpp": "9b5ac36a792af72adb8b71a36e10de0c3e8ff3438269474a14c5f47856576418"
+        }
+      }
+    },
+    "docs": {
+      "agent": "docs",
+      "verdict": "PASS",
+      "score": 10,
+      "counts": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "advisory": 0
+      },
+      "one_line": "The full cumulative GameAPI documentation pairs the local adventure-keyboard contract with bounded HMR evidence and preserves standalone maintainer and player boundaries.",
+      "reviewer": "/root/bank_xkit_docs (independent Codex documentation reviewer)",
+      "review": {
+        "reviewer": "/root/bank_xkit_docs (independent Codex documentation reviewer)",
+        "files": [
+          ".agents/review/docs-auditor.md",
+          ".agents/review/review-architecture.md",
+          ".agents/review/review-craft.md",
+          ".agents/review/review-docs.md",
+          ".agents/review/review-security.md",
+          ".agents/review/review-tests.md",
+          ".agents/skills/project-review/SKILL.md",
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          "README.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md"
+        ],
+        "criteria": {
+          "purpose": {
+            "verdict": "PASS",
+            "evidence": "README gives shared bindings/build identity/owned-process role. game-bindings explains keyboard capture before adventure dispatch and keeps build/launch/HMR orchestration with SDK. Review docs clearly address maintainers; ready mods need no reviewer tools."
+          },
+          "structure": {
+            "verdict": "PASS",
+            "evidence": "Standalone README use/check sections, contributor gates, bilingual project-review sequence and named mechanism sections separate operation, limits and verification. Shared internal review contracts are English with explicitly bilingual maintainer workflow."
+          },
+          "specificity": {
+            "verdict": "PASS",
+            "evidence": "Names CreateAdventureInputGate/FindAdventureInputGate, game-window console property, original dispatch, user32 targets and resident ownership. No numeric memory addresses/structure offsets/disassembler labels found in changed human Markdown. Private machine evidence retains numeric bytes."
+          },
+          "reproducibility": {
+            "verdict": "PASS",
+            "evidence": "Standalone CMake/MSVCx86 checks and CMake target integration are concrete; CONTRIBUTING gives Node22/Python3.10/npmci/gates/explicit secret-scan base. Adventure gate signature/header and caller publication remain in native source; shared mechanism describes local APIs and decision boundary. No commands executed by reviewer."
+          },
+          "evidence": {
+            "verdict": "PASS",
+            "evidence": "Read input-gate-version-two-hmr-live98.4251066s: same owner, actual core1->2, changed console HWND, same resident gate, source restoration, session0/confirmed game exit. One heldPageDownhide/release receipt54.671304s is separate; documentation conservatively excludes generalized held-key transitions, all mouse/screens and release readiness. Sources/receipts not independently rerun or images viewed."
+          },
+          "applicability": {
+            "verdict": "PASS",
+            "evidence": "Pinned Windowsx86Universe only, verified owned identity/game thread, callback/state lifecycle and original dispatch constraints preserved. New adventure gate is explicitly local/unpublished. Camera-specific suppression is not misrepresented as all interface/keyboard suppression."
+          },
+          "translations": {
+            "verdict": "PASS",
+            "evidence": "README/AGENTS/CONTRIBUTING/project-review and mechanism RUEN agree on ownership, ordinary player independence, explicit base, keyboard/I suppression and normal hidden-console handling, HMR source/window continuity and scope limits. Internal contracts intentionally English, explained in review mechanism."
+          },
+          "maintenance": {
+            "verdict": "PASS",
+            "evidence": "include/h5/hooks/adventure_input changes paired with game-bindings in same cumulative worktree; declared review mechanism paired with added package/hooks/workflow/contracts. Published HEAD2aa326d is the older source baseline; new gate header untracked and exact hash included. No committed-only info assumed to cover current worktree."
+          }
+        },
+        "findings": []
+      }
+    },
+    "security": {
+      "agent": "security",
+      "verdict": "PASS",
+      "score": 10,
+      "counts": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "advisory": 0
+      },
+      "one_line": "No reachable security defect found across all35 fixed-base/current-worktree paths and the explicitly inspected SDK keyboard-gate installation boundary.",
+      "reviewer": "/root/bank_runtime_review",
+      "review": {
+        "reviewer": "/root/bank_runtime_review",
+        "model": "gpt-6.1-sol",
+        "lens": "security",
+        "repository": "D:\\Pk\\Heroes5ModsFolder\\game-api",
+        "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+        "reviewed_at_utc": "2026-10-08T00:33:20.313429+00:00",
+        "head": "2aa326d4463243e7b7d43aea6f8b389592966681",
+        "cached_origin_main": "2aa326d4463243e7b7d43aea6f8b389592966681",
+        "tracked_diff_sha256": "1da8313805925369e471dd425313d6c49c5de2cf606b519baeab4c4fff331a0c",
+        "untracked_reviewed": {
+          "include/h5/adventure_input.hpp": "9b5ac36a792af72adb8b71a36e10de0c3e8ff3438269474a14c5f47856576418"
+        },
+        "external_caller_reviewed": {
+          "path": "D:\\Pk\\Heroes5ModsFolder\\devkit\\native\\plugin_bridge.cpp",
+          "sha256": "da5af3d6735c3e75b55b2a3c8379e42c2bc2f11b65a945b9c3d202c5000fd968"
+        },
+        "findings": [],
+        "claims": [
+          {
+            "path": ".agents/review/docs-auditor.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".agents/review/review-architecture.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".agents/review/review-craft.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".agents/review/review-docs.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".agents/review/review-security.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".agents/review/review-tests.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".agents/skills/project-review/SKILL.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": ".claude/docs.config.json",
+            "disposition": "judged"
+          },
+          {
+            "path": ".claude/review.config.json",
+            "disposition": "judged"
+          },
+          {
+            "path": ".githooks/pre-push",
+            "disposition": "judged"
+          },
+          {
+            "path": ".github/workflows/verify.yml",
+            "disposition": "judged"
+          },
+          {
+            "path": ".gitignore",
+            "disposition": "judged"
+          },
+          {
+            "path": ".review/attestations/5a84e06975fa96d73dfbaf8443ec3bf77d412c79f55fb9f0c5d88d42a742efc6.json",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": "AGENTS.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": "CONTRIBUTING.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": "README.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": "docs/mechanisms/game-bindings.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": "docs/mechanisms/review.md",
+            "disposition": "declined",
+            "reason": "N/A security exposure: policy/documentation/historical attestation text scanned for secrets and unsafe instructions; no reachable production security surface introduced. Historical PASS is not adopted as evidence."
+          },
+          {
+            "path": "include/h5/build.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/camera_input.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/console.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/graphics_lifetime.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/hooks.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/image_placement.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/process.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "include/h5/script_observers.hpp",
+            "disposition": "judged"
+          },
+          {
+            "path": "package-lock.json",
+            "disposition": "judged"
+          },
+          {
+            "path": "package.json",
+            "disposition": "judged"
+          },
+          {
+            "path": "scripts/install-hooks.mjs",
+            "disposition": "judged"
+          },
+          {
+            "path": "scripts/review-check.mjs",
+            "disposition": "judged"
+          },
+          {
+            "path": "scripts/review-docs.mjs",
+            "disposition": "judged"
+          },
+          {
+            "path": "scripts/review-docs.test.mjs",
+            "disposition": "declined",
+            "reason": "Synthetic/native/review fixtures inspected for exposed secrets and boundary assertions; no tests executed and no production authorization entry introduced here."
+          },
+          {
+            "path": "scripts/review-gate.test.mjs",
+            "disposition": "declined",
+            "reason": "Synthetic/native/review fixtures inspected for exposed secrets and boundary assertions; no tests executed and no production authorization entry introduced here."
+          },
+          {
+            "path": "tests/game_api_test.cpp",
+            "disposition": "declined",
+            "reason": "Synthetic/native/review fixtures inspected for exposed secrets and boundary assertions; no tests executed and no production authorization entry introduced here."
+          },
+          {
+            "path": "include/h5/adventure_input.hpp",
+            "disposition": "judged"
+          }
+        ],
+        "summary": {
+          "agent": "security",
+          "verdict": "PASS",
+          "score": 10,
+          "counts": {
+            "blocker": 0,
+            "major": 0,
+            "minor": 0,
+            "advisory": 0
+          },
+          "one_line": "No reachable security defect found across all35 fixed-base/current-worktree paths and the explicitly inspected SDK keyboard-gate installation boundary."
+        },
+        "scope": {
+          "path_count": 35,
+          "trust_model": "Trusted native SDK/game bindings in the verified owned game, on the caller-validated nonreentrant game thread. Arbitrary hostile code already able to modify this process is outside the contract.",
+          "triage": "All35 paths received cheap secret/private-path/dynamic-execution scan. Depth focused on every changed native binding, new adventure_input.hpp, SDK caller, publication scripts/hooks/dependency/config files.",
+          "gate_checks": [
+            "x86 event gate accepts only kind0, id<=255 and pressed1; all other event shapes fall through to the supplied original handler",
+            "Resident allocation contains executable RX code and POD descriptor/system-user32 targets, with no SDK DLL callback or retained console HWND/thread pair",
+            "Each invocation resolves GetPropW from actual game root, checks panel visibility, panel thread/process owner equals current process, GUI-thread focus equals the panel, and rechecks the current property before consuming",
+            "Finder admits mapped committed RX code and RW POD within the same private allocation; checks magic/version/size/original target/property address/property literal/GUITHREADINFO shape/system export addresses/code length/exact generated bytes/SHA256 digest; incompatible descriptors return null",
+            "SDK caller restricts installation to verified game window thread, compares original AdventureInputTail bytes before patching, rejects unknown existing hooks, and verifies reused gate gameWindow equals current root",
+            "New gate lives in resident game allocation across console/core replacement and does not require unloading or dispatching into a retired core"
+          ],
+          "cumulative_binding_checks": [
+            "Process helper validates supplied PID creation time/path/exact executable+graphics chain before returning owned handle, closing on failure",
+            "Image placement/graphics repair validate file-object hash/canonical path/image headers/memory ownership/bounds; repair transaction readback/protection confirmation and uncertain rollback refusal remain explicit",
+            "Console admission validates owner thread/process and bounded request before signature-checked engine constructor/dispatch/release",
+            "Script/camera shared observers validate mapped bounds/descriptor/code seal and documented game-thread subscription lifetime",
+            "Publication hooks/config use pinned review dependency, read-only CI permissions, no checkout credential persistence and explicit owned local hook installation; no exposed credentials/private paths found"
+          ]
+        },
+        "publication_status": {
+          "published_source": "2aa326d4463243e7b7d43aea6f8b389592966681 remains HEAD/cached origin main",
+          "new_keyboard_binding": "Untracked adventure_input.hpp and modified hooks/docs/tests are local uncommitted additions; security verdict does not claim these library bytes published or release-ready."
+        },
+        "verification_limits": [
+          "Read-only code/diff/Git/fixture inspection only; no build, tests, game launch, focus, mouse or keyboard performed. Requested evidence JSON is the sole written artifact.",
+          "Parent-reported HMR98.425s and held PageDown54.671s controls are bounded contextual evidence, not independently rerun or generalized to all inputs/screens/held transitions.",
+          "Native fixture source covers descriptor literal/focus-buffer refusal and current HWND replacement/destruction; this reviewer did not execute it or independently verify cross-process injection attempts.",
+          "Gate assumes the verified native event pointer/ABI and caller thread/build restrictions. Security review does not certify arbitrary pointers supplied by hostile native code or unsupported game binaries.",
+          "Security-only PASS is not full acceptance or a publication attestation; fixed review base preserved."
+        ]
+      }
+    }
+  },
+  "overall": "PASS",
+  "timestamp": "2026-10-08T00:43:45.217Z"
+}
