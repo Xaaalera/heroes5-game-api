@@ -5,6 +5,7 @@
 #include <h5/graphics_lifetime.hpp>
 #include <h5/script_observers.hpp>
 #include <h5/camera_input.hpp>
+#include <h5/adventure_input.hpp>
 #include <h5/console.hpp>
 #include <xmmintrin.h>
 #include <iostream>
@@ -12,6 +13,81 @@
 #include <thread>
 
 namespace {
+uint32_t __fastcall InputFixtureOriginal(void*,void*,const uint32_t*) { return 77; }
+void VerifyAdventureInputGate() {
+    const auto target=reinterpret_cast<uintptr_t>(InputFixtureOriginal);
+    const auto window=CreateWindowExW(0,L"STATIC",L"input fixture",WS_POPUP,0,0,32,32,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr);
+    auto* gate=h5::hooks::CreateAdventureInputGate(target,window);
+    if (!gate) { throw std::runtime_error("Adventure input gate allocation failed"); }
+    const auto code=reinterpret_cast<uintptr_t>(gate)-h5::hooks::ScriptObserverDescriptorOffset;
+    auto* site=static_cast<unsigned char*>(VirtualAlloc(nullptr,4096,MEM_COMMIT|MEM_RESERVE,PAGE_READWRITE));
+    if (!site) { throw std::runtime_error("Input seal fixture allocation failed"); }
+    site[0]=0xe9;
+    const auto relative=static_cast<uint32_t>(code-reinterpret_cast<uintptr_t>(site)-5);
+    std::memcpy(site+1,&relative,4);
+    DWORD previous=0;
+    if (!VirtualProtect(site,4096,PAGE_EXECUTE_READ,&previous) ||
+        h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)!=gate) {
+        throw std::runtime_error("Sealed input gate not recognized");
+    }
+    const auto originalCharacter=gate->property[0]; gate->property[0]=L'?';
+    if (h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)) {
+        throw std::runtime_error("Changed input property accepted");
+    }
+    gate->property[0]=originalCharacter;
+    gate->focus.cbSize=0;
+    if (h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)) {
+        throw std::runtime_error("Invalid input focus buffer accepted");
+    }
+    gate->focus.cbSize=sizeof(GUITHREADINFO);
+    const auto invoke=reinterpret_cast<uint32_t (__thiscall*)(void*,const uint32_t*)>(code);
+    uint32_t event[5]{23,0,0,0,1};
+    if (invoke(nullptr,event)!=77) { throw std::runtime_error("Unbound input gate changed original dispatch"); }
+    if (!window || !SetPropW(window,L"XalKit.Console.Frame.v1",window)) { throw std::runtime_error("Input fixture panel property failed"); }
+    if (invoke(nullptr,event)!=77) { throw std::runtime_error("Hidden panel captured input"); }
+    ShowWindow(window,SW_SHOWNOACTIVATE);
+    SetFocus(window);
+    GUITHREADINFO information{}; information.cbSize=sizeof(information);
+    if (!GetGUIThreadInfo(GetCurrentThreadId(),&information) || information.hwndFocus!=window) {
+        throw std::runtime_error("Native input fixture focus unavailable");
+    }
+    if (invoke(nullptr,event)!=1) { throw std::runtime_error("Focused panel failed to capture verified key press"); }
+    const auto outside=CreateWindowExW(0,L"STATIC",L"outside input fixture",WS_POPUP,
+        0,0,32,32,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr);
+    if (!outside) { throw std::runtime_error("Outside input fixture window failed"); }
+    ShowWindow(outside,SW_SHOWNOACTIVATE);
+    SetFocus(outside);
+    if (!GetGUIThreadInfo(GetCurrentThreadId(),&information) || information.hwndFocus!=outside ||
+        invoke(nullptr,event)!=77) { throw std::runtime_error("Visible unfocused console captured map key"); }
+    SetFocus(window);
+    if (invoke(nullptr,event)!=1) { throw std::runtime_error("Refocused console failed to recapture key"); }
+    DestroyWindow(outside);
+    for (const auto kind : {3u,6u,99u}) {
+        event[2]=kind;
+        if (invoke(nullptr,event)!=77) { throw std::runtime_error("Input gate captured unknown or lifecycle event"); }
+    }
+    event[2]=0; event[0]=0xffffffff;
+    if (invoke(nullptr,event)!=77) { throw std::runtime_error("Input gate captured named command"); }
+    event[0]=23; event[2]=0; event[4]=0;
+    if (invoke(nullptr,event)!=77) { throw std::runtime_error("Input gate captured non-press event"); }
+    event[4]=1;
+    const auto replacement=CreateWindowExW(0,L"STATIC",L"replacement input panel",WS_POPUP,
+        0,0,32,32,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr);
+    if (!replacement || !SetPropW(window,L"XalKit.Console.Frame.v1",replacement)) {
+        throw std::runtime_error("Input panel replacement failed");
+    }
+    ShowWindow(replacement,SW_SHOWNOACTIVATE);
+    SetFocus(replacement);
+    if (invoke(nullptr,event)!=1) { throw std::runtime_error("Resident input gate retained old panel"); }
+    DestroyWindow(replacement);
+    if (invoke(nullptr,event)!=77) { throw std::runtime_error("Destroyed input panel retained capture"); }
+    RemovePropW(window,L"XalKit.Console.Frame.v1");
+    event[0]=23;
+    if (invoke(nullptr,event)!=77) { throw std::runtime_error("Cleared panel retained key capture"); }
+    DestroyWindow(window);
+    VirtualFree(site,0,MEM_RELEASE);
+    VirtualFree(reinterpret_cast<void*>(code),0,MEM_RELEASE);
+}
 void VerifyConsoleAdmission() {
     const auto window = CreateWindowExW(0, L"STATIC", L"", 0, 0, 0, 1, 1, nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
     if (!window) { throw std::runtime_error("Console admission fixture window failed"); }
@@ -204,6 +280,7 @@ int main() {
         VerifyGeneratedScriptObserver();
         VerifyGraphicsTransaction();
         VerifyCameraInputDispatcher();
+        VerifyAdventureInputGate();
         static_assert(h5::hooks::BankLayout.Resume() == 0x5f8806);
         static_assert(h5::hooks::PlacementRenderer.Resume() == 0x577016);
         static_assert(h5::hooks::AdventureAttack.Resume() == 0x433445);

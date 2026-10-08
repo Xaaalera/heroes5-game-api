@@ -24,6 +24,9 @@ inline constexpr Site<5> ScriptDispatchCall{0xd112db, {0xe8, 0xa0, 0xf6, 0xff, 0
 inline constexpr uintptr_t ScriptDispatchTarget = 0xd10980;
 inline constexpr Site<6> AdventureCameraInput{0x58c69b, {0xff, 0x90, 0x90, 0, 0, 0},
     "pinned adventure input handler: virtual camera input with mouse/keyboard suppression"};
+inline constexpr Site<5> AdventureInputTail{0x5a1a03, {0xe9,0x08,0xac,0xfe,0xff},
+    "validated adjustor tail before adventure binding dispatch; owned physical keyboard trace"};
+inline constexpr uintptr_t AdventureInputTarget = 0x58c610;
 inline constexpr Site<16> ExitRequest{0x838c10,
     {0x56, 0x8b, 0xf1, 0x85, 0xf6, 0x74, 0x04, 0x83, 0x46, 0x04, 0x01, 0x57, 0x8b, 0x3d, 0x98, 0x71},
     "devkit native exit: ECX=null queues game exit; verified owned mailbox exit0"};

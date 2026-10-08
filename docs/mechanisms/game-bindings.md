@@ -1,5 +1,15 @@
 # Game bindings / Привязки к игре
 
+## Adventure keyboard capture / Захват клавиатуры на карте
+
+RU: новый локальный механизм перехватывает подтверждённое событие нажатия до игровых обработчиков карты. При видимом окне консоли с фокусом это событие считается обработанным; при скрытой консоли выполняется исходный обработчик. Служебные, периодические и неизвестные события проходят без изменений. Публичные функции: `CreateAdventureInputGate` и `FindAdventureInputGate`. Текущее окно консоли определяется при каждом вызове по свойству окна игры.
+
+EN: The new local mechanism gates verified key-press events before adventure gameplay handlers. A visible focused console consumes them; a hidden console preserves original dispatch. Tick, named and unknown events pass unchanged. The functions above create and validate the resident gate. Each invocation resolves the current console property; no worker-owned HWND/thread pair is retained.
+
+RU: код и данные принадлежат процессу игры; в них нет callback ядра SDK. Системные вызовы разрешаются через user32. Нативная проверка покрывает настоящий HWND, фокус, скрытие, неизвестные события и удаление свойства консоли. Живая проверка подтвердила блокировку I в консоли и открытие снаряжения после её закрытия, включая автоматическую замену окна консоли и ядра в том же процессе. Обработчик сохранился, окно изменилось, исходники восстановлены и игра закрылась штатно. Выпуск, все виды мышиного ввода, удерживаемые клавиши и все экраны игры этим не подтверждены.
+
+EN: Code and POD data belong to the game process and retain no SDK callback; system targets resolve through user32. Native checks exercise a real HWND, focus, hiding, unknown events and console property removal. Live checks verify I suppression in console and equipment opening after hide, including automatic console HWND and core replacement in the same process. The resident gate persists, sources are restored and the game exits normally. Release readiness, held-key transitions, every mouse event and every game screen remain outside this evidence.
+
 ## Graphics repair verification / Проверка исправления графики
 
 RU: После исправления и после отката библиотека повторно читает изменённый участок и проверяет восстановленную защиту страницы и принадлежность образу. Неподтверждённые байты или защита запрещают продолжать запуск. Контракт остановленных потоков собственного процесса сохраняется; эта проверка не разрешает исправление во время игры.
