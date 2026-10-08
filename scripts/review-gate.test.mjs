@@ -9,11 +9,20 @@ test('real adapter rejects below-threshold PASS and accepts the configured bound
   const workspace = resolve('.local');
   mkdirSync(workspace, { recursive: true });
   const repository = mkdtempSync(join(workspace, 'review-threshold-'));
-  const git = (...argumentsList) => execFileSync('git', argumentsList, { cwd: repository, encoding: 'utf8' }).trim();
+  const fixtureEnvironment = { ...process.env };
+  const repositoryVariables = execFileSync('git', ['rev-parse', '--local-env-vars'], { encoding: 'utf8' }).trim().split('\n');
+  for (const variableName of repositoryVariables) {
+    delete fixtureEnvironment[variableName.trim()];
+  }
+  const git = (...argumentsList) => execFileSync('git', argumentsList, {
+    cwd: repository, encoding: 'utf8', env: fixtureEnvironment,
+  }).trim();
   try {
     git('init', '--initial-branch=main');
     git('config', 'user.name', 'Review Fixture');
     git('config', 'user.email', 'review@example.invalid');
+    git('config', 'commit.gpgsign', 'false');
+    git('config', 'core.hooksPath', join(repository, 'disabled-hooks'));
     writeFileSync(join(repository, '.gitignore'), '.local/\n');
     writeFileSync(join(repository, 'value.txt'), 'before\n');
     git('add', '.');
@@ -56,13 +65,13 @@ test('real adapter rejects below-threshold PASS and accepts the configured bound
     };
     writeFileSync(resultsPath, JSON.stringify(results));
     const rejected = spawnSync(process.execPath, ['scripts/review-check.mjs', '--attest', resultsPath],
-      { cwd: repository, encoding: 'utf8' });
+      { cwd: repository, encoding: 'utf8', env: fixtureEnvironment });
     assert.notEqual(rejected.status, 0);
     assert.match(rejected.stderr, /insufficient review result for craft/);
     results.craft.score = 8;
     writeFileSync(resultsPath, JSON.stringify(results));
     const accepted = spawnSync(process.execPath, ['scripts/review-check.mjs', '--attest', resultsPath],
-      { cwd: repository, encoding: 'utf8' });
+      { cwd: repository, encoding: 'utf8', env: fixtureEnvironment });
     assert.equal(accepted.status, 0, accepted.stdout + accepted.stderr);
     assert.match(accepted.stdout, /Review passed/);
   } finally {
