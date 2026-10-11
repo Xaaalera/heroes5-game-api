@@ -25,3 +25,6 @@ EN: This file is a source-to-documentation pointer. Numeric bindings remain in c
 
 RU: Изменение контракта требует обновить каноническую статью и пройти независимые проверки её окончательного текста.
 EN: Contract changes require updating the canonical article and independently checking its final text.
+
+RU: Для изменений входов армии, исходной силы, завершённой расстановки и резидентного хранения проверять раздел справочника «Что можно переиспользовать»: доступность версии, ограничения чтения и время жизни данных.
+EN: For army inputs, source strength, committed deployment and resident storage, check the reference's “Available building blocks” section for version availability, reading constraints and data lifetime.
