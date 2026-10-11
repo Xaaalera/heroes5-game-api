@@ -108,6 +108,10 @@ uint32_t committedActorMethods[32]{}, committedSourceMethods[1]{};
 uint32_t committedWorldInterface[20]{}, committedCreatureInterface[8]{}, committedRosters[2][8]{};
 uint32_t committedQuantities[2]{20,10};
 bool committedDuplicateSides = false;
+int32_t committedFieldWidth = 16, committedFieldHeight = 12;
+void __fastcall CommittedFieldDimensions(const void*, void*, int32_t* width, int32_t* height) {
+    *width = committedFieldWidth; *height = committedFieldHeight;
+}
 const uint32_t* __fastcall CommittedWorldGetter(const void*,void*) { return committedWorld; }
 const uint32_t* __fastcall CommittedArmyGetter(const void*,void*,bool first) {
     return committedArmies[first || committedDuplicateSides ? 0 : 1];
@@ -131,6 +135,26 @@ void VerifyCommittedDeploymentBoundaries() {
     committedArmyMethods[0] = reinterpret_cast<uint32_t>(CommittedWorldGetter);
     committedWorldMethods[0x84/4] = reinterpret_cast<uint32_t>(CommittedArmyGetter);
     committedWorld[0]=reinterpret_cast<uint32_t>(committedWorldMethods);
+    committedWorldMethods[0x44/4] = reinterpret_cast<uint32_t>(CommittedFieldDimensions);
+    uint32_t fieldWidth = 99, fieldHeight = 99;
+    if (!h5::army::ReadCombatFieldDimensions(reinterpret_cast<uint32_t>(committedWorld), fieldWidth, fieldHeight) ||
+        fieldWidth != 16 || fieldHeight != 12) { throw std::runtime_error("Native field dimensions lost borders"); }
+    const int32_t invalidDimensions[][2] = {{7,12}, {33,12}, {16,3}, {16,33}, {-1,12}};
+    for (const auto& dimensions : invalidDimensions) {
+        committedFieldWidth = dimensions[0]; committedFieldHeight = dimensions[1];
+        fieldWidth = fieldHeight = 99;
+        if (h5::army::ReadCombatFieldDimensions(reinterpret_cast<uint32_t>(committedWorld), fieldWidth, fieldHeight) ||
+            fieldWidth || fieldHeight) { throw std::runtime_error("Invalid field geometry admitted or retained stale outputs"); }
+    }
+    committedFieldWidth = 16; committedFieldHeight = 12;
+    fieldWidth = fieldHeight = 99;
+    if (h5::army::ReadCombatFieldDimensions(0, fieldWidth, fieldHeight) || fieldWidth || fieldHeight) {
+        throw std::runtime_error("Missing world retained field geometry");
+    }
+    committedWorldMethods[0x44/4] = 0;
+    if (h5::army::ReadCombatFieldDimensions(reinterpret_cast<uint32_t>(committedWorld), fieldWidth, fieldHeight) ||
+        fieldWidth || fieldHeight) { throw std::runtime_error("Missing field getter accepted"); }
+    committedWorldMethods[0x44/4] = reinterpret_cast<uint32_t>(CommittedFieldDimensions);
     committedWorld[1]=reinterpret_cast<uint32_t>(committedWorldInterface);
     committedWorldInterface[0x40/4]=reinterpret_cast<uint32_t>(CommittedHealthContext);
     committedActorMethods[0x6c/4]=reinterpret_cast<uint32_t>(CommittedSourceGetter);

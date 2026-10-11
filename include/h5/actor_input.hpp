@@ -380,6 +380,22 @@ struct CommittedDeploymentSample {
     uint32_t world, armies[2], counts[2], failures, overflow;
     DeploymentStackSample stacks[2][7];
 };
+// Native dimensions include blocked border cells. Use a live world from the
+// admitted deployment/render callback, on that callback's game thread.
+inline bool ReadCombatFieldDimensions(uint32_t world, uint32_t& width, uint32_t& height) {
+    width = height = 0;
+    if (!world) { return false; }
+    __try {
+        const auto* instance = reinterpret_cast<const void*>(world);
+        const auto* methods = *reinterpret_cast<const uint32_t* const*>(instance);
+        int32_t nativeWidth = 0, nativeHeight = 0;
+        reinterpret_cast<void (__thiscall*)(const void*, int32_t*, int32_t*)>(methods[0x44 / 4])(
+            instance, &nativeWidth, &nativeHeight);
+        if (nativeWidth < 8 || nativeWidth > 32 || nativeHeight < 4 || nativeHeight > 32) { return false; }
+        width = static_cast<uint32_t>(nativeWidth); height = static_cast<uint32_t>(nativeHeight);
+        return true;
+    } __except (EXCEPTION_EXECUTE_HANDLER) { return false; }
+}
 inline bool ReadCommittedDeployment(const h5::hooks::X86ObserverFrame& frame,
     CommittedDeploymentSample& result) {
     result = {};
