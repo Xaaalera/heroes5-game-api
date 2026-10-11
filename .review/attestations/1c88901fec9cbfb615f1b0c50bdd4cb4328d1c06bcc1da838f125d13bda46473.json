@@ -1,0 +1,1116 @@
+{
+  "diffHash": "1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473",
+  "commitSha": "823786332e49b0261ec1fe37cd38894f5af88969",
+  "perAgent": {
+    "craft": {
+      "reviewer": "/root/game_api_dimensions_craft",
+      "head": "823786332e49b0261ec1fe37cd38894f5af88969",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473",
+      "findings": [],
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged"
+        }
+      ],
+      "summary": {
+        "agent": "craft",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "The exact source publication diff introduces no established CRAFT defect."
+      },
+      "evidence": [
+        "Loaded actual AGENTS.md, CONTRIBUTING.md, review-craft.md, project-review skill and configured craft rules; loaded installed solid, ockham, conventions, ui-strings and responsive-layout guides. Applied native naming/reuse/simplicity portions; JS styling and UI localization/layout portions are not applicable because their source and rendered UI are unchanged.",
+        "Independently confirmed HEAD and current review:info base/hash. Inventoried 41 cumulative changed paths. Git blob comparison verifies 35 unchanged since prior published 8eebef8; only six current source/policy/pointer paths differ. Between prior attested commit 550063576f9edd9749387e8fb830d3d5612ea39c and 8eebef8 only the actual f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2 attestation was added. Read that attestation and reused its actual CRAFT PASS10 for unchanged reviewed content.",
+        "Read all six current deltas: actor_input.hpp, game_api_test.cpp, AGENTS.md, review.config.json, game-bindings.md and review.md. Searched repository include/tests for ReadCombatFieldDimensions and dimension readers before judging duplication. Existing army binding header and committed-world fixture hold the new behavior, with descriptive identifiers and no new module or duplicate dimension reader.",
+        "Independently SHA256-verified actor_input.hpp=6919ac29c81063b8e0670fb2d73005bd397fbebbe7ef0c9e2b1e7c674d5632d0 and game_api_test.cpp=89cde77da017d762ab2458cf21534132c7fc10ae619243935cf32bbc8cf2b875. Read comparison-dimensions-architecture-review.json and comparison-field-geometry-review.json: the helper reuses established renderer getter ABI, argument order and bounds; native dimensions include service borders. Read comparison-dimensions-tests-review-followup.json confirming these exact API source identities remain the tested fixture scope.",
+        "Read explicitly supplied historical journal ranges 852-870 and 1395-1402: native full dimensions16x12 are distinct from playable/deployment depth. Read managed-player-visible-showcase-layout.json and managed-player-facts-only-layout-confirmed.json: both record native16x12/display12x10 through programmatic telemetry; ordinary receipt reports full_reference_matches7 and facts-only2. No screenshot used.",
+        "Policy changes consistently require explicit owner image authorization and programmatic oracles. Tiny RU/EN mechanism pointers preserve website ownership and add dimensions to the canonical-reference scope without copying a manual. No new tool, dependency, JS implementation or UI layout was added.",
+        "Current native1/1 PASS0.17s, docs PASS, Node contract9/9 PASS and explicit-base secrets PASS were supplied by parent; reviewer did not rerun gates."
+      ],
+      "limits": [
+        "Read-only source/evidence review; no source edits, tests, builds, game actions, input, images, commits, push or attestation writes. Only this requested private verdict file is written.",
+        "Canonical RU/EN Game API update with callback/thread/border/zero-output contract and revision3e37dff remains draft and is not certified as deployed.",
+        "Source publication acceptance only; no player archive, final artifact startup, full placement algorithm, arbitrary pointer/thread safety, alternate build or universal special-world geometry certification.",
+        "The external pinned homm5-editor e40be948 topic provides broad research context, not proof of this C++ getter. Reused renderer signature/bounds evidence is the asserted getter authority; no new external finding invented."
+      ],
+      "verdict": "PASS",
+      "score": 10
+    },
+    "architecture": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "Codex /root/release_native_arch_review",
+      "lens": "architecture",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "HEAD": "823786332e49b0261ec1fe37cd38894f5af88969",
+      "diffHash": "1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473",
+      "findings": [],
+      "summary": {
+        "agent": "architecture",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "The cumulative GameAPI source preserves reusable binding ownership and native synchronous lifetime boundaries; dimension helper and policy pointers introduce no architecture defect."
+      },
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "d84ad001b388d431d18592ecbc6dfa7c341a1df68f76c36c179d9ae9645ee39a"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "a0152fe583df31d8b5d61aeec42545f00d46b9f7ff3666b91f7e3b65a7e7d18a"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "ff080153c0ae98da679a05a5059f3f4a82fc9497e7f6d5f3c5d29c1f6ca07fbb"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "b335283330d6b8ea72886433174a59269921b90d9e54f6c16101684a3b5214d8"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "8c34b133de268f9da34ba0203a65bc311fe2d5247854b19b244aaa34ee28059a"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "fdf5915deb76a541cc37f792ccc2da03f8fa3855a3c65a62349e2b664a1aebb9"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "633aa59d97b02b29c983ed0f7b32d763ad70778bb337ebe1380cc0296d602ae1"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "f2708302cf236e75d74eadceb24a354d34c499a8bd479fbebce1f86769659977"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged",
+          "evidence": "current bounded delta inspected",
+          "sha256": "7a5766362ac72292feeca934ce566f6a2c7b54b465d32655f25de6d289a1c5f1"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "9231700d6415779a70725e0fc551c1adb57a12eb171e704a5b1550f4f03cf2a5"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "d62c67f462dc84011bed6966710ebf4a6337e019806caf819f3a9e9ef4ade1f5"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "7cd7a21c0d1989343b0e3bca276cef4687d36549114ad956fd3053f35d2eb370"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "0bddb0a93b4d96e132a8093194b09536356dc1203c70674cc056e1d01e46720f"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged",
+          "evidence": "prior attestation metadata inspected",
+          "sha256": "91329699fb51bd1285f88cecb8903b73c5cb814a11d84432bc3239c705a5fc9c"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged",
+          "evidence": "current bounded delta inspected",
+          "sha256": "1fb3c4efa7ed75149a69297caefb8de4fe0db45642c46080f3ed7fbf68296a10"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "dc57083cf3999864bf69bc5889e425121544850a5765b17920e29f3844dc3e69"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "c852b126a097aabeeff8268f92fc15515d13ba33bcec8db1027ab213f4b1e086"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "476a81421d87821431b6b4aacd560690d0be28e09d0075040b4962b1b8800a73"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged",
+          "evidence": "current bounded delta inspected",
+          "sha256": "3c84583216c9b041d83a034e7144b8384f3bf6c4155c163027c72631314f597e"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged",
+          "evidence": "current bounded delta inspected",
+          "sha256": "3ac3f1514df49614756ebe032b08041d23837606867407103982aa5e4206fb2c"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged",
+          "evidence": "current bounded delta inspected",
+          "sha256": "0af25813dacf3903ec7e96a92385f8ddaadc919b633b03d8a2df4867d0a57c54"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "8a03daa098ed06cfad08fad3f92d64a2dff0b49c91729ddf33ad34ac0e7e99d1"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "48ddfa1344b2a2592c9b4632f77032812ff44fd25df376de4f98884dfc679fe9"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "794488865c1a361cad0f9c019ac97c857d4a930a35bfda2e9813ec2a005828de"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "63febea8bac12fafb8df68d4c2ebd02269d08f41bacc6cfbc72ddbd17c3753f9"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "87538bb5956801cc4a715a4e28ad1d06bb7f17dbe9be7741a5289cfbfe1b93be"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "8bb80fffd35a652628baa9b7249af2698f60afb1f34dd63ed367442ec3793a77"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "04b77a471c7920d3b3b4d1650c6d0bc864088c19280b9133730c302e0bf34a1c"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "6c3a5cf3aa2e5aa457b457fc724f8bd9fadb1ca0c07a4e5ad47c8567e53bd338"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "36869e895febe45c0490bf79cde2bd4f91dc12d29992558dafd4457cef6cfc6f"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "3c2506ee294892eb35ccae08acb14fea42f9d2e7e4cefb4ec2654a7ce67fc062"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "7a803d1267e7ece2fb7fd059b4852cc2e580f82a91a961df295dcab552029058"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "60ad826ae81515d4edcd1d733e1740c473f6d7b8ba9af8a94108a437bd4074a7"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "ce3217b2364ab895c39b418ef9307559a144554403b76d49ff160d8a4a44480c"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "34c8ad8467db87b3a85be37c43be4604b9a14541eb3bda3198fc2c45796f5133"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "37672b9ad0c1892a6586039467dcc6c20e54eb0324e6ed8062a625690b5b36e8"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "c98cf44e654324abea1005d30b843ad5cec177b255407265f59b50197774e4bf"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "e1237d65ceb551445511de6a56b72f09db4a7c57142e873be5e293b8154ad038"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "f8e14368fdaab1f167cfb5930aaf5bd8e8c07ce8434d2e1ed2339a54900e851f"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged",
+          "evidence": "current bounded delta inspected",
+          "sha256": "d46700ff30579dca51dcd0af718ff890bac23e18abbd465a510800103700d983"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged",
+          "evidence": "exact unchanged prior source hash and architecture judgment reused",
+          "sha256": "66a90251c86020a604fcea9229face2525a8a63b1ea5c40b431d88c82dce8bdc"
+        }
+      ],
+      "scope": {
+        "paths": 41,
+        "documentation_paths": 12,
+        "configured_threshold": 8,
+        "published_comparison": "8eebef8f718ea8b26dd3a12313c8f6713caf5b35",
+        "prior_attested_source": "550063576f9edd9749387e8fb830d3d5612ea39c",
+        "prior_attestation": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+        "prior_report_sha256": "646e536a52f1d361a97648d741fc5a748cedea64e41dcc2002725011cace3210",
+        "unchanged_prior_present_hashes_reverified": 34,
+        "bounded_new_paths": [
+          ".claude/review.config.json",
+          "AGENTS.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md",
+          "include/h5/actor_input.hpp",
+          "tests/game_api_test.cpp"
+        ],
+        "committed_source_sha256": {
+          ".agents/review/docs-auditor.md": "d84ad001b388d431d18592ecbc6dfa7c341a1df68f76c36c179d9ae9645ee39a",
+          ".agents/review/review-architecture.md": "a0152fe583df31d8b5d61aeec42545f00d46b9f7ff3666b91f7e3b65a7e7d18a",
+          ".agents/review/review-craft.md": "ff080153c0ae98da679a05a5059f3f4a82fc9497e7f6d5f3c5d29c1f6ca07fbb",
+          ".agents/review/review-docs.md": "b335283330d6b8ea72886433174a59269921b90d9e54f6c16101684a3b5214d8",
+          ".agents/review/review-security.md": "8c34b133de268f9da34ba0203a65bc311fe2d5247854b19b244aaa34ee28059a",
+          ".agents/review/review-tests.md": "fdf5915deb76a541cc37f792ccc2da03f8fa3855a3c65a62349e2b664a1aebb9",
+          ".agents/skills/project-review/SKILL.md": "633aa59d97b02b29c983ed0f7b32d763ad70778bb337ebe1380cc0296d602ae1",
+          ".claude/docs.config.json": "f2708302cf236e75d74eadceb24a354d34c499a8bd479fbebce1f86769659977",
+          ".claude/review.config.json": "7a5766362ac72292feeca934ce566f6a2c7b54b465d32655f25de6d289a1c5f1",
+          ".githooks/pre-push": "9231700d6415779a70725e0fc551c1adb57a12eb171e704a5b1550f4f03cf2a5",
+          ".github/workflows/verify.yml": "d62c67f462dc84011bed6966710ebf4a6337e019806caf819f3a9e9ef4ade1f5",
+          ".gitignore": "7cd7a21c0d1989343b0e3bca276cef4687d36549114ad956fd3053f35d2eb370",
+          ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json": "0bddb0a93b4d96e132a8093194b09536356dc1203c70674cc056e1d01e46720f",
+          ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json": "91329699fb51bd1285f88cecb8903b73c5cb814a11d84432bc3239c705a5fc9c",
+          "AGENTS.md": "1fb3c4efa7ed75149a69297caefb8de4fe0db45642c46080f3ed7fbf68296a10",
+          "CMakeLists.txt": "dc57083cf3999864bf69bc5889e425121544850a5765b17920e29f3844dc3e69",
+          "CONTRIBUTING.md": "c852b126a097aabeeff8268f92fc15515d13ba33bcec8db1027ab213f4b1e086",
+          "README.md": "476a81421d87821431b6b4aacd560690d0be28e09d0075040b4962b1b8800a73",
+          "docs/mechanisms/game-bindings.md": "3c84583216c9b041d83a034e7144b8384f3bf6c4155c163027c72631314f597e",
+          "docs/mechanisms/review.md": "3ac3f1514df49614756ebe032b08041d23837606867407103982aa5e4206fb2c",
+          "include/h5/actor_input.hpp": "0af25813dacf3903ec7e96a92385f8ddaadc919b633b03d8a2df4867d0a57c54",
+          "include/h5/adventure_input.hpp": "8a03daa098ed06cfad08fad3f92d64a2dff0b49c91729ddf33ad34ac0e7e99d1",
+          "include/h5/build.hpp": "48ddfa1344b2a2592c9b4632f77032812ff44fd25df376de4f98884dfc679fe9",
+          "include/h5/camera_input.hpp": "794488865c1a361cad0f9c019ac97c857d4a930a35bfda2e9813ec2a005828de",
+          "include/h5/console.hpp": "63febea8bac12fafb8df68d4c2ebd02269d08f41bacc6cfbc72ddbd17c3753f9",
+          "include/h5/graphics_lifetime.hpp": "87538bb5956801cc4a715a4e28ad1d06bb7f17dbe9be7741a5289cfbfe1b93be",
+          "include/h5/hooks.hpp": "8bb80fffd35a652628baa9b7249af2698f60afb1f34dd63ed367442ec3793a77",
+          "include/h5/image_placement.hpp": "04b77a471c7920d3b3b4d1650c6d0bc864088c19280b9133730c302e0bf34a1c",
+          "include/h5/process.hpp": "6c3a5cf3aa2e5aa457b457fc724f8bd9fadb1ca0c07a4e5ad47c8567e53bd338",
+          "include/h5/resident_buffers.hpp": "36869e895febe45c0490bf79cde2bd4f91dc12d29992558dafd4457cef6cfc6f",
+          "include/h5/script_observers.hpp": "3c2506ee294892eb35ccae08acb14fea42f9d2e7e4cefb4ec2654a7ce67fc062",
+          "include/h5/source_strength.hpp": "7a803d1267e7ece2fb7fd059b4852cc2e580f82a91a961df295dcab552029058",
+          "package-lock.json": "60ad826ae81515d4edcd1d733e1740c473f6d7b8ba9af8a94108a437bd4074a7",
+          "package.json": "ce3217b2364ab895c39b418ef9307559a144554403b76d49ff160d8a4a44480c",
+          "scripts/install-hooks.mjs": "34c8ad8467db87b3a85be37c43be4604b9a14541eb3bda3198fc2c45796f5133",
+          "scripts/review-check.mjs": "37672b9ad0c1892a6586039467dcc6c20e54eb0324e6ed8062a625690b5b36e8",
+          "scripts/review-docs.mjs": "c98cf44e654324abea1005d30b843ad5cec177b255407265f59b50197774e4bf",
+          "scripts/review-docs.test.mjs": "e1237d65ceb551445511de6a56b72f09db4a7c57142e873be5e293b8154ad038",
+          "scripts/review-gate.test.mjs": "f8e14368fdaab1f167cfb5930aaf5bd8e8c07ce8434d2e1ed2339a54900e851f",
+          "tests/game_api_test.cpp": "d46700ff30579dca51dcd0af718ff890bac23e18abbd465a510800103700d983",
+          "tests/resident_buffer_fixture.cpp": "66a90251c86020a604fcea9229face2525a8a63b1ea5c40b431d88c82dce8bdc"
+        },
+        "changed_raw_sha256": {
+          ".claude/review.config.json": "7a5766362ac72292feeca934ce566f6a2c7b54b465d32655f25de6d289a1c5f1",
+          "docs/mechanisms/game-bindings.md": "3c84583216c9b041d83a034e7144b8384f3bf6c4155c163027c72631314f597e",
+          "docs/mechanisms/review.md": "3ac3f1514df49614756ebe032b08041d23837606867407103982aa5e4206fb2c",
+          "include/h5/actor_input.hpp": "6919ac29c81063b8e0670fb2d73005bd397fbebbe7ef0c9e2b1e7c674d5632d0",
+          "AGENTS.md": "1fb3c4efa7ed75149a69297caefb8de4fe0db45642c46080f3ed7fbf68296a10",
+          "tests/game_api_test.cpp": "89cde77da017d762ab2458cf21534132c7fc10ae619243935cf32bbc8cf2b875"
+        },
+        "guides_read": [
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          ".claude/review.config.json architecture lane",
+          ".agents/review/review-architecture.md",
+          "actual installed solid/SKILL.md and ockham/SKILL.md loaded earlier in this reviewer session"
+        ],
+        "retained_evidence_sha256": {
+          "comparison-dimensions-architecture-review.json": "344ce4f1ac6e4a9162bd8a3fb60bf0cf123f9f62e5647d0a6909da18075ebc77",
+          "comparison-field-geometry-review.json": "bdb83abff4d8c1ac94a394e3daf478b1f398aad46049bb70b1b37e5a546796d1",
+          "managed-player-visible-showcase-layout.json": "53a560ce4c931e9f2c6e9d6b4a8b078c05095c65fd041519821836d7b48844b9",
+          "managed-player-facts-only-layout-confirmed.json": "2cd3112bf53a3687aa46cf55eee4b59e35428666827b9513cd1117388563e32e"
+        }
+      },
+      "evidence": [
+        "Independent read-only review:info matches the unchanged fixed base and final1c88901f hash at clean HEAD8237863. Since published8eebef8, exactly six paths change: four initially frozen production/test/policy files and two final short pointer documents. Since prior attested5500635, those six plus its validated attestation metadata are the only changes.",
+        "34 prior present-file committed hashes are identical; their existing cumulative architecture judgments are reused. All41 cumulative paths are explicitly claimed with hashes. No whole repository/history reread or stale current-gate substitution performed.",
+        "ReadCombatFieldDimensions383-398 is a reusable synchronous native-world primitive using the already established thiscall getter signature/order. It returns plain native dimensions, clears outputs on refusal, bounds supported sizes and catches native read/call exceptions. It adds no SDK/internal resident type, lifecycle orchestration, mod formula, UI policy or workshop dependency.",
+        "Caller owns supported-game verification, live-world admission and correct game-thread call. The exact unchanged helper header was independently reviewed with committed adapter call context earlier; the adapter obtains verified committed world and reads dimensions immediately, saving only POD dimensions for normal/facts-only/HMR. This gate certifies API source boundaries, not the whole downstream adapter/release.",
+        "New native fixture installs a local function in existing fake world table using x86-compatible fastcall stand-in for thiscall. It checks16x12 native outputs, invalid dimension ranges/negative width with zero outputs, null world and null getter refusal. No production test callback/parameter/SDK layer, fixed-address map or new native ABI is introduced.",
+        "Image authorization changes in AGENTS/config require explicit owner image requests and programmatic oracles; architecture lane/base/threshold remain unchanged. No screenshot evidence was produced by this review.",
+        "Final game-bindings pointer adds battlefield dimensions to the existing canonical reference section. Review pointer links AGENTS/applicable lane for image/oracle rules. Both remain concise source-to-canonical pointers and introduce no duplicate maintained manual.",
+        "Retained programmatic layout JSON records native16x12/display12x10, verified full reference7 and ordinary visible4of7 in the showcase, plus facts-only native16x12/display12x10 with full reference2 and visible forecast0. These demonstrate the bounded geometry/facts-only contract, not ordinary forecast100% or universal algorithm correctness.",
+        "Score10 follows the configured severity calculation with no identified architecture deductions. Source publication remains independent of the pending final player archive."
+      ],
+      "limits": [
+        "No tests/build/game/input/images/process probing/publication executed. Read-only git/review:info/source/evidence inspection only; requested private JSON is the sole write.",
+        "Native1of1PASS0.17s and live layout results are retained supplied evidence, not rerun by this reviewer.",
+        "Unchanged cumulative content is covered by verified prior blobs/judgments, not a fresh exhaustive API audit.",
+        "No unsupported build, arbitrary pointer/thread safety, siege/special world universality, downstream source pin update, current managed campaign or standalone player release acceptance certified.",
+        "The helper does not independently authenticate arbitrary world pointers or game version; caller admission/thread/lifetime restrictions remain mandatory."
+      ],
+      "timestamp_utc": "2026-10-11T11:06:23.110148+00:00"
+    },
+    "tests": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/release_native_tests_review",
+      "lens": "tests",
+      "head": "823786332e49b0261ec1fe37cd38894f5af88969",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473",
+      "threshold": 7,
+      "findings": [],
+      "evidence": "Independent configured cumulative TESTS review at clean823786332e49b0261ec1fe37cd38894f5af88969/hash1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473. Verified exact unchanged published8eebef8 blobs before reusing own approved f531cf9b full-base assessment. Direct delta is the native dimension getter/test, stricter image authorization and two pointer-document amendments. Native reader/test/CMake hashes match the independently reviewed canonical generated-reader fixture. It asserts nominal16x12, invalid bounds, stale-output clearing, null world and missing-getter SEH refusal. No current finding; score10 exceeds7. Parent reports configured native1/1PASS0.17s before the pointer-only amendment; reviewer did not rerun. Remaining deterministic gates are not claimed. Source publication only, not final player acceptance.",
+      "summary": {
+        "agent": "tests",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "No TESTS defect in the verified cumulative GameAPI source-publication scope."
+      },
+      "scoreReason": "10 minus20*0 blockers minus3*0 majors minus0 minors, per actual reviewer contract; threshold7.",
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "bb7d6b1c65b7d84b471f97b40d905fc2666e2039",
+          "sha256": "d84ad001b388d431d18592ecbc6dfa7c341a1df68f76c36c179d9ae9645ee39a"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "45ee0c38955b05ad4a902d7e4c915f7ad572fee0",
+          "sha256": "a0152fe583df31d8b5d61aeec42545f00d46b9f7ff3666b91f7e3b65a7e7d18a"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "ad0c8817eadbdf366de5a92b596becba23c50689",
+          "sha256": "ff080153c0ae98da679a05a5059f3f4a82fc9497e7f6d5f3c5d29c1f6ca07fbb"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "57def16b33469b38fdadb5ca6599af612ee4ff02",
+          "sha256": "b335283330d6b8ea72886433174a59269921b90d9e54f6c16101684a3b5214d8"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "db823a58c7695512a593a6f7658e233a1e8ebcdf",
+          "sha256": "8c34b133de268f9da34ba0203a65bc311fe2d5247854b19b244aaa34ee28059a"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "f31e7f477d74c90ef64f7947ddded6eed45d033e",
+          "sha256": "fdf5915deb76a541cc37f792ccc2da03f8fa3855a3c65a62349e2b664a1aebb9"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "ace252678f82299e7e7a1d43f1dbbc3750621ef2",
+          "sha256": "633aa59d97b02b29c983ed0f7b32d763ad70778bb337ebe1380cc0296d602ae1"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "76f5f432790e5edba6e6bc525f5a2f55782729fd",
+          "sha256": "f2708302cf236e75d74eadceb24a354d34c499a8bd479fbebce1f86769659977"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged",
+          "evidence": "Direct reviewed dimension/test/image-policy/pointer delta",
+          "git_blob": "46f578000369affc09d095d8f3fd2b248978ba7a",
+          "sha256": "7a5766362ac72292feeca934ce566f6a2c7b54b465d32655f25de6d289a1c5f1"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "b934aaa4d832869c1b5a7bfe635bb7c942527704",
+          "sha256": "9231700d6415779a70725e0fc551c1adb57a12eb171e704a5b1550f4f03cf2a5"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "e082c8547ba69cfca53df9071a6be6fcecb65963",
+          "sha256": "d62c67f462dc84011bed6966710ebf4a6337e019806caf819f3a9e9ef4ade1f5"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "353508b83b8e3a7e39e98621f7be0c6826cc11e5",
+          "sha256": "7cd7a21c0d1989343b0e3bca276cef4687d36549114ad956fd3053f35d2eb370"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "4c2551138f3e77f01cc1fe87fe2d85e03abe2ea4",
+          "sha256": "0bddb0a93b4d96e132a8093194b09536356dc1203c70674cc056e1d01e46720f"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "61998ebcd241f348953d69770af212e9b8e1c53a",
+          "sha256": "91329699fb51bd1285f88cecb8903b73c5cb814a11d84432bc3239c705a5fc9c"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged",
+          "evidence": "Direct reviewed dimension/test/image-policy/pointer delta",
+          "git_blob": "dd5a70b65757b3a27b938f0b5492ba94368da14f",
+          "sha256": "1fb3c4efa7ed75149a69297caefb8de4fe0db45642c46080f3ed7fbf68296a10"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "cd4b4edbee2cbcf1700f9cae80abfa4ad38e1c85",
+          "sha256": "dc57083cf3999864bf69bc5889e425121544850a5765b17920e29f3844dc3e69"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "55f8fcdb476fba5b1139955e2102b9d46f9fea72",
+          "sha256": "c852b126a097aabeeff8268f92fc15515d13ba33bcec8db1027ab213f4b1e086"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "e4a4aa8389bf4b988e29d5a28da51429515473eb",
+          "sha256": "476a81421d87821431b6b4aacd560690d0be28e09d0075040b4962b1b8800a73"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged",
+          "evidence": "Direct reviewed dimension/test/image-policy/pointer delta",
+          "git_blob": "395cd45fa2aa7896007589d684f4a8eab2bf1781",
+          "sha256": "3c84583216c9b041d83a034e7144b8384f3bf6c4155c163027c72631314f597e"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged",
+          "evidence": "Direct reviewed dimension/test/image-policy/pointer delta",
+          "git_blob": "b9b209344ab846011893298fbf96c3daa2eb4357",
+          "sha256": "3ac3f1514df49614756ebe032b08041d23837606867407103982aa5e4206fb2c"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged",
+          "evidence": "Direct reviewed dimension/test/image-policy/pointer delta",
+          "git_blob": "a67ccefa111c747bf4c03c6e0c1feb700a3898be",
+          "sha256": "0af25813dacf3903ec7e96a92385f8ddaadc919b633b03d8a2df4867d0a57c54"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "6f4546e5bdd537abdad5973eab6913ba78383ffe",
+          "sha256": "8a03daa098ed06cfad08fad3f92d64a2dff0b49c91729ddf33ad34ac0e7e99d1"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "899531312c1e82a5dd7165e5f75147f61aef5c6f",
+          "sha256": "48ddfa1344b2a2592c9b4632f77032812ff44fd25df376de4f98884dfc679fe9"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "8bd33c5cd44c047159baa629423293aba324c0be",
+          "sha256": "794488865c1a361cad0f9c019ac97c857d4a930a35bfda2e9813ec2a005828de"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "b5edb38f162445c52646bd0a44b5642074db81ea",
+          "sha256": "63febea8bac12fafb8df68d4c2ebd02269d08f41bacc6cfbc72ddbd17c3753f9"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "c7b9dc05b14e747d4ae9ffa3338f6bdd7b86aed4",
+          "sha256": "87538bb5956801cc4a715a4e28ad1d06bb7f17dbe9be7741a5289cfbfe1b93be"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "d4060516fa5b0f0a18a1694abb135635bffec908",
+          "sha256": "8bb80fffd35a652628baa9b7249af2698f60afb1f34dd63ed367442ec3793a77"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "d70e126611e030e139276ba1d16ba6641de86c4c",
+          "sha256": "04b77a471c7920d3b3b4d1650c6d0bc864088c19280b9133730c302e0bf34a1c"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "1e544c0b193c69cfa2b3270a5c913980d1356ff7",
+          "sha256": "6c3a5cf3aa2e5aa457b457fc724f8bd9fadb1ca0c07a4e5ad47c8567e53bd338"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "29ee33510437dcc75f51deaf439427a3a3cc3326",
+          "sha256": "36869e895febe45c0490bf79cde2bd4f91dc12d29992558dafd4457cef6cfc6f"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "41cf0f9de771159a23aec2c621d8bb0b66bebe6d",
+          "sha256": "3c2506ee294892eb35ccae08acb14fea42f9d2e7e4cefb4ec2654a7ce67fc062"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "efb309d694dd3ac32b585789a3cd2b7cc671eef0",
+          "sha256": "7a803d1267e7ece2fb7fd059b4852cc2e580f82a91a961df295dcab552029058"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "990373a8dfde64c95f17e4cf85573460ef12aeda",
+          "sha256": "60ad826ae81515d4edcd1d733e1740c473f6d7b8ba9af8a94108a437bd4074a7"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "0b6a1ccbc2810a909142981ff1872f959d16dc76",
+          "sha256": "ce3217b2364ab895c39b418ef9307559a144554403b76d49ff160d8a4a44480c"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "7283c782e3c2388dd463cd54424cd850235445f2",
+          "sha256": "34c8ad8467db87b3a85be37c43be4604b9a14541eb3bda3198fc2c45796f5133"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "9601bc37555405d03cf2fb9c323d198a1eebd532",
+          "sha256": "37672b9ad0c1892a6586039467dcc6c20e54eb0324e6ed8062a625690b5b36e8"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "c3bc3922dfd8e6cab4757e1b4b1cdd9528499f76",
+          "sha256": "c98cf44e654324abea1005d30b843ad5cec177b255407265f59b50197774e4bf"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "4a4625facea27e62a38e2e87a0f119588ddfe66a",
+          "sha256": "e1237d65ceb551445511de6a56b72f09db4a7c57142e873be5e293b8154ad038"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "17396ffc5134931c2a1102811946cbac9c4b086d",
+          "sha256": "f8e14368fdaab1f167cfb5930aaf5bd8e8c07ce8434d2e1ed2339a54900e851f"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged",
+          "evidence": "Direct reviewed dimension/test/image-policy/pointer delta",
+          "git_blob": "e5ef9e9a8791ac7cd11adbc97487db0e042919f5",
+          "sha256": "d46700ff30579dca51dcd0af718ff890bac23e18abbd465a510800103700d983"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged",
+          "evidence": "Prior fixed-base TESTS judgment reused after exact published8eebef8 Git blob/deletion equality",
+          "git_blob": "81bcbbdc08db350ab587f28aa6966e4875a28fb9",
+          "sha256": "66a90251c86020a604fcea9229face2525a8a63b1ea5c40b431d88c82dce8bdc"
+        }
+      ],
+      "scope": {
+        "repository": "D:\\Pk\\Heroes5ModsFolder\\game-api",
+        "cumulative_paths": 41,
+        "documentation_paths": 12,
+        "direct_delta_paths": [
+          ".claude/review.config.json",
+          "AGENTS.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md",
+          "include/h5/actor_input.hpp",
+          "tests/game_api_test.cpp"
+        ],
+        "published_baseline": "8eebef8f718ea8b26dd3a12313c8f6713caf5b35",
+        "prior_attested_source": "550063576f9edd9749387e8fb830d3d5612ea39c",
+        "prior_attestation_diffHash": "f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2",
+        "prior_attestation_sha256": "91329699fb51bd1285f88cecb8903b73c5cb814a11d84432bc3239c705a5fc9c",
+        "prior_tests_result": {
+          "verdict": "PASS",
+          "score": 10,
+          "reviewer": "/root/release_native_tests_review",
+          "evidence": "Final cumulative fixed-base review through550063576f9edd9749387e8fb830d3d5612ea39c; regenerated review:info hashf531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2. Clean worktree. Loaded actual tests contract/config and applied tests-architecture. Reused prior58ee00d/86f585db scope only after verifying unchanged build/process/console/graphics/image-placement and gate/CI bodies. Current reader/test/CMake hashes match the independently reviewed duplicate-side correction and generated-reader fixture with only four native binding substitutions; dependency regeneration was verified. Native negative cases cover duplicate sides, pending deployment, malformed/oversized roster, eight-stack overflow, invalid quantity/footprint, registry version99 and valid recovery. Observer ABI/digest/thread/retirement, real constructor execution, console refusal, resident DLL unload/nesting, packed input and camera/FPU assertions were reviewed. Candidate5 HMR binary establishes only a valid2/2 facts-only path, immutable full reference and zero result observers, not final-package ordinary startup. Final amendment since8a8d3ff is only three canonical-pointer documentation lines; code/tests unchanged. The orchestrator verified configured npm test1/1 PASS0.22s, npm check9/9 PASS and docs-check PASS after this commit; this reviewer did not rerun tests. SDK results are separate from API acceptance.",
+          "findings": []
+        },
+        "final_pointer_amendment": {
+          "previous_head": "3e37dffcbf68d4eed25ce22e0dd44717c87001cd",
+          "paths": [
+            "docs/mechanisms/game-bindings.md",
+            "docs/mechanisms/review.md"
+          ],
+          "native_code_and_tests_unchanged": true
+        }
+      },
+      "accepted": [
+        {
+          "area": "Native ABI and real production fixture",
+          "evidence": "Production __thiscall passes world inECX and width*/height* on stack; x86 fixture __fastcall usesECX, discardsEDX and takes matching stack parameters with callee cleanup. Nominal16x12 checks both outputs and preservation of blocked native borders. Generated actor_input_fixture.hpp equals whole canonical header with only the existing four native binding substitutions and canonical hooks include."
+        },
+        {
+          "area": "Refusal assertions",
+          "evidence": "Width7/33,height3/33,negative width refuse with both outputs reseeded99 then assertedzero. Nullworld independently checks stale-output clearing; missing getter executes SEH refusal. Public outputs are assigned only after both range checks. These are behavior assertions against actual reader, not a duplicate implementation. Domain bounds reuse established renderer/native-mask evidence."
+        },
+        {
+          "area": "Cumulative coverage reuse",
+          "evidence": "Unchanged build/process/console/graphics/image-placement/observer/camera/packed-input/resident lifetime/native negative fixtures and review-gate bodies retain their approved tests assessment after exact Git equality. Earlier duplicate-side and roster/overflow/quantity/footprint/registry-version refusal/recovery coverage remains intact. Monolithic1/1 is not treated as universal binding/gameplay proof."
+        },
+        {
+          "area": "Policy and final documentation pointers",
+          "evidence": "AGENTS/config tighten explicit owner image authorization and mandate programmatic oracles. Final game-bindings pointer adds battlefield dimensions to relevant canonical-reference scope; review pointer directs image/evidence conditions to actual AGENTS/lane rules. These amendments change no test semantics or executable behavior. Fixedbase,threshold and configured native/docs/review-contract gates are unchanged."
+        }
+      ],
+      "guides_read": [
+        "Current GameAPI AGENTS.md,CONTRIBUTING.md and actual .claude/review.config.json TESTS rules/gates",
+        "Actual .agents/review/review-tests.md plus project-review contract already loaded in this reviewer conversation",
+        "Actual installed tests-architecture guide and case-space reference; runtime-neutral cases/seams/assertion rules applied, JS/Vitest-specific clauses inapplicable"
+      ],
+      "retained_evidence": [
+        {
+          "path": "D:\\Pk\\Heroes5ModsFolder\\.local\\test-state\\canonical-graphics-build-20261006\\game-api-dimensions-publication-info.json",
+          "sha256": "7bedcc630f29e12d22a0875e79337ff749b7639370994db3999138502770e5fb"
+        },
+        {
+          "path": "D:\\Pk\\Heroes5ModsFolder\\.local\\test-state\\canonical-graphics-build-20261006\\game-api-publication-tests.json",
+          "sha256": "6abf16c015db09d1f06550d9ed57889728bf2ba6e2c3ba1b07ff87c83d55e94f"
+        },
+        {
+          "path": "D:\\Pk\\Heroes5ModsFolder\\.local\\test-state\\canonical-graphics-build-20261006\\comparison-dimensions-tests-review.json",
+          "sha256": "d5babe3d73ae78903688e1690a20bf3a8cb3669bc9ffb56b7ef9065ac0d3e8e2"
+        },
+        {
+          "path": "D:\\Pk\\Heroes5ModsFolder\\.local\\test-state\\canonical-graphics-build-20261006\\comparison-dimensions-tests-review-followup.json",
+          "sha256": "528cc3a8ea8ab107638f7ce153ba3bfdf5acf8d2f6b314369b8fe0ed8fdee4e5"
+        },
+        {
+          "path": "D:\\Pk\\Heroes5ModsFolder\\.local\\test-state\\canonical-graphics-build-20261006\\comparison-field-geometry-review.json",
+          "sha256": "bdb83abff4d8c1ac94a394e3daf478b1f398aad46049bb70b1b37e5a546796d1"
+        }
+      ],
+      "native_evidence": {
+        "prior_inspected_log": "D:\\Pk\\Heroes5ModsFolder\\.local\\game-api-native\\Testing\\Temporary\\LastTest.log",
+        "prior_log_sha256": "0be3805cbb73dec79a825b7761c0c0f30ee1eab47de0ef4b2800ea1268d55cd8",
+        "prior_result": "game_api_boundaries1/1PASS0.25s inspected; exact current reader/test/CMake hashes unchanged.",
+        "current_configured_result": "Parent reports native1/1PASS0.17s at3e37dff; subsequent8237863 amendment is pointer-docs only. Not executed by this reviewer.",
+        "generated_fixture": "D:\\Pk\\Heroes5ModsFolder\\.local\\game-api-native\\actor_input_fixture.hpp",
+        "generated_raw_sha256": "869b4614354b6e28ebf144d0348f17a9c6cc51f70b9edbca297508f6cd35ae03"
+      },
+      "limits": [
+        "No tests, builds, game actions, input, images, runtime reads, source edits or publication performed. Only this requested private report written; production review:info was read-only.",
+        "Remaining current configured docs/review-contract gates are required and not claimed passed here. Native result is explicitly parent-reported and source-valid across the final docs-only delta.",
+        "Final player startup, current package release, arbitrary siege/special-build geometry and universal algorithm acceptance are outside this source-publication review.",
+        "Root-supplied current-payload88 normal/facts16x12 observations are separate integration evidence; this reviewer did not independently decode those new receipts in this gate or use them as final-package acceptance.",
+        "Earlier predictor ComparisonWindow refusal-state coverage was separately closed; it is not an open GameAPI finding.",
+        "Unchanged cumulative assessment is reused by exact Git identity, not represented as new broad research or test execution."
+      ],
+      "written_utc": "2026-10-11T11:06:58.741511+00:00"
+    },
+    "docs": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/game_api_dimensions_docs",
+      "evidence": [
+        "Independent DOCS reviewer identity: /root/game_api_dimensions_docs; not the source author. Actual installed standard, wittgenstein and critique guides were loaded, as were AGENTS, CONTRIBUTING, the docs lane and repository configuration. One bounded configured repository-docs review; no article panel or cross-family independence is claimed.",
+        "Nine Markdown blobs exactly match prior attested 5500635: .agents/review/docs-auditor.md; review-architecture.md; review-craft.md; review-docs.md; review-security.md; review-tests.md; .agents/skills/project-review/SKILL.md; CONTRIBUTING.md; README.md. The prior docs review was read rather than reconstructed. Three changed Markdown files were read directly in full and their current delta inspected.",
+        "Current HEAD and cumulative review hash independently checked. Worktree clean. Existing deployed article describes the approved source baseline; the local canonical article update remains separate unpublished website content. Source publication acceptance is distinct from player artifact/live algorithm acceptance.",
+        "No game actions, screenshots, focus/input actions, test execution, source edits or commits. Only this requested private review result is written. Zero findings imply score 10 under max(0,10-20*blockers-3*majors-minors)."
+      ],
+      "findings": [],
+      "review": {
+        "reviewer": "/root/game_api_dimensions_docs",
+        "files": [
+          ".agents/review/docs-auditor.md",
+          ".agents/review/review-architecture.md",
+          ".agents/review/review-craft.md",
+          ".agents/review/review-docs.md",
+          ".agents/review/review-security.md",
+          ".agents/review/review-tests.md",
+          ".agents/skills/project-review/SKILL.md",
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          "README.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md"
+        ],
+        "criteria": {
+          "purpose": {
+            "verdict": "PASS",
+            "evidence": "README retains the studied Windows x86 Universe C++20 header-library purpose and assigns launch/HMR to SDK and gameplay to plugins. AGENTS changes verification rules; game-bindings and review remain source-to-canonical-documentation pointers. Unchanged reviewer contracts and project-review purpose reuse the prior actual docs review after exact blob verification."
+          },
+          "structure": {
+            "verdict": "PASS",
+            "evidence": "All 12 current review:info Markdown paths are explicitly covered in review.files. Nine are byte-identical Git blobs to attested commit 550063576f9edd9749387e8fb830d3d5612ea39c. AGENTS.md and both mechanism pointers were directly reviewed as changed text. .claude/docs.config.json declares the game-bindings and review mechanisms with Purpose/Operation/Limits/Verification fields; both current pointers retain these fields and canonical RU/EN links."
+          },
+          "specificity": {
+            "verdict": "PASS",
+            "evidence": "game-bindings.md Verification now explicitly names battlefield dimensions and points to version availability, reading constraints and lifetime in the canonical reference. ReadCombatFieldDimensions source names a live world from an admitted deployment/render callback on that callback game thread, includes blocked border cells, resets outputs before refusal and bounds native dimensions. The corresponding RU/EN draft paragraphs name this symbol and these same constraints. AGENTS and config explicitly require owner requests for actual images and a named property/programmatic oracle before checks."
+          },
+          "reproducibility": {
+            "verdict": "PASS",
+            "evidence": "No clone/build/test command, prerequisite or user entry point changed in the six-file delta from approved 8eeb. README standalone prerequisites and prior-attested CONTRIBUTING/review workflow are unchanged. Existing integration/native-check instructions therefore reuse prior docs evidence for those exact blobs; this reviewer did not run article steps, tests or the game. Current native fixture text supplies valid 16x12, invalid bounds, missing-world and missing-getter cases with zero-output assertions for the added dimensions contract."
+          },
+          "evidence": {
+            "verdict": "PASS",
+            "evidence": "Read actual prior perAgent.docs review from .review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json, which pins commit 5500635 and documents its prior project/duplicate-army/native/HMR evidence and limits. Verified nine unchanged Markdown blobs against that commit and that 5500635..8eeb adds only the attestation. Directly inspected the six-file 8eeb..8237863 delta and current helper/test source. Independently regenerated review:info: fixed base dc8d77583d04bffa61c97c46d629538d6c3e6a0a and diff hash 1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473. Parent reports native 1/1 PASS 0.17s, docs PASS, Node 9/9 PASS and explicit-base secrets PASS; none was rerun by this reviewer."
+          },
+          "applicability": {
+            "verdict": "PASS",
+            "evidence": "README/AGENTS retain supported-build, caller/thread/ABI and catalog-versus-verification restrictions. Dimensions comments require a live admitted callback world; unit fixture output does not certify arbitrary battlefield geometry. No reviewed Markdown scan hit raw memory addresses, disassembler address labels or personal machine paths. This verdict covers the 12 repository Markdown paths and source/documentation pairing only; it does not certify player artifacts, live algorithms, final-package startup or the separate knowledge website draft/publication."
+          },
+          "translations": {
+            "verdict": "PASS",
+            "evidence": "Compared the changed RU/EN AGENTS opening rules: both restrict capture to explicit owner image/visual-comparison requests, reject autonomous UI capture, require programmatic evidence and telemetry repair, and preserve reuse of the last verified scenario. Both game-bindings pointer lines add battlefield dimensions and retain matching actual reference section names. The review pointer additions agree on AGENTS/applicable lane ownership. Targeted RU/EN draft paragraphs agree on callback/game thread, borders and zero outputs; unchanged bilingual entry points reuse exact prior-attested blobs."
+          },
+          "maintenance": {
+            "verdict": "PASS",
+            "evidence": "The include/h5 dimensions addition updates its declared game-bindings pointer; .claude review-policy changes update the declared review pointer. README, CONTRIBUTING and AGENTS retain knowledge/docs as the single living-manual source. No dependency or manifest changed since approved 8eeb. Confirmed revision 3e37dffcbf68d4eed25ce22e0dd44717c87001cd is an ancestor of reviewed HEAD and contains ReadCombatFieldDimensions. The canonical source draft has its dimensions delta, but its website deployment and independent article critiques remain separate; prior draft certification is not carried forward."
+          }
+        },
+        "findings": []
+      },
+      "head": "823786332e49b0261ec1fe37cd38894f5af88969",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473"
+    },
+    "security": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/player_article_newcomer",
+      "head": "823786332e49b0261ec1fe37cd38894f5af88969",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473",
+      "findings": [],
+      "evidence": [
+        "Read actual Game API AGENTS, CONTRIBUTING, .claude/review.config.json security lane and repository-local .agents/review/review-security.md. Security configured skills is empty; prior loaded source/test guides retained.",
+        "Working tree clean; HEAD independently equals3e37dffcbf68d4eed25ce22e0dd44717c87001cd. Read-only node scripts/review-check.mjs --info independently reproduced exact fixed base and diffHash.",
+        "Actual cumulative scope is41 paths. Compared Git blobs: published8eeb..HEAD changes only AGENTS, review.config, actor_input.hpp and game_api_test.cpp.",
+        "Read genuine f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2 perAgent.security at source550063576f9edd9749387e8fb830d3d5612ea39c: reviewer /root/release_native_security_review, PASS10, no findings.",
+        "git diff --raw5500635..HEAD shows the same four current changes plus the published prior attestation; therefore36 prior cumulative paths are byte-identical and reuse that security proof. The prior attestation blob61998ebcd241f348953d69770af212e9b8e1c53a matches both published8eeb and current HEAD.",
+        "Inspected complete four-file bounded diff; policy changes tighten explicit image authorization and preserve numeric process/API oracles, without code execution, dependencies, credentials or private-path additions.",
+        "ReadCombatFieldDimensions documents live admitted deployment/render callback and same game-thread preconditions. It clears both outputs before world/null checks and encloses object/vtable reads plus thiscall in SEH.",
+        "Native dimensions remain local signed integers until width8..32 and height4..32 validation succeeds; null world, faulting/missing getter and invalid dimensions return false with zero outputs.",
+        "New tests supply a native fixture vtable and verify16x12 including borders, five invalid dimension combinations, null world and missing getter without stale outputs. No new arbitrary remote endpoint or address-to-command surface is introduced.",
+        "New API only exposes field dimensions; it does not acquire neutral quantities, hidden army composition, raw process dumps or package startup claims.",
+        "Exact actor_input.hpp SHA2566919ac29c81063b8e0670fb2d73005bd397fbebbe7ef0c9e2b1e7c674d5632d0; game_api_test.cpp SHA25689cde77da017d762ab2458cf21534132c7fc10ae619243935cf32bbc8cf2b875.",
+        "Final bounded pointer-doc followup: cleanHEAD823786332e49b0261ec1fe37cd38894f5af88969 and read-only review:info independently reproduced final diff1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473 with fixed base unchanged.",
+        "Git raw diff from prior reviewed3e37dffc contains only docs/mechanisms/game-bindings.md and docs/mechanisms/review.md; four prior native/config/AGENTS files remain identical.",
+        "Read complete two-document delta: bilingual pointer adds battlefield dimensions to canonical-reference scope; bilingual review pointer names existing AGENTS/applicable-lane image authorization and programmatic evidence rules.",
+        "Pointer-only prose adds no commands, active content, credentials, private paths or unsupported release claims; source-only SECURITY verdict remains PASS10.",
+        "Prior evidence scope descriptions refer to the preceding3e37dffc review; final additional pointer delta is explicitly covered here without broad rereview."
+      ],
+      "claims": [
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        }
+      ],
+      "limits": [
+        "Native binding requires a live admitted world and correct game thread; SEH is fault containment, not validation of arbitrary caller-supplied pointers or isolation from hostile in-process native plugins.",
+        "No game actions, tests, builds, images, source edits or publication performed; only read-only review:info and requested private report write.",
+        "Parent reports same-source live normal/facts-only checks with payload88; this review did not independently rerun or broaden them.",
+        "Source publication SECURITY PASS is separate from player archive, ordinary startup and complete campaign acceptance.",
+        "Unchanged cumulative content reused only after Git-blob comparison; no broad historical reread."
+      ]
+    }
+  },
+  "overall": "PASS",
+  "timestamp": "2026-10-11T11:10:47.266Z"
+}
