@@ -7,12 +7,186 @@
 #include <h5/camera_input.hpp>
 #include <h5/adventure_input.hpp>
 #include <h5/console.hpp>
+#include <h5/resident_buffers.hpp>
+namespace {
+extern uint32_t committedArmyMethods[1],committedWorldMethods[34];
+const uint32_t* __fastcall CommittedDefinitionGetter(uint32_t);
+bool __fastcall CommittedActiveActor(const void*,void*);
+}
+#include "actor_input_fixture.hpp"
 #include <xmmintrin.h>
+#include <float.h>
 #include <iostream>
 #include <future>
 #include <thread>
 
 namespace {
+void VerifyResidentBuffers(const char* first, const char* second) {
+    using namespace h5::resident;
+    const auto window = CreateWindowExW(0, L"STATIC", L"resident buffer fixture", WS_POPUP,
+        0, 0, 32, 32, nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
+    if (!window) { throw std::runtime_error("Resident owner window unavailable"); }
+    for (const auto* path : {first, second}) {
+        const auto module = LoadLibraryA(path);
+        const auto write = module ? reinterpret_cast<uint32_t (__stdcall*)(HWND)>(
+            GetProcAddress(module, "WriteResidentBuffer")) : nullptr;
+        if (!write || write(window) != 1) { throw std::runtime_error("Resident writer failed"); }
+        if (!FreeLibrary(module)) { throw std::runtime_error("Resident writer did not unload"); }
+        if (GetModuleHandleA(path)) { throw std::runtime_error("Resident writer still loaded"); }
+        BufferLease lease(window, 1, 1, false);
+        const auto expected = path == first ? 101u : 202u;
+        if (lease.Bytes() != 65536 || !lease.Data() ||
+            *reinterpret_cast<const uint32_t*>(lease.Data()) != expected) {
+            throw std::runtime_error("Data did not survive writer DLL unload");
+        }
+        if (lease.WritableData()) { throw std::runtime_error("Read lease exposed writable data"); }
+    }
+    if (EnsureBuffer(window, 1, 2, 65536) || EnsureBuffer(window, 1, 1, 32) ||
+        EnsureBuffer(window, 2, 1, MaximumBufferBytes + 1)) {
+        throw std::runtime_error("Resident schema/size boundary accepted");
+    }
+    auto* registry = detail::FindBuffers(window);
+    if (!registry) { throw std::runtime_error("Resident registry missing"); }
+    registry->version = 99;
+    const bool unknownVersionAllocated = EnsureBuffer(window, 2, 1, 32);
+    bool unknownVersionBorrowed = false;
+    { BufferLease unknown(window, 1, 1, false); unknownVersionBorrowed = unknown.Data() != nullptr; }
+    registry->version = 2;
+    if (unknownVersionAllocated || unknownVersionBorrowed) {
+        throw std::runtime_error("Unknown resident registry version accepted");
+    }
+    const auto outerModule = LoadLibraryA(first), innerModule = LoadLibraryA(second);
+    using Writer = uint32_t (__stdcall*)(HWND);
+    const auto innerWriter = innerModule ? reinterpret_cast<Writer>(GetProcAddress(innerModule, "WriteSecondResidentBuffer")) : nullptr;
+    const auto nestedWriter = outerModule ? reinterpret_cast<uint32_t (__stdcall*)(HWND, Writer)>(
+        GetProcAddress(outerModule, "InvokeNestedResidentWriter")) : nullptr;
+    if (!innerWriter || !nestedWriter || nestedWriter(window, innerWriter) != 1) {
+        throw std::runtime_error("Two DLL nested distinct-slot leases failed");
+    }
+    const auto sameWriter = reinterpret_cast<Writer>(GetProcAddress(innerModule, "WriteResidentBuffer"));
+    const auto nestedUpgrade = reinterpret_cast<uint32_t (__stdcall*)(HWND, Writer)>(
+        GetProcAddress(outerModule, "InvokeReadHeldUpgrade"));
+    if (!sameWriter || !nestedUpgrade || nestedUpgrade(window, sameWriter) != 1) {
+        throw std::runtime_error("Two DLL same-slot read-held upgrade was not refused");
+    }
+    {
+        BufferLease outer(window, 1, 1, true);
+        BufferLease sameWrite(window, 1, 1, true), sameRead(window, 1, 1, false);
+        if (!outer.Data() || sameWrite.Data() || sameRead.Data()) {
+            throw std::runtime_error("Same-thread same-slot recursion was not refused");
+        }
+    }
+    {
+        BufferLease outer(window, 1, 1, false);
+        BufferLease nestedRead(window, 1, 1, false), upgrade(window, 1, 1, true);
+        if (!outer.Data() || nestedRead.Data() != outer.Data() || upgrade.Data()) {
+            throw std::runtime_error("Read-held write upgrade was not refused or nested read lost ownership");
+        }
+    }
+    if (!FreeLibrary(outerModule) || !FreeLibrary(innerModule)) {
+        throw std::runtime_error("Nested resident fixture unload failed");
+    }
+    auto foreignThread = std::async(std::launch::async, [window] {
+        return EnsureBuffer(window, 2, 1, 32);
+    });
+    if (foreignThread.get()) { throw std::runtime_error("Foreign-thread allocation accepted"); }
+    for (uint32_t key = 2; key <= BufferCapacity; ++key) {
+        if (!EnsureBuffer(window, key, 1, 32)) { throw std::runtime_error("Resident capacity too small"); }
+    }
+    if (EnsureBuffer(window, BufferCapacity + 1, 1, 32)) {
+        throw std::runtime_error("Resident capacity exceeded");
+    }
+    DestroyWindow(window);
+    BufferLease retired(window, 1, 1, false);
+    if (retired.Data()) { throw std::runtime_error("Destroyed owner accepted"); }
+}
+
+uint32_t committedWorld[40]{}, committedArmies[2][28]{}, committedActors[2][32]{};
+uint32_t committedArmyMethods[1]{},committedWorldMethods[34]{};
+uint32_t committedSources[2][4]{}, committedDescriptor[8]{}, committedDefinition[64]{};
+uint32_t committedActorMethods[32]{}, committedSourceMethods[1]{};
+uint32_t committedWorldInterface[20]{}, committedCreatureInterface[8]{}, committedRosters[2][8]{};
+uint32_t committedQuantities[2]{20,10};
+bool committedDuplicateSides = false;
+const uint32_t* __fastcall CommittedWorldGetter(const void*,void*) { return committedWorld; }
+const uint32_t* __fastcall CommittedArmyGetter(const void*,void*,bool first) {
+    return committedArmies[first || committedDuplicateSides ? 0 : 1];
+}
+uint32_t __fastcall CommittedHealthContext(const void*,void*) { return 42; }
+bool __fastcall CommittedActiveActor(const void* actor,void*) { return actor != nullptr; }
+const uint32_t* __fastcall CommittedSourceGetter(const void* actor,void*) {
+    return committedSources[actor == committedActors[0] ? 0 : 1];
+}
+const uint32_t* __fastcall CommittedDescriptorGetter(const void*,void*) { return committedDescriptor; }
+const uint32_t* __fastcall CommittedDefinitionGetter(uint32_t) { return committedDefinition; }
+uint32_t __fastcall CommittedQuantityGetter(const void* creature,void*,uint32_t context) {
+    return context == 42 ? committedQuantities[creature == committedSources[0]+1 ? 0 : 1] : 0;
+}
+void __fastcall CommittedPositionGetter(const void* actor,void*,int32_t* position) {
+    position[0] = actor == committedActors[0] ? 2 : 13; position[1] = 5;
+}
+void VerifyCommittedDeploymentBoundaries() {
+    // Production admission/enumeration, with native getters/tables at the
+    // existing fixture boundary. No fixed-address mappings or game are needed.
+    committedArmyMethods[0] = reinterpret_cast<uint32_t>(CommittedWorldGetter);
+    committedWorldMethods[0x84/4] = reinterpret_cast<uint32_t>(CommittedArmyGetter);
+    committedWorld[0]=reinterpret_cast<uint32_t>(committedWorldMethods);
+    committedWorld[1]=reinterpret_cast<uint32_t>(committedWorldInterface);
+    committedWorldInterface[0x40/4]=reinterpret_cast<uint32_t>(CommittedHealthContext);
+    committedActorMethods[0x6c/4]=reinterpret_cast<uint32_t>(CommittedSourceGetter);
+    committedActorMethods[0x40/4]=reinterpret_cast<uint32_t>(CommittedPositionGetter);
+    committedSourceMethods[0]=reinterpret_cast<uint32_t>(CommittedDescriptorGetter);
+    committedCreatureInterface[0x1c/4]=reinterpret_cast<uint32_t>(CommittedQuantityGetter);
+    committedDescriptor[0x1c/4]=3;committedDefinition[0xdc/4]=1;
+    for (unsigned side=0; side<2; ++side) {
+        committedActors[side][0]=reinterpret_cast<uint32_t>(committedActorMethods);
+        committedSources[side][0]=reinterpret_cast<uint32_t>(committedSourceMethods);
+        committedSources[side][1]=reinterpret_cast<uint32_t>(committedCreatureInterface);
+        for (auto& actor : committedRosters[side]) { actor=reinterpret_cast<uint32_t>(committedActors[side]); }
+        committedArmies[side][0]=reinterpret_cast<uint32_t>(committedArmyMethods);
+        committedArmies[side][0x28/4]=reinterpret_cast<uint32_t>(committedRosters[side]);
+        committedArmies[side][0x2c/4]=reinterpret_cast<uint32_t>(committedRosters[side]+1);
+    }
+    h5::hooks::X86ObserverFrame frame{};frame.esi=reinterpret_cast<uint32_t>(committedArmies[0]);
+    h5::army::CommittedDeploymentSample sample{};
+    if (!h5::army::ReadCommittedDeployment(frame,sample) || sample.counts[0]!=1 || sample.counts[1]!=1 ||
+        sample.stacks[0][0].quantity!=20 || sample.stacks[1][0].quantity!=10) {
+        throw std::runtime_error("Distinct committed armies rejected");
+    }
+    committedDuplicateSides=true;
+    if (h5::army::ReadCommittedDeployment(frame,sample)) {
+        throw std::runtime_error("Same army accepted as both committed sides");
+    }
+    committedDuplicateSides=false;
+    *reinterpret_cast<unsigned char*>(committedArmies[1]+0x64/4)=1;
+    if (h5::army::ReadCommittedDeployment(frame,sample) || sample.failures!=4) {
+        throw std::runtime_error("Pending deployment accepted");
+    }
+    *reinterpret_cast<unsigned char*>(committedArmies[1]+0x64/4)=0;
+    const uint32_t originalEnd=committedArmies[0][0x2c/4];
+    for (const uint32_t end : {originalEnd-8,originalEnd+1,originalEnd+64*4}) {
+        committedArmies[0][0x2c/4]=end;
+        if (h5::army::ReadCommittedDeployment(frame,sample) || sample.failures!=7) {
+            throw std::runtime_error("Malformed committed roster accepted");
+        }
+    }
+    committedArmies[0][0x2c/4]=reinterpret_cast<uint32_t>(committedRosters[0]+8);
+    if (h5::army::ReadCommittedDeployment(frame,sample) || !sample.overflow) {
+        throw std::runtime_error("Eight creature stacks accepted");
+    }
+    committedArmies[0][0x2c/4]=originalEnd;
+    committedQuantities[0]=0;
+    if (h5::army::ReadCommittedDeployment(frame,sample) || sample.failures!=12) {
+        throw std::runtime_error("Zero committed quantity accepted");
+    }
+    committedQuantities[0]=20;committedDefinition[0xdc/4]=3;
+    if (h5::army::ReadCommittedDeployment(frame,sample) || sample.failures!=11) {
+        throw std::runtime_error("Invalid creature footprint accepted");
+    }
+    committedDefinition[0xdc/4]=1;
+    if (!h5::army::ReadCommittedDeployment(frame,sample)) { throw std::runtime_error("Valid committed state did not recover"); }
+}
+
 uint32_t __fastcall InputFixtureOriginal(void*,void*,const uint32_t*) { return 77; }
 void VerifyAdventureInputGate() {
     const auto target=reinterpret_cast<uintptr_t>(InputFixtureOriginal);
@@ -52,6 +226,19 @@ void VerifyAdventureInputGate() {
         throw std::runtime_error("Native input fixture focus unavailable");
     }
     if (invoke(nullptr,event)!=1) { throw std::runtime_error("Focused panel failed to capture verified key press"); }
+    // Actual owned Tab/Escape events carry flags in the identity and padding
+    // after the byte-sized press state. Do not treat either field as a DWORD.
+    for (const auto identity : {0x0100000fu,0x01000001u,0x011ffc17u}) {
+        event[0]=identity;event[4]=0x3e440001;
+        if (invoke(nullptr,event)!=1) { throw std::runtime_error("Packed keyboard press escaped focused panel"); }
+        event[4]=0x3e440000;
+        if (invoke(nullptr,event)!=77) { throw std::runtime_error("Packed keyboard release was consumed"); }
+    }
+    for (const auto identity : {0x01000100u,0x010003ffu}) {
+        event[0]=identity;event[4]=0x3e440001;
+        if (invoke(nullptr,event)!=77) { throw std::runtime_error("Non-keyboard packed identity was consumed"); }
+    }
+    event[0]=23;event[4]=1;
     const auto outside=CreateWindowExW(0,L"STATIC",L"outside input fixture",WS_POPUP,
         0,0,32,32,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr);
     if (!outside) { throw std::runtime_error("Outside input fixture window failed"); }
@@ -84,6 +271,52 @@ void VerifyAdventureInputGate() {
     RemovePropW(window,L"XalKit.Console.Frame.v1");
     event[0]=23;
     if (invoke(nullptr,event)!=77) { throw std::runtime_error("Cleared panel retained key capture"); }
+    const auto panel=CreateWindowExW(0,L"STATIC",L"module panel",WS_CHILD|WS_VISIBLE,0,0,24,24,window,nullptr,GetModuleHandleW(nullptr),nullptr);
+    const auto edit=CreateWindowExW(0,L"EDIT",L"",WS_CHILD|WS_VISIBLE,0,0,16,16,panel,nullptr,GetModuleHandleW(nullptr),nullptr);
+    const auto sibling=CreateWindowExW(0,L"STATIC",L"second module",WS_CHILD|WS_VISIBLE,24,0,8,24,window,nullptr,GetModuleHandleW(nullptr),nullptr);
+    if (!panel || !edit || !sibling || !h5::ui::RegisterInputPanel(panel) || !h5::ui::RegisterInputPanel(sibling)) {
+        throw std::runtime_error("Independent UI panel registration failed");
+    }
+    wcscpy_s(gate->property,h5::ui::KeyboardFocusProperty);
+    if (h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)!=gate) {
+        throw std::runtime_error("Generic focus property migration failed");
+    }
+    SetFocus(edit);
+    auto capture=h5::ui::ReadInputPanels(window);
+    h5::ui::PublishKeyboardFocus(window,capture);
+    if (!capture.present || !capture.keyboard || capture.keyboardFocus!=edit || invoke(nullptr,event)!=1) {
+        throw std::runtime_error("Registered panel child did not capture keyboard input");
+    }
+    SetFocus(sibling);capture=h5::ui::ReadInputPanels(window);h5::ui::PublishKeyboardFocus(window,capture);
+    if (!capture.keyboard || capture.keyboardFocus!=sibling || invoke(nullptr,event)!=1) {
+        throw std::runtime_error("Second module lost keyboard ownership");
+    }
+    SetFocus(window);capture=h5::ui::ReadInputPanels(window);h5::ui::PublishKeyboardFocus(window,capture);
+    if (capture.keyboard || invoke(nullptr,event)!=77) { throw std::runtime_error("Map focus retained module capture"); }
+    DestroyWindow(panel);DestroyWindow(sibling);
+    capture=h5::ui::ReadInputPanels(window);h5::ui::PublishKeyboardFocus(window,capture);
+    if (capture.present || invoke(nullptr,event)!=77) { throw std::runtime_error("Destroyed registered panels retained capture"); }
+    wcscpy_s(gate->property,L"XalKit.Console.Frame.v1");
+    if (h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)!=gate) {
+        throw std::runtime_error("Legacy focus rollback failed");
+    }
+    // A rolling core update must recognize the previous sealed gate until the
+    // owner thread replaces its jump. Unrecognized bodies remain rejected.
+    const auto legacyCode=h5::hooks::AdventureInputCode(code,reinterpret_cast<uintptr_t>(gate),target,true);
+    if (!VirtualProtect(reinterpret_cast<void*>(code),4096,PAGE_READWRITE,&previous)) {
+        throw std::runtime_error("Legacy input fixture preparation failed");
+    }
+    std::memcpy(reinterpret_cast<void*>(code),legacyCode.data(),legacyCode.size());
+    if (!h5::hooks::ObserverCodeDigest(code,legacyCode.size(),gate->digest) ||
+        !VirtualProtect(reinterpret_cast<void*>(code),4096,PAGE_EXECUTE_READ,&previous) ||
+        !FlushInstructionCache(GetCurrentProcess(),reinterpret_cast<void*>(code),legacyCode.size()) ||
+        h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)!=gate) {
+        throw std::runtime_error("Previous sealed input gate rejected during core update");
+    }
+    gate->digest[0]^=1;
+    if (h5::hooks::FindAdventureInputGate(reinterpret_cast<uintptr_t>(site),target)) {
+        throw std::runtime_error("Changed legacy input digest accepted");
+    }
     DestroyWindow(window);
     VirtualFree(site,0,MEM_RELEASE);
     VirtualFree(reinterpret_cast<void*>(code),0,MEM_RELEASE);
@@ -175,6 +408,97 @@ void VerifyGeneratedScriptObserver() {
     if (originalCalls != 3 || observerCalls != 1) {
         throw std::runtime_error("Generated tail jump or callback retirement failed");
     }
+    static h5::hooks::X86ObserverFrame captured{};
+    static uint32_t capturedArgument = 0, originalArgument = 0, capturedCalls = 0;
+    const auto contextOriginal = +[](uint32_t argument) { originalArgument = argument; };
+    const auto contextObserver = +[](const h5::hooks::X86ObserverFrame* frame) {
+        captured = *frame;
+        ++capturedCalls;
+        capturedArgument = *reinterpret_cast<const uint32_t*>(frame->savedEsp + 8);
+        _fpreset();
+    };
+    auto* contextSite = static_cast<unsigned char*>(VirtualAlloc(nullptr, 4096,
+        MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE));
+    if (!contextSite) { throw std::runtime_error("Context CALL fixture allocation failed"); }
+    auto* contextual = h5::hooks::CreateScriptObserverStorage(
+        reinterpret_cast<uintptr_t>(contextSite), reinterpret_cast<uintptr_t>(contextOriginal), true);
+    if (!contextual || h5::hooks::AddScriptObserver(*contextual, observer) ||
+        h5::hooks::AddContextObserver(*storage, contextObserver)) {
+        throw std::runtime_error("Observer callback ABI mismatch accepted");
+    }
+    auto* contextSlot = h5::hooks::AddContextObserver(*contextual, contextObserver);
+    if (!contextSlot) { throw std::runtime_error("Context subscriber registration failed"); }
+    const auto contextInvoke = reinterpret_cast<uintptr_t>(contextual) - h5::hooks::ScriptObserverDescriptorOffset;
+    contextSite[0] = 0xe8;
+    const auto contextDisplacement = static_cast<uint32_t>(contextInvoke - reinterpret_cast<uintptr_t>(contextSite) - 5);
+    memcpy(contextSite + 1, &contextDisplacement, sizeof(contextDisplacement));
+    DWORD siteProtection = 0;
+    if (!VirtualProtect(contextSite, 4096, PAGE_EXECUTE_READ, &siteProtection) ||
+        !FlushInstructionCache(GetCurrentProcess(), contextSite, 5) ||
+        h5::hooks::FindScriptObservers(reinterpret_cast<uintptr_t>(contextSite),
+            reinterpret_cast<uintptr_t>(contextOriginal), true) != contextual ||
+        h5::hooks::FindScriptObservers(reinterpret_cast<uintptr_t>(contextSite),
+            reinterpret_cast<uintptr_t>(contextOriginal))) {
+        throw std::runtime_error("Sealed context owner rejected or legacy owner misidentified");
+    }
+    unsigned short originalControl = 0, observedControl = 0, requestedControl = 0x027f;
+    __asm {
+        fnstcw originalControl
+        fldcw requestedControl
+        push 12345
+        mov eax, 0x11223344
+        mov ecx, 0x55667788
+        mov edx, 0x12345678
+        call contextInvoke
+        add esp, 4
+        fnstcw observedControl
+        fldcw originalControl
+    }
+    if (captured.eax != 0x11223344 || captured.ecx != 0x55667788 || captured.edx != 0x12345678 ||
+        capturedArgument != 12345 || originalArgument != 12345 || observedControl != requestedControl) {
+        throw std::runtime_error("Context registers, stack arguments, FPU or retirement changed");
+    }
+    auto* secondContextSlot = h5::hooks::AddContextObserver(*contextual, contextObserver);
+    const auto contextFunction = reinterpret_cast<void (__cdecl*)(uint32_t)>(contextInvoke);
+    if (!secondContextSlot) { throw std::runtime_error("Second context subscriber rejected"); }
+    contextFunction(54321);
+    if (capturedCalls != 3 || capturedArgument != 54321 || originalArgument != 54321 ||
+        !h5::hooks::RemoveContextObserver(contextSlot, contextObserver) ||
+        !h5::hooks::RemoveContextObserver(secondContextSlot, contextObserver)) {
+        throw std::runtime_error("Context dispatcher skipped subscriber or removal failed");
+    }
+    contextFunction(67890);
+    if (capturedCalls != 3 || originalArgument != 67890) {
+        throw std::runtime_error("Retired context callback executed or original tail lost");
+    }
+    auto* threaded = h5::hooks::CreateScriptObserverStorage(reinterpret_cast<uintptr_t>(contextSite),
+        reinterpret_cast<uintptr_t>(contextOriginal), true, GetCurrentThreadId());
+    if (!threaded) { throw std::runtime_error("Thread-filtered dispatcher allocation failed"); }
+    const auto threadedCode = reinterpret_cast<uintptr_t>(threaded) - h5::hooks::ScriptObserverDescriptorOffset;
+    const auto threadedDisplacement = static_cast<uint32_t>(threadedCode - reinterpret_cast<uintptr_t>(contextSite) - 5);
+    if (!VirtualProtect(contextSite, 4096, PAGE_READWRITE, &siteProtection)) {
+        throw std::runtime_error("Threaded CALL preparation failed");
+    }
+    memcpy(contextSite + 1, &threadedDisplacement, sizeof(threadedDisplacement));
+    if (!VirtualProtect(contextSite, 4096, PAGE_EXECUTE_READ, &siteProtection) ||
+        !FlushInstructionCache(GetCurrentProcess(), contextSite, 5) ||
+        h5::hooks::FindScriptObservers(reinterpret_cast<uintptr_t>(contextSite),
+            reinterpret_cast<uintptr_t>(contextOriginal), true, GetCurrentThreadId()) != threaded ||
+        h5::hooks::FindScriptObservers(reinterpret_cast<uintptr_t>(contextSite),
+            reinterpret_cast<uintptr_t>(contextOriginal), true, GetCurrentThreadId() + 1)) {
+        throw std::runtime_error("Threaded owner identity checks failed");
+    }
+    auto* threadSlot = h5::hooks::AddContextObserver(*threaded, contextObserver);
+    if (!threadSlot) { throw std::runtime_error("Threaded subscriber registration failed"); }
+    const auto threadFunction = reinterpret_cast<void (__cdecl*)(uint32_t)>(threadedCode);
+    threadFunction(222);
+    std::thread foreignCall([&] { threadFunction(333); });
+    foreignCall.join();
+    if (capturedCalls != 4 || capturedArgument != 222 || originalArgument != 333 ||
+        !h5::hooks::RemoveContextObserver(threadSlot, contextObserver)) {
+        throw std::runtime_error("Worker entered SDK callback or original forwarding changed");
+    }
+    if (!VirtualFree(contextSite, 0, MEM_RELEASE)) { throw std::runtime_error("Context CALL fixture cleanup failed"); }
     // Resident storage deliberately survives until this isolated test process exits.
 }
 
@@ -306,8 +630,17 @@ void VerifyCameraInputDispatcher() {
 }
 }
 
-int main() {
+int main(int count, char** arguments) {
     try {
+        if (count != 3) { throw std::runtime_error("Expected two resident writer fixtures"); }
+        wchar_t invalidCreatureName[8]{L'x'};
+        if (h5::army::ReadCreatureDisplayName(0, invalidCreatureName, 8) || invalidCreatureName[0] ||
+            h5::army::ReadCreatureDisplayName(512, invalidCreatureName, 8) ||
+            h5::army::ReadCreatureDisplayName(3, nullptr, 8)) {
+            throw std::runtime_error("Invalid creature-name request crossed the native boundary");
+        }
+        VerifyCommittedDeploymentBoundaries();
+        VerifyResidentBuffers(arguments[1], arguments[2]);
         VerifyConsoleAdmission();
         VerifyGeneratedScriptObserver();
         VerifyGraphicsTransaction();

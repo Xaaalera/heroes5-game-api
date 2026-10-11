@@ -2,6 +2,59 @@
 #include "script_observers.hpp"
 #include <vector>
 
+namespace h5::ui {
+inline constexpr wchar_t InputPanelProperty[] = L"Heroes5.UI.InputPanel.v1";
+inline constexpr wchar_t KeyboardFocusProperty[] = L"Heroes5.UI.KeyFocus.v1";
+struct InputPanelCapture {
+    bool present = false, mouse = false, keyboard = false;
+    HWND keyboardFocus = nullptr;
+};
+inline bool RegisterInputPanel(HWND panel) {
+    DWORD owner = 0;
+    return GetWindowThreadProcessId(panel, &owner) == GetCurrentThreadId() && owner == GetCurrentProcessId() &&
+        SetPropW(panel, InputPanelProperty, reinterpret_cast<HANDLE>(1));
+}
+inline void ReadPanelCapture(HWND panel, InputPanelCapture& capture) {
+    DWORD owner = 0;
+    const auto thread = GetWindowThreadProcessId(panel, &owner);
+    if (!panel || !thread || owner != GetCurrentProcessId() || !IsWindowVisible(panel)) { return; }
+    capture.present = true;
+    POINT pointer{}; RECT bounds{};
+    if (GetWindowRect(panel, &bounds) && GetCursorPos(&pointer) && PtInRect(&bounds, pointer)) {
+        const auto hovered = WindowFromPoint(pointer);
+        capture.mouse = capture.mouse || hovered == panel || IsChild(panel, hovered);
+    }
+    GUITHREADINFO input{}; input.cbSize = sizeof(input);
+    if (GetGUIThreadInfo(thread, &input)) {
+        if (input.hwndFocus == panel || IsChild(panel, input.hwndFocus)) {
+            capture.keyboard = true; capture.keyboardFocus = input.hwndFocus;
+        }
+        capture.mouse = capture.mouse || input.hwndMoveSize == panel || input.hwndCapture == panel || IsChild(panel, input.hwndCapture);
+    }
+}
+inline BOOL CALLBACK ReadTaggedPanel(HWND panel, LPARAM parameter) {
+    if (GetPropW(panel, InputPanelProperty) == reinterpret_cast<HANDLE>(1)) {
+        ReadPanelCapture(panel, *reinterpret_cast<InputPanelCapture*>(parameter));
+    }
+    return TRUE;
+}
+inline InputPanelCapture ReadInputPanels(HWND game) {
+    InputPanelCapture capture{}; DWORD owner = 0;
+    if (!game || !GetWindowThreadProcessId(game, &owner) || owner != GetCurrentProcessId()) { return capture; }
+    EnumChildWindows(game, ReadTaggedPanel, reinterpret_cast<LPARAM>(&capture));
+    return capture;
+}
+inline void PublishKeyboardFocus(HWND game, const InputPanelCapture& capture) {
+    DWORD owner = 0;
+    if (GetWindowThreadProcessId(game, &owner) != GetCurrentThreadId() || owner != GetCurrentProcessId()) { return; }
+    if (capture.keyboard && capture.keyboardFocus) {
+        if (GetPropW(game, KeyboardFocusProperty) != capture.keyboardFocus) {
+            SetPropW(game, KeyboardFocusProperty, capture.keyboardFocus);
+        }
+    } else if (GetPropW(game, KeyboardFocusProperty)) { RemovePropW(game, KeyboardFocusProperty); }
+}
+}
+
 namespace h5::hooks {
 // Main-thread subscribers vote to suppress camera input. The resident code
 // preserves the original virtual dispatch and never owns a DLL callback.
