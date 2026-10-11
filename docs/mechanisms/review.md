@@ -28,3 +28,6 @@ Repository-specific working rules remain in AGENTS.md, review configuration and 
 
 Обновление механизма требует сверить соответствующую каноническую статью и правила репозитория. Детерминированные проверки дополняют независимое ревью и не подтверждают игровые выводы.
 Mechanism changes require checking the canonical article and repository rules. Deterministic checks complement independent review rather than prove gameplay claims.
+
+Текущие правила ревью требуют проверки игровых фактов через процессы/hooks/API и сверки изменений технологий с каноническим списком. Эти требования проверяются по доказательствам конкретного изменения, а не по общей отметке PASS.
+Current review rules require process/hooks/API evidence for game facts and reconciliation of technology changes with the canonical inventory. Reviewers assess evidence for the actual change rather than accepting a generic PASS.
