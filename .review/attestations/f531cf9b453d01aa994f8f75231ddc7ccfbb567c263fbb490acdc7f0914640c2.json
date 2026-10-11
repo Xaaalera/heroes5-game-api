@@ -1,0 +1,102 @@
+{
+  "diffHash": "f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2",
+  "commitSha": "550063576f9edd9749387e8fb830d3d5612ea39c",
+  "perAgent": {
+    "craft": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/game_api_publication_craft",
+      "evidence": [
+        "40 cumulative changed paths inventoried; 25 paths match prior attested commit byte-for-byte by Git blob identity; 15 changed paths examined including ten source/build/test files.",
+        "Searched repository include/tests for existing army readers, input-panel capture, observer registration and resident storage; added modules extend existing binding and observer conventions, with no established dead-code or needless-duplicate finding.",
+        "Reviewed CMake fixture generation and production actor reader: fixture substitutes four native bindings; local guard receipt hashes independently match actor_input.hpp, game_api_test.cpp and CMakeLists.txt.",
+        "Reviewed the two explicit private receipts provided by the orchestrator. Candidate5 facts receipt reports exact_reference_match=2 and script_result_observers=0; its scope explicitly says final-package startup pending.",
+        "README and mechanism pointers keep live documentation in the canonical website; final three-line pointer identifies the available-building-blocks section without duplicating its manual.",
+        "JS scripts are exact prior-attested blobs, so JS/TS rules were not imposed on C++ ABI/domain names. Localization/viewport guidance is not applicable to these native binding changes: no new rendered UI prose or layout was added."
+      ],
+      "findings": []
+    },
+    "architecture": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/release_native_arch_review",
+      "evidence": null,
+      "findings": []
+    },
+    "tests": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/release_native_tests_review",
+      "evidence": "Final cumulative fixed-base review through550063576f9edd9749387e8fb830d3d5612ea39c; regenerated review:info hashf531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2. Clean worktree. Loaded actual tests contract/config and applied tests-architecture. Reused prior58ee00d/86f585db scope only after verifying unchanged build/process/console/graphics/image-placement and gate/CI bodies. Current reader/test/CMake hashes match the independently reviewed duplicate-side correction and generated-reader fixture with only four native binding substitutions; dependency regeneration was verified. Native negative cases cover duplicate sides, pending deployment, malformed/oversized roster, eight-stack overflow, invalid quantity/footprint, registry version99 and valid recovery. Observer ABI/digest/thread/retirement, real constructor execution, console refusal, resident DLL unload/nesting, packed input and camera/FPU assertions were reviewed. Candidate5 HMR binary establishes only a valid2/2 facts-only path, immutable full reference and zero result observers, not final-package ordinary startup. Final amendment since8a8d3ff is only three canonical-pointer documentation lines; code/tests unchanged. The orchestrator verified configured npm test1/1 PASS0.22s, npm check9/9 PASS and docs-check PASS after this commit; this reviewer did not rerun tests. SDK results are separate from API acceptance.",
+      "findings": []
+    },
+    "docs": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/game_api_publication_docs",
+      "evidence": null,
+      "findings": [],
+      "review": {
+        "reviewer": "/root/game_api_publication_docs",
+        "files": [
+          ".agents/review/docs-auditor.md",
+          ".agents/review/review-architecture.md",
+          ".agents/review/review-craft.md",
+          ".agents/review/review-docs.md",
+          ".agents/review/review-security.md",
+          ".agents/review/review-tests.md",
+          ".agents/skills/project-review/SKILL.md",
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          "README.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md"
+        ],
+        "criteria": {
+          "purpose": {
+            "verdict": "PASS",
+            "evidence": "README states the supported-build C++20 header-library purpose and separates shared bindings from SDK launch/HMR and plugin behavior. The three changed Markdown files preserve that purpose. Review contracts identify their subject; project-review identifies exact-diff publication review."
+          },
+          "structure": {
+            "verdict": "PASS",
+            "evidence": "Independently obtained all 12 Markdown paths from current review:info and assessed each. Nine are identical Git blobs to attested 58ee00d; AGENTS and both mechanism pointers were inspected as current deltas. docs.config declares game-bindings and review ownership and required Purpose/Operation/Limits/Verification fields; the pointers satisfy those fields without duplicating canonical manuals."
+          },
+          "specificity": {
+            "verdict": "PASS",
+            "evidence": "Current game-bindings pointer names army inputs, source strength, committed deployment and resident storage and directs readers to actual RU/EN canonical section names. Both drafts specify distinct armies, maximum seven creature stacks per army, rejection of partial failed records, descendant input panels, game-thread writes, ordinary lease limits and the immutable native-object exception. Checked these claims against actor_input, camera_input, source_strength and resident_buffers source."
+          },
+          "reproducibility": {
+            "verdict": "PASS",
+            "evidence": "Canonical reference gives Windows/MSVC x86/C++20/CMake prerequisites, add_subdirectory and target_link_libraries integration, standalone configure/build/CTest commands, and generator/architecture recovery. CMake source confirms the interface target, bcrypt dependency and top-level native test configuration. Draft explicitly says local additions are not yet obtained by public dependency instructions. Source checked only; no commands from the article were executed by this reviewer."
+          },
+          "evidence": {
+            "verdict": "PASS",
+            "evidence": "Read retained docs/2026-09-23-handoff.md current checkpoint, committed-duplicate-sides-fix.json and candidate5-facts-poststart-control.json. Independently matched actor_input, test and CMake SHA256 to the duplicate-side receipt and both canonical draft SHA256 to the round2 scope. Native negative-fixture evidence is separated from HMR valid-path 2/2 evidence and from pending final-package startup. Parent reports current native 1/1, Node 9/9 and docs checks PASS; these were not rerun here."
+          },
+          "applicability": {
+            "verdict": "PASS",
+            "evidence": "README, AGENTS and canonical references restrict bindings to the studied Windows x86 Universe build, distinguish cataloged hooks from fresh verification, preserve callback/thread/ABI duties and explicitly limit graphics repair to startup. Current drafts mark new headers/functions local and unpublished. No reviewed Markdown scan hit numerical memory-address or disassembler labels. This verdict accepts source documentation pairing; it does not certify draft articles, final artifacts, universal maps/input or multiplayer."
+          },
+          "translations": {
+            "verdict": "PASS",
+            "evidence": "Compared current RU/EN entry points and both complete canonical references. Ownership, prerequisites, unpublished availability, distinct armies, seven-stack limits, partial failure, descendant panels, immutable storage and lease lifetime agree. Changed game-bindings section names match the actual RU and EN headings. English-only reviewer contracts and research workflow are internal rules rather than untranslated player procedures."
+          },
+          "maintenance": {
+            "verdict": "PASS",
+            "evidence": "README, CONTRIBUTING, AGENTS and both mechanism pointers make knowledge/docs the sole living-manual source. Native include/tests/CMake changes are paired with the updated game-bindings pointer; review-policy changes are paired with the updated review pointer. No package dependency change since the verified baseline. Availability wording must be updated against the actually obtainable commit after publication, followed by bounded article recheck before the knowledge website gate; the six-article site attestation is not transferred."
+          }
+        },
+        "findings": []
+      }
+    },
+    "security": {
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/release_native_security_review",
+      "evidence": "Independent configured SECURITY review of the complete 40-file cumulative Game API delta at clean HEAD 550063576f9edd9749387e8fb830d3d5612ea39c, fixed base dc8d77583d04bffa61c97c46d629538d6c3e6a0a, independently recomputed diff hash f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2. Score 10 follows the configured deduction formula with zero findings and meets threshold 9. Loaded actual security contract/config; security skills list is empty. Reused unchanged Git content from prior attested 58ee00d8ed7f831bdd791d5d00c5dc8a2f3d1280 only after checking subsequent deltas, and reused my full current-source and duplicate-army correction reviews after exact hash checks. Current actor_input SHA256 0a281230797c06c778c49c9667a6dd147fb93ed7e40ab57b2b3df59730d35072, test SHA256 e698921e23175a7354916ed8b36864c9fd9bdd027127ee3e53ec5a4313f6207b and CMake SHA256 dc57083cf3999864bf69bc5889e425121544850a5765b17920e29f3844dc3e69 match committed-duplicate-sides-fix.json. Reviewed native ownership, bounds/SEH, hidden-versus-verification boundaries, exact observer seals and owner-thread retirement, resident allocation lifetime and immutable native-only reservations excluding unloadable pointers. Inspected cumulative review tooling, pinned read-only CI actions, hook installer preservation, lockfile and policy changes; targeted 40-file scans found no credential literals, private keys or private machine paths. Final 8a8d3ff..5500635 delta is only three documentation-pointer lines in docs/mechanisms/game-bindings.md, SHA256 65144e343c09edef1b8e4af7aca277b72a9835b6d98f749eddcca162261a3f4d; its section names agree with the canonical drafts. Canonical RU reference SHA256 8fc62cb6f32c15f4da88964cc012c601165c6758fabb0649fb92e19aa4098c6e and EN ffdeccf6e3534450fe5ef3d4c1e9cb0b4710cb29ac73c7bca3c3e29740844755 explicitly identify local unpublished additions. Inspected retained predictor-player-candidate5-facts-poststart-control.json: passed, unchanged full reference, exact match 2, payload 7b01c367428964472a3124ae473360b873ffa31337e6b2075c971cc5395343c4, with final-package startup explicitly pending. No edits to reviewed sources, tests, builds, game/input actions or gate execution performed; only read-only review:info and requested private result write. This is source-only security acceptance, not new artifact, final-package startup, universal gameplay or arbitrary in-process plugin isolation certification.",
+      "findings": []
+    }
+  },
+  "overall": "PASS",
+  "timestamp": "2026-10-11T05:37:48.124Z"
+}
