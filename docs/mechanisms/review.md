@@ -31,3 +31,6 @@ Mechanism changes require checking the canonical article and repository rules. D
 
 Текущие правила ревью требуют проверки игровых фактов через процессы/hooks/API и сверки изменений технологий с каноническим списком. Эти требования проверяются по доказательствам конкретного изменения, а не по общей отметке PASS.
 Current review rules require process/hooks/API evidence for game facts and reconciliation of technology changes with the canonical inventory. Reviewers assess evidence for the actual change rather than accepting a generic PASS.
+
+RU: Условия явного запроса владельца на изображение игры и выбор программного источника проверки определены в AGENTS.md и правилах соответствующей линзы; сверять их при изменении способа проверки.
+EN: AGENTS.md and the applicable review lane define explicit owner requests for game images and the choice of programmatic evidence; consult them when changing verification methods.
