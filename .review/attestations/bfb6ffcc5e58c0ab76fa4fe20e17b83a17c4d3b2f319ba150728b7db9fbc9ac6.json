@@ -1,0 +1,1015 @@
+{
+  "diffHash": "bfb6ffcc5e58c0ab76fa4fe20e17b83a17c4d3b2f319ba150728b7db9fbc9ac6",
+  "commitSha": "58f5ddc74d65b911e4a7e3f4e067c691f9425d5a",
+  "perAgent": {
+    "craft": {
+      "head": "58f5ddc74d65b911e4a7e3f4e067c691f9425d5a",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "bfb6ffcc5e58c0ab76fa4fe20e17b83a17c4d3b2f319ba150728b7db9fbc9ac6",
+      "findings": [],
+      "summary": {
+        "agent": "craft",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "No established CRAFT defect in the configured cumulative scope, assessed through verified unchanged-content reuse and independent review of the subsequent delta."
+      },
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/native_ui.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged"
+        }
+      ],
+      "evidence": [
+        "Read repository AGENTS, README, CONTRIBUTING, configured CRAFT rules, actual review-craft.md, and installed solid, ockham, conventions, ui-strings and responsive-layout guides.",
+        "Resolved the prior accepted commit to823786332e49b0261ec1fe37cd38894f5af88969 and read its actual CRAFT PASS10 in attestation1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473. Git comparison verifies38 cumulative paths are unchanged. Those judgments are reused, not presented as fresh rereading.",
+        "Independently read all five subsequent changed paths: prior attestation, CMakeLists.txt, game-bindings.md, complete native_ui.hpp and complete fixture delta. Confirmed current HEAD, clean status and harness review:info hash.",
+        "Repository include/tests searches for native window readers, CommonBase, PlacementMethod, OwnedUiThread, ReadLocal and floating-state preservation found no existing public native UI binding being needlessly duplicated. The new header contains the distinct native UI responsibility; its operations share bounded readers and thunk resolution. Repeated FP preservation envelopes protect individual SEH/native entry points and do not establish a value-free abstraction defect.",
+        "CMake extends the existing deterministic fixture generation and fails if its exact memory-reader seam changes. Fixture additions remain in the existing API test and exercise the production parsing/control flow. No abandoned replacement reader or separate testing framework was introduced.",
+        "NativeWindowSnapshot, NativeWindowMutationState and read/mutation names describe their roles. Required register/protocol/native ABI names remain intact. No new JS/TS implementation or rendered UI is present; responsive viewport verification is not applicable to this binding header.",
+        "Read native-ui-independent-source-review-closed.json as bounded historical evidence, not a complete gate. Its test hash matches current tests/game_api_test.cpp. Its old header hash does not match the current header, so that old header acceptance was not silently reused.",
+        "Current native_ui.hpp worktree SHA256 is a4abdf19ee9bbb4d575a3d08d010d8316e9e6e748660c81bea366b74615c1a6b; committed LF blob SHA256 is ce18215f8b9760d2b7c9101924f3a7debd1cd14fdc5a5fcde008b150974cb891. Read native-comparison-readable-own-accepted.json, which binds the current worktree hash and records the later stock text-view factory use, prior typography/lifetime evidence, pinned homm5-editor revision e40be948d16757ec8cff7f7d1be87b9956fc2d64, topic query, primary stock font checks and acceptance limits.",
+        "Read source-publication-game-api-58f5ddc7.json and its log tail. Parent-executed native, docs, review-contract and explicit-base secrets operations exited0; contract log shows9/9 PASS. This reviewer did not execute those gates."
+      ],
+      "limits": [
+        "Source publication CRAFT verdict only; does not certify final player archive startup, campaign acceptance, wheel delivery or all viewport layouts.",
+        "No source edits, persistent writes, test execution, builds, game actions, input, image inspection, network access, commits or pushes.",
+        "The older bounded native UI receipt is explicitly distinguished from this current cumulative review."
+      ],
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/source_release_craft"
+    },
+    "architecture": {
+      "repository": "game-api",
+      "HEAD": "58f5ddc74d65b911e4a7e3f4e067c691f9425d5a",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "bfb6ffcc5e58c0ab76fa4fe20e17b83a17c4d3b2f319ba150728b7db9fbc9ac6",
+      "findings": [],
+      "summary": {
+        "agent": "architecture",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "The cumulative source change preserves reusable Game API ownership, borrowed native object lifetimes, caller-controlled synchronization and explicit mutation uncertainty."
+      },
+      "score_formula": "10 - 20*0 - 3*0 - 0 = 10",
+      "scope": {
+        "current_cumulative_paths": 43,
+        "previous_attested_HEAD": "823786332e49b0261ec1fe37cd38894f5af88969",
+        "previous_attestation": ".review/attestations/1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473.json",
+        "previous_cumulative_paths": 41,
+        "exact_unchanged_reused_paths": 38,
+        "directly_inspected_delta_paths": 5,
+        "reuse_verification": "Compared git ls-tree entries at the previous attested commit and current HEAD for every prior cumulative path outside the subsequent delta; all38 entries match exactly."
+      },
+      "evidence": [
+        "Read applicable AGENTS, configuration, canonical role contract and installed SOLID/Ockham guides. Independently regenerated review:info and rechecked exact HEAD and clean worktree.",
+        "Read the previous attestation actual architecture judgment, PASS10 with zero findings. Reused it only for Git-identical paths; directly inspected the complete subsequent production, fixture, CMake, pointer-document and attestation delta.",
+        "Inspected all of include/h5/native_ui.hpp. Reader templates invoke only the supplied bounded reader, clear refused outputs and return copied values or explicitly borrowed interface identities. The contract requires the caller to verify the supported build and stabilize reads on the UI thread or through its own synchronization; structural checks are not presented as synchronization.",
+        "Native mutation entry points require an owned current UI thread, verify applicable class/interface/code identities, preserve floating-point state, and set Unconfirmed before crossing the native call boundary. They retain no mod callback. Parent ownership and possible deferred removal are explicit; create/remove completion checks inspect the resulting child sets.",
+        "ReadNativeCombatRootPresence distinguishes verified absence from unreadable/cyclic ownership. ReadNativeScrollTextWindow resolves a unique bounded descendant rather than trusting a reused name, and UpdateNativeScrollText requires exact interface identity for an existing item.",
+        "SetNativeWindowText passes borrowed UTF-16 only to the copying stock setter and validates the resulting content. SetNativeWindowModalInput is explicitly a widget input barrier, with no unsupported screen-modal contract claimed.",
+        "CMake substitutes only the existing external memory-read seam into a generated test header. Production code contains no injected fixture callback or developer-tool dependency.",
+        "The new binding exposes generic native widgets, geometry, text, visibility and ownership. No predictor formula, renderer, bank content, project management or shared-runtime mod policy is introduced.",
+        "Read canonical architecture-contract lines17-85 in knowledge/docs/en/modding/native-projects.md, including responsibilities, dependency direction, both operating modes, cleanup ownership and migration evidence.",
+        "The focused native UI receipt header hash does not match current source, so it was not silently transferred. Current native_ui.hpp SHA256 a4abdf19ee9bbb4d575a3d08d010d8316e9e6e748660c81bea366b74615c1a6b was directly reviewed; current test SHA25684b5e1302d88a09385660725506a2750f00e7b56f53ee2b994bdae0156bc84cd matches the retained focused receipt."
+      ],
+      "gate_evidence": {
+        "receipt": "D:/Pk/Heroes5ModsFolder/.local/test-state/canonical-graphics-build-20261006/source-publication-game-api-58f5ddc7.json",
+        "receipt_sha256": "749dcff911a74825294452093fb33f8bd2ec36138be592c062692949e2c0db0b",
+        "passed": true,
+        "matching_HEAD": true,
+        "operations": [
+          {
+            "name": "native",
+            "command": "npm test",
+            "exit_code": 0
+          },
+          {
+            "name": "docs",
+            "command": "npm run check:docs",
+            "exit_code": 0
+          },
+          {
+            "name": "review-contract",
+            "command": "npm run check",
+            "exit_code": 0
+          },
+          {
+            "name": "secrets",
+            "command": "npm run review:secrets -- --base dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+            "exit_code": 0
+          }
+        ],
+        "whole_run_seconds": 11.444363899994642,
+        "log_inspection": "Actual log shows native1/1 PASS, contract9/9 PASS with zero skips, and explicit-base secrets pass.",
+        "execution": "Parent executed gates; reviewer independently inspected receipt and log."
+      },
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/native_ui.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged"
+        }
+      ],
+      "verdict": "PASS",
+      "score": 10,
+      "reviewer": "/root/source_release_architecture"
+    },
+    "tests": {
+      "head": "58f5ddc74d65b911e4a7e3f4e067c691f9425d5a",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "bfb6ffcc5e58c0ab76fa4fe20e17b83a17c4d3b2f319ba150728b7db9fbc9ac6",
+      "verdict": "PASS",
+      "score": 10,
+      "findings": [],
+      "summary": {
+        "agent": "tests",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "The cumulative API source scope has meaningful native reader and refusal regressions, with passing configured gates."
+      },
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/native_ui.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged"
+        }
+      ],
+      "evidence": [
+        "Read configured TESTS contract, actual configuration, project-review contract, AGENTS instructions and installed tests-architecture guide. Applied runtime-neutral failure-boundary rules rather than imposing Vitest filenames on native tests.",
+        "Independently regenerated configured base/hash and confirmed clean worktree. Cumulative scope43 paths;38 retain exact Git content since accepted8237863. Read actual perAgent.tests PASS10 from1c88901f attestation and reused only unchanged content.",
+        "Directly reviewed all five incremental paths: native_ui.hpp, game_api_test.cpp, CMakeLists.txt, game-bindings.md and prior attestation. CMake substitutes only external memory reads, requires exact seam identity and tracks header reconfiguration; parsing, admission, mutation state and FP wrappers remain production code.",
+        "Fixture checks exact window identity/geometry, both thunk forms, ordered children/modals, cyclic/duplicate/partial lists, changing child-vector snapshots, pointer-range overflow, invalid geometry and cleared stale outputs. Text assertions compare exact UTF-16, lengths, empty strings, capacity refusal, wrong class/getter and partial reads.",
+        "Owned hidden-window and foreign-thread checks exercise actual Windows thread identity. Invalid mutations must refuse. FP regression drives finite overflow during CreateNativeWindowChild admission and compares both SIMD and x87 state after the complete operation.",
+        "Scroll tests distinguish one actual text descendant, ambiguous same-name descendants and missing content. Root-presence tests distinguish retained ownership, verified absence, cyclic stack and partial RTTI; unreadable ownership cannot masquerade as destruction.",
+        "Current header SHA256a4abdf19ee9bbb4d575a3d08d010d8316e9e6e748660c81bea366b74615c1a6b exactly matches native-comparison-readable-own-accepted.json. Read physical-control receipt with selected-content readback, reopen activation and0.8810977s timing; lifetime source test3.061s is retained parent execution. Older native-ui closure is historical and has an older header hash.",
+        "Read exactHEAD source-publication-game-api-58f5ddc7.json and log: passedtrue; native1/1, Node9/9, docs and explicit-base secrets all exit0. Full wrapper11.4443639s; native CTest0.22s. Reviewer did not rerun."
+      ],
+      "reviewer": "/root/source_release_tests"
+    },
+    "docs": {
+      "reviewer": "/root/source_release_docs",
+      "verdict": "PASS",
+      "score": 10,
+      "scoreFormula": "max(0, 10 - 20*blockers - 3*majors - minors)",
+      "findings": [],
+      "rounds": 1,
+      "roundCap": 3,
+      "scope": "Configured base..HEAD source publication documentation review. Canonical website articles remain unpublished. No final player package or current combined-artifact acceptance.",
+      "limits": [
+        "Independent read-only documentation review by a separate agent; no source edits, game actions, tests, focus, input, screenshots, network, commit, push or attestation writes.",
+        "Current deterministic source gate receipts and their actual log conclusions were inspected; checks were not rerun by this reviewer.",
+        "Five article critic identities and accepted exact file hashes were reused; no article panel rerun and no cross-family independence is claimed.",
+        "Wheel input, fullscreen switching, final player artifact startup and complete gameplay acceptance remain outside this verdict."
+      ],
+      "repo": "game-api",
+      "head": "58f5ddc74d65b911e4a7e3f4e067c691f9425d5a",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "bfb6ffcc5e58c0ab76fa4fe20e17b83a17c4d3b2f319ba150728b7db9fbc9ac6",
+      "summary": {
+        "agent": "docs",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "The current API source documentation pairs the bounded native widget extension with the canonical unpublished reference and states its verification limits."
+      },
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        }
+      ],
+      "review": {
+        "reviewer": "/root/source_release_docs",
+        "files": [
+          ".agents/review/docs-auditor.md",
+          ".agents/review/review-architecture.md",
+          ".agents/review/review-craft.md",
+          ".agents/review/review-docs.md",
+          ".agents/review/review-security.md",
+          ".agents/review/review-tests.md",
+          ".agents/skills/project-review/SKILL.md",
+          "AGENTS.md",
+          "CONTRIBUTING.md",
+          "README.md",
+          "docs/mechanisms/game-bindings.md",
+          "docs/mechanisms/review.md"
+        ],
+        "criteria": {
+          "purpose": {
+            "verdict": "PASS",
+            "evidence": "README defines the supported Windows x86 C++20 binding library; launch/HMR remains SDK work and presentation remains mod work. The updated mechanism pointer identifies the new native UI contract and its canonical reference."
+          },
+          "structure": {
+            "verdict": "PASS",
+            "evidence": "All 12 review:info Markdown paths are covered. Git blob equality proves 11 unchanged since accepted823786332e49b0261ec1fe37cd38894f5af88969. Read the actual prior perAgent.docs PASS10 from attestation1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473. Directly read the only changed Markdown file game-bindings.md and its17-line delta."
+          },
+          "specificity": {
+            "verdict": "PASS",
+            "evidence": "Current native_ui.hpp and the canonical native UI section agree on128 direct children,16 screens for root presence,256 nodes/three descendant levels for the unique scroll text view,16384 UTF-16 code units, UI-thread ownership and copied snapshots. Source notes distinguish modal barriers from screen registration and preserve uncertainty after potentially effective mutations."
+          },
+          "reproducibility": {
+            "verdict": "PASS",
+            "evidence": "The native UI section names ReadNativeCombatRoot, reader signature, OpenOwnedProcess and VerifyGame, explains native interfaces versus HWND, thread/stability preconditions and root reacquisition. It gives recovery actions for Unconfirmed, failed presence reads and confirmed absence rather than blind replay. No developer prerequisite or build command changes in this delta."
+          },
+          "evidence": {
+            "verdict": "PASS",
+            "evidence": "Independently regenerated review:info base/hash at exact HEAD and verified a clean worktree. Read source-publication-game-api-58f5ddc7.json and its actual log: native1/1, contract zero failures, docs and explicit-base secrets PASS. Read the accepted article receipt and independently verified current raw SHA256 RU4e2eae8e31888414359c08a04219c660182cad0e18bfeb2fccc4f3a023eb0a88 and EN54fe3adb156d37523438c15e8e8f4ca33c0d2f2135653679c744be74f3a8bdf9. Read native-comparison-readable-own-accepted.json: current header raw SHA matches its independently reviewed source; its prior-project handoff, pinned homm5-editor e40be948 topic query, external sources and stock font verification are recorded with narrow limits. This reviewer inspected no image and claims no new visual verification."
+          },
+          "applicability": {
+            "verdict": "PASS",
+            "evidence": "The article clearly labels a working addition outside its pinned published revision and restricts it to the researched Universe x86 build. Live read checks do not certify every mutation or final UI. Root-presence failure is distinct from verified absence. Removed modal construction is not documented as a public contract."
+          },
+          "translations": {
+            "verdict": "PASS",
+            "evidence": "Current canonical RU/EN files exactly match the accepted five-critic terminology/translation hashes; the receipt names five separate identities and resolved finding dispositions. Existing bilingual README/AGENTS/CONTRIBUTING and review pointer are Git-identical to accepted blobs. New source-maintenance notes use English technical names; the human reference carries the same operation and lifetime restrictions in both languages."
+          },
+          "maintenance": {
+            "verdict": "PASS",
+            "evidence": "native_ui.hpp changes update the declared game-bindings mechanism pointer. The website remains the single living manual and the current reference draft has its native UI section with accepted exact hashes. Repository notes mark the addition unpublished; no draft deployment or player-package readiness is certified."
+          }
+        },
+        "findings": []
+      },
+      "evidenceCaveat": "The old native-ui-independent-source-review-closed.json header digest is superseded by native-comparison-readable-own-accepted.json, independently read here. Its native_ui.hpp SHA256 a4abdf19ee9bbb4d575a3d08d010d8316e9e6e748660c81bea366b74615c1a6b exactly matches current source. That receipt records independent two-round source review, no open findings and retained lifetime/readability acceptance; final artifact/campaign acceptance remains excluded."
+    },
+    "security": {
+      "head": "58f5ddc74d65b911e4a7e3f4e067c691f9425d5a",
+      "base": "dc8d77583d04bffa61c97c46d629538d6c3e6a0a",
+      "diffHash": "bfb6ffcc5e58c0ab76fa4fe20e17b83a17c4d3b2f319ba150728b7db9fbc9ac6",
+      "verdict": "PASS",
+      "score": 10,
+      "findings": [],
+      "claims": [
+        {
+          "path": ".agents/review/docs-auditor.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-architecture.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-craft.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-docs.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-security.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/review/review-tests.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".agents/skills/project-review/SKILL.md",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/docs.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".claude/review.config.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "disposition": "judged"
+        },
+        {
+          "path": ".github/workflows/verify.yml",
+          "disposition": "judged"
+        },
+        {
+          "path": ".gitignore",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/86f585dbdeb38772ce9ab2bc7903e4f02f09423596305ce5cdc373e804748ac3.json",
+          "disposition": "judged"
+        },
+        {
+          "path": ".review/attestations/f531cf9b453d01aa994f8f75231ddc7ccfbb567c263fbb490acdc7f0914640c2.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "AGENTS.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "judged"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "README.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/game-bindings.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "docs/mechanisms/review.md",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/actor_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/adventure_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/build.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/camera_input.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/console.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/graphics_lifetime.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/hooks.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/image_placement.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/native_ui.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/process.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/resident_buffers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/script_observers.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "include/h5/source_strength.hpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "package-lock.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "package.json",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/install-hooks.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-check.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-docs.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "scripts/review-gate.test.mjs",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/game_api_test.cpp",
+          "disposition": "judged"
+        },
+        {
+          "path": "tests/resident_buffer_fixture.cpp",
+          "disposition": "judged"
+        }
+      ],
+      "evidence": [
+        "Read repository AGENTS, CONTRIBUTING, configured security role and complete review-security instructions. Configured security skills and additional rules are empty. Loaded actual installed SOLID and Ockham guides.",
+        "Independently confirmed exact HEAD and clean worktree. Read-only node scripts/review-check.mjs --info reproduced the configured base and current diffHash.",
+        "Read actual prior perAgent.security judgment in attestation1c88901fec9cbfb615f1b0c50bdd4cb4328d1c06bcc1da838f125d13bda46473: reviewer/root/player_article_newcomer, PASS10, no findings, source823786332e49b0261ec1fe37cd38894f5af88969.",
+        "Recomputed that prior configured-base cumulative hash using the installed harness's exclusion of .review paths; it matches exactly. Git verifies the prior source is an ancestor and38 of43 cumulative changed paths retain identical blobs.",
+        "Reviewed all five paths changed since prior source: the retained attestation, CMake fixture, documentation pointer, complete native_ui.hpp and native boundary test changes.",
+        "Current native_ui.hpp SHA256a4abdf19ee9bbb4d575a3d08d010d8316e9e6e748660c81bea366b74615c1a6b matches native-comparison-readable-own-accepted.json. Inspected its later WindowTextView factory admission directly; the older7eded UI receipt was used only as historical evidence of closed uncertainty and identity defects.",
+        "Bounded readers reject address overflow, invalid pointer/vector relationships, excessive sizes, cycles and ambiguous text descendants. Outputs start cleared. The caller's pinned-build, ownership, lifetime and stabilized-read obligations are explicit.",
+        "Every mutation checks current-process owned UI thread before native calls. Admission checks native widget identity, relevant ABI signatures or exact methods and argument limits. Mutations enter Unconfirmed before potentially effective calls; native exceptions retain that state. Create/remove completion checks preserve existing direct children.",
+        "Inspected aligned512-byte FXSAVE/FXRSTOR wrappers and finally paths around each mutation. SEH contains local read and native-call faults without claiming rollback or proving arbitrary pointers safe.",
+        "Read source-publication-game-api-58f5ddc7.json and matching log: all configured gates and explicit configured-base secret scan exit0; native1/1 passes, review checks show skipped0. These are retained parent executions, not reviewer reruns."
+      ],
+      "summary": {
+        "agent": "security",
+        "verdict": "PASS",
+        "score": 10,
+        "counts": {
+          "blocker": 0,
+          "major": 0,
+          "minor": 0,
+          "advisory": 0
+        },
+        "one_line": "No reachable exposure was established in the exact configured cumulative source diff."
+      },
+      "reviewer": "/root/source_release_security"
+    }
+  },
+  "overall": "PASS",
+  "timestamp": "2026-10-12T07:48:20.443Z"
+}
