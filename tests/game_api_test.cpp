@@ -8,7 +8,337 @@
 #include <h5/adventure_input.hpp>
 #include <h5/console.hpp>
 #include <h5/resident_buffers.hpp>
+#include <functional>
+#include <xmmintrin.h>
+#include <float.h>
+bool ReadNativeUiFixture(uint32_t address, void* output, size_t bytes);
+#include "native_ui_fixture.hpp"
+#include <map>
+#include <future>
 namespace {
+std::function<bool(uint32_t,void*,size_t)> nativeUiFixtureReader;
+}
+bool ReadNativeUiFixture(uint32_t address,void* output,size_t bytes) {
+    return nativeUiFixtureReader && nativeUiFixtureReader(address,output,bytes);
+}
+namespace {
+void VerifyNativeWindowReaders() {
+    using h5::ui::NativeWindowMutationState;
+    if (h5::ui::CreateNativeWindowChild(nullptr,0,0).state != NativeWindowMutationState::Refused ||
+        h5::ui::RemoveNativeWindowChild(nullptr,0,0).state != NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowText(nullptr,0,L"text",4).state != NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowPlacement(nullptr,0,0,0,1,1,15).state != NativeWindowMutationState::Refused ||
+        h5::ui::UpdateNativeScrollText(nullptr,0,0).state != NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowModalInput(nullptr,0,true).state != NativeWindowMutationState::Refused) {
+        throw std::runtime_error("Native UI mutation requires an owned UI thread");
+    }
+    WNDCLASSW definition{}; definition.lpfnWndProc=DefWindowProcW;
+    definition.hInstance=GetModuleHandleW(nullptr); definition.lpszClassName=L"H5";
+    if (!RegisterClassW(&definition)) { throw std::runtime_error("Native UI thread fixture class unavailable"); }
+    const auto game=CreateWindowExW(0,L"H5",L"hidden UI thread fixture",WS_POPUP,0,0,32,32,
+        nullptr,nullptr,definition.hInstance,nullptr);
+    if (!game || IsWindowVisible(game) || !h5::ui::native_detail::OwnedUiThread(game)) {
+        throw std::runtime_error("Native UI thread identity not recognized");
+    }
+    const bool foreignThread=std::async(std::launch::async,[&] {
+        return h5::ui::native_detail::OwnedUiThread(game) ||
+            h5::ui::CreateNativeWindowChild(game,0,0).state != NativeWindowMutationState::Refused ||
+            h5::ui::RemoveNativeWindowChild(game,0,0).state != NativeWindowMutationState::Refused ||
+            h5::ui::SetNativeWindowText(game,0,L"text",4).state != NativeWindowMutationState::Refused ||
+            h5::ui::SetNativeWindowPlacement(game,0,0,0,1,1,15).state != NativeWindowMutationState::Refused ||
+            h5::ui::UpdateNativeScrollText(game,0,0).state != NativeWindowMutationState::Refused ||
+            h5::ui::SetNativeWindowModalInput(game,0,true).state != NativeWindowMutationState::Refused;
+    }).get();
+    if (foreignThread) { throw std::runtime_error("Native UI mutation admitted a foreign thread"); }
+    if (h5::ui::SetNativeWindowText(game,0,nullptr,0).state!=NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowText(game,0,L"",16385).state!=NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowPlacement(game,0,0,0,1,1,0).state!=NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowPlacement(game,0,0,0,-1,1,15).state!=NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowPlacement(game,0,0,0,1,1,16).state!=NativeWindowMutationState::Refused ||
+        h5::ui::SetNativeWindowPlacement(game,0,0,0,(std::numeric_limits<float>::infinity)(),1,15).state!=NativeWindowMutationState::Refused) {
+        throw std::runtime_error("Invalid native text/placement must refuse before any game call");
+    }
+    std::map<uint32_t, unsigned char> memory;
+    const auto write = [&](uint32_t address, const void* bytes, size_t length) {
+        const auto* source = static_cast<const unsigned char*>(bytes);
+        for (size_t index = 0; index < length; ++index) { memory[address + static_cast<uint32_t>(index)] = source[index]; }
+    };
+    const auto word = [&](uint32_t address, uint32_t value) { write(address, &value, 4); };
+    auto read = [&](uint32_t address, void* output, size_t length) {
+        auto* destination = static_cast<unsigned char*>(output);
+        for (size_t index = 0; index < length; ++index) {
+            const auto found = memory.find(address + static_cast<uint32_t>(index));
+            if (found == memory.end()) { return false; }
+            destination[index] = found->second;
+        }
+        return true;
+    };
+    const unsigned char nameCode[]{0x8b,0x81,0xf4,0xfe,0xff,0xff,0x81,0xc1,0xf4,0xfe,0xff,0xff,
+        0xff,0x50,0x08,0x83,0xc0,0x58,0xc3};
+    const unsigned char findCode[]{0x83,0xec,0x0c,0x53,0x8b,0x5c,0x24,0x14};
+    write(0xa4d8e0, nameCode, sizeof(nameCode)); write(0xa4ecd0, findCode, sizeof(findCode));
+    const auto thunk = [&](uint32_t address, uint32_t target) {
+        unsigned char code[16]{0x2b,0x49,0xfc,0x83,0xe9,0x54,0xe9};
+        const int32_t relative = static_cast<int32_t>(target - address - 11);
+        std::memcpy(code + 7, &relative, 4); write(address, code, sizeof(code));
+    };
+    thunk(0x26000, 0xa4d8e0); thunk(0x26100, 0xa4ecd0);
+    word(0x250e8, 0x26000); word(0x25094, 0x26100); word(0x27008, 0x28000);
+    const unsigned char sharedCode[]{0x8b,0x81,0x00,0x01,0x00,0x00,0xc3};
+    write(0x28000, sharedCode, sizeof(sharedCode));
+    const auto widget = [&](uint32_t object, uint32_t shared, uint32_t name, const char* text) {
+        word(object, 0x27000); word(object + 0x100, shared);
+        word(object + 0x15c, 0); word(object + 0x160, 0x25000);
+        word(object + 16, 0x24000); word(0x24008, 0x150);
+        word(shared + 0x58, name); word(shared + 0x5c, name + static_cast<uint32_t>(std::strlen(text)));
+        word(shared + 0x60, name + static_cast<uint32_t>(std::strlen(text)) + 1);
+        write(name, text, std::strlen(text) + 1);
+        const float position[]{21,597}, size[]{880,162};
+        write(object + 100, position, sizeof(position)); write(shared + 0xa4, size, sizeof(size));
+    };
+    widget(0x20000, 0x30000, 0x31000, "Root"); widget(0x21000, 0x33000, 0x34000, "ATBBar");
+    word(0x200a4, 0x32000); word(0x200a8, 0x32004); word(0x32000, 0x21000);
+    // IScreen is a subobject; modal ownership belongs to the complete screen.
+    word(0xfe719c,0x3c000);word(0x3c000,0x3c100);word(0x3c100,0x3c000);word(0x3c108,0x38800);
+    word(0x38800,0x39000);word(0x38ffc,0x39100);word(0x3910c,0x39200);word(0x39104,0x800);
+    constexpr char combatScreen[]=".?AVCCombatArenaScreen@NUI@@";
+    write(0x39208,combatScreen,sizeof(combatScreen));word(0x380a0,0x20150);
+    word(0x20154,0x3b000);word(0x3b008,0xc);
+    word(0x3814c,0x3d000);word(0x3d000,0x3d000);
+    uint32_t combatRoot=99,completeScreen=99,modalCount=99;
+    std::array<uint32_t,128> modals{};modals.fill(99);
+    if (!h5::ui::ReadNativeCombatRoot(read,combatRoot,&completeScreen) || combatRoot!=0x20160 || completeScreen!=0x38000 ||
+        !h5::ui::ReadNativeCombatModals(read,modals,modalCount) || modalCount || modals[0]) {
+        throw std::runtime_error("Combat root and empty modal list must resolve the complete active screen");
+    }
+    bool rootPresent=false;
+    if (!h5::ui::ReadNativeCombatRootPresence(read,combatRoot,rootPresent) || !rootPresent ||
+        !h5::ui::ReadNativeCombatRootPresence(read,0x21160,rootPresent) || rootPresent) {
+        throw std::runtime_error("Root ownership must distinguish a retained screen from an absent root");
+    }
+    word(0x3c100,0x3c100);rootPresent=true;
+    if (h5::ui::ReadNativeCombatRootPresence(read,combatRoot,rootPresent) || rootPresent) {
+        throw std::runtime_error("Unreadable or cyclic ownership cannot prove parent destruction");
+    }
+    word(0x3c100,0x3c000);memory.erase(0x39208);rootPresent=true;
+    if (h5::ui::ReadNativeCombatRootPresence(read,combatRoot,rootPresent) || rootPresent) {
+        throw std::runtime_error("Partial type identity must quarantine rather than retire owned UI");
+    }
+    write(0x39208,combatScreen,sizeof(combatScreen));word(0x3c000,0x3c000);rootPresent=true;
+    if (!h5::ui::ReadNativeCombatRootPresence(read,combatRoot,rootPresent) || rootPresent) {
+        throw std::runtime_error("A verified empty screen stack establishes an absent parent");
+    }
+    word(0x3c000,0x3c100);
+    word(0x3d000,0x3d100);word(0x3d100,0x3d200);word(0x3d108,0x3e000);
+    word(0x3d200,0x3d000);word(0x3d208,0x3e100);
+    if (!h5::ui::ReadNativeCombatModals(read,modals,modalCount) || modalCount!=2 || modals[0]!=0x3e000 || modals[1]!=0x3e100) {
+        throw std::runtime_error("Modal reader must preserve native list order without invoking game methods");
+    }
+    const auto refusedModals=[&] {
+        modals.fill(99);modalCount=99;
+        if (h5::ui::ReadNativeCombatModals(read,modals,modalCount) || modalCount || modals[0]) {
+            throw std::runtime_error("Corrupt modal ownership must refuse and clear stale or partial output");
+        }
+    };
+    word(0x3d200,0x3d100);refusedModals(); // Cycle which never returns to the sentinel.
+    word(0x3d200,0x3d000);word(0x3d208,0x3e000);refusedModals(); // Duplicate owned interface.
+    word(0x3d208,0);refusedModals();
+    word(0x3d208,0x3e100);memory.erase(0x3d20b);refusedModals();
+    word(0x3d000,0x3d000);
+    h5::ui::NativeWindowSnapshot window{};
+    if (!h5::ui::ReadNativeWindow(read, 0x21160, window) || std::strcmp(window.name,"ATBBar") ||
+        window.left != 21 || window.top != 597 || window.width != 880 || window.height != 162 ||
+        window.objectAddress != 0x21000 || window.sharedAddress != 0x33000) {
+        throw std::runtime_error("Native window must reproduce engine identity and geometry without calls");
+    }
+    // The real ITextView is a separate interface; text is engine-owned UTF-16.
+    word(0x33044,285694860);word(0x210f8,0x29000);word(0x29000,0xb95690);
+    const unsigned char textGetter[]{0x8d,0x41,0x14,0xc3};write(0xb95690,textGetter,sizeof(textGetter));
+    const wchar_t nativeText[]=L"\u041f\u0440\u043e\u0433\u043d\u043e\u0437 \u2192 \u0444\u0430\u043a\u0442";
+    word(0x2110c,0x35000);word(0x21110,0x35000+sizeof(nativeText)-2);word(0x21114,0x35000+sizeof(nativeText));
+    write(0x35000,nativeText,sizeof(nativeText));
+    wchar_t copiedText[64]{};uint32_t textLength=99;
+    if (!h5::ui::ReadNativeWindowText(read,0x21160,copiedText,64,textLength) ||
+        std::wcscmp(copiedText,nativeText) || textLength!=std::size(nativeText)-1) {
+        throw std::runtime_error("Native text reader must copy exact UTF-16 from ITextView");
+    }
+    const auto refusedText=[&] {
+        copiedText[0]=L'X';textLength=99;
+        if (h5::ui::ReadNativeWindowText(read,0x21160,copiedText,64,textLength) || copiedText[0] || textLength) {
+            throw std::runtime_error("Rejected native text must hide stale/partial content");
+        }
+    };
+    word(0x21110,0x35001);refusedText();
+    word(0x21110,0x35000+sizeof(nativeText)-2);word(0x21114,0x35000);refusedText();
+    word(0x21114,0x35000+sizeof(nativeText));word(0x33044,285694855);refusedText();
+    word(0x33044,285694860);word(0x29000,0xb95691);refusedText();word(0x29000,0xb95690);
+    uint32_t nativeClass=0;
+    if (!h5::ui::ReadNativeWindowClass(read,0x21160,nativeClass) || nativeClass!=285694860) {
+        throw std::runtime_error("Native widget class must come from the verified game definition");
+    }
+    memory.erase(0x33047);nativeClass=99;
+    if (h5::ui::ReadNativeWindowClass(read,0x21160,nativeClass) || nativeClass) {
+        throw std::runtime_error("Partial class read must clear stale type output");
+    }
+    word(0x33044,285694860);
+    memory.erase(0x35002);refusedText();write(0x35000,nativeText,sizeof(nativeText));
+    textLength=99;copiedText[0]=L'X';
+    if (h5::ui::ReadNativeWindowText(read,0x21160,copiedText,2,textLength) || copiedText[0] || textLength ||
+        h5::ui::SetNativeWindowText(nullptr,0x21160,nativeText,std::size(nativeText)-1).state!=NativeWindowMutationState::Refused) {
+        throw std::runtime_error("Native text bounds and owned UI thread are mandatory");
+    }
+    word(0x2110c,0);word(0x21110,0);word(0x21114,0);
+    if (!h5::ui::ReadNativeWindowText(read,0x21160,copiedText,1,textLength) || textLength || copiedText[0]) {
+        throw std::runtime_error("Empty native text must remain a valid empty string");
+    }
+    copiedText[0]=L'X';textLength=99;
+    if (h5::ui::ReadNativeWindowText(read,0x21160,copiedText,16386,textLength) || copiedText[0] || textLength) {
+        throw std::runtime_error("Oversized native text destination must refuse and hide stale content");
+    }
+    const unsigned char placementHead[]{0x83,0xec,0x10,0x53,0x8a,0x5c,0x24,0x28,0xf6,0xc3,0x01,0x56,0x57,0x8b,0xf1};
+    const unsigned char placementTail[]{0x5f,0x5e,0x5b,0x83,0xc4,0x10,0xc2,0x14,0x00};
+    write(0xa4f810,placementHead,sizeof(placementHead));write(0xa4f971,placementTail,sizeof(placementTail));
+    thunk(0x26400,0xa4f810);word(0x25058,0x26400);
+    uint32_t placementMethod=0;h5::ui::NativeWindowSnapshot placementWindow{};
+    if (!h5::ui::native_detail::PlacementMethod(read,0x21160,placementWindow,placementMethod) || placementMethod!=0x26400) {
+        throw std::runtime_error("Ordinary native placement ABI was not recognized");
+    }
+    widget(0x22000,0x36000,0x37000,"Label");word(0x36044,285694860);
+    word(0x22138,0);word(0x2213c,0x2a000);word(0x2a0e8,0x26500);word(0x2a058,0x26600);
+    unsigned char textNameThunk[16]{0x2b,0x49,0xfc,0x83,0xe9,0x30,0xe9};
+    int32_t jump=0xa4d8e0-0x26500-11;std::memcpy(textNameThunk+7,&jump,4);write(0x26500,textNameThunk,sizeof(textNameThunk));
+    unsigned char textPlacementThunk[8]{0x2b,0x49,0xfc,0xe9};jump=0xb95830-0x26600-8;
+    std::memcpy(textPlacementThunk+4,&jump,4);write(0x26600,textPlacementThunk,sizeof(textPlacementThunk));
+    const unsigned char textPlacementHead[]{0x83,0xec,0x18,0x56,0x8b,0xf1};
+    const unsigned char textPlacementTail[]{0x5e,0x83,0xc4,0x18,0xc2,0x14,0x00};
+    write(0xb95830,textPlacementHead,sizeof(textPlacementHead));write(0xb9592f,textPlacementTail,sizeof(textPlacementTail));
+    if (!h5::ui::native_detail::PlacementMethod(read,0x2213c,placementWindow,placementMethod) || placementMethod!=0x26600) {
+        throw std::runtime_error("Text view placement override must retain native reflow ABI");
+    }
+    word(0x36044,285694855);
+    if (h5::ui::native_detail::PlacementMethod(read,0x2213c,placementWindow,placementMethod) || placementMethod || placementWindow.interfaceAddress) {
+        throw std::runtime_error("Text placement override cannot be borrowed for another widget class");
+    }
+    word(0x36044,285694860);memory[0xb95934]=0x0c;
+    if (h5::ui::native_detail::PlacementMethod(read,0x2213c,placementWindow,placementMethod) || placementMethod) {
+        throw std::runtime_error("Unexpected placement stack cleanup must refuse without a native call");
+    }
+    bool nativeVisible=false;const unsigned char visible=1;write(0x33070,&visible,1);
+    {
+        const auto preservedMemory=memory;
+        word(0x30044,386593537);word(0x33044,285694860);
+        word(0x200a4,0x32000);word(0x200a8,0x32004);word(0x32000,0x21000);
+        word(0x210a4,0);word(0x210a8,0);
+        uint32_t registeredText=123;
+        if (!h5::ui::ReadNativeScrollTextWindow(read,0x20160,registeredText) || registeredText!=0x21160) {
+            throw std::runtime_error("Scroll content must resolve the actual descendant text interface");
+        }
+        widget(0x23000,0x38000,0x39000,"ATBBar");word(0x38044,285694860);
+        word(0x230a4,0);word(0x230a8,0);word(0x32004,0x23000);word(0x200a8,0x32008);
+        if (h5::ui::ReadNativeScrollTextWindow(read,0x20160,registeredText) || registeredText) {
+            throw std::runtime_error("Two same-named text descendants cannot identify a registered scroll item");
+        }
+        word(0x200a8,0x32000);
+        if (h5::ui::ReadNativeScrollTextWindow(read,0x20160,registeredText) || registeredText) {
+            throw std::runtime_error("Missing scroll content must clear stale identity");
+        }
+        memory=preservedMemory;
+    }
+    if (!h5::ui::ReadNativeWindowVisible(read,0x21160,nativeVisible) || !nativeVisible) {
+        throw std::runtime_error("Native visibility reader must preserve the actual flag");
+    }
+    memory[0x33070]=2;
+    if (h5::ui::ReadNativeWindowVisible(read,0x21160,nativeVisible) || nativeVisible) {
+        throw std::runtime_error("Invalid native visibility must clear stale true state");
+    }
+    std::array<uint32_t,128> children{}; uint32_t count = 99;
+    if (!h5::ui::ReadNativeWindowChildren(read,0x20160,children,count) || count != 1 || children[0] != 0x21160) {
+        throw std::runtime_error("Native child vector must resolve virtual interfaces");
+    }
+    const auto refusedWindow = [&] {
+        std::memset(&window,0x5a,sizeof(window));
+        if (h5::ui::ReadNativeWindow(read,0x21160,window) || window.interfaceAddress ||
+            window.objectAddress || window.sharedAddress || window.left || window.top || window.width || window.height ||
+            std::any_of(std::begin(window.name),std::end(window.name),[](char value){return value!=0;})) {
+            throw std::runtime_error("Malformed native window must clear stale output");
+        }
+    };
+    word(0x3305c,0x34080); refusedWindow(); word(0x3305c,0x34006);
+    const float invalidSize = std::numeric_limits<float>::quiet_NaN(); write(0x330a4,&invalidSize,4);
+    refusedWindow(); const float validSize=880; write(0x330a4,&validSize,4);
+    memory[0xa4d8e0]=0x90; refusedWindow(); memory[0xa4d8e0]=0x8b;
+    memory[0x26006]=0xc3; refusedWindow(); memory[0x26006]=0xe9;
+    memory.erase(0x330a7); refusedWindow(); write(0x330a4,&validSize,4);
+    const auto refusedChildren = [&] {
+        children.fill(123); count=99;
+        if (h5::ui::ReadNativeWindowChildren(read,0x20160,children,count) || count ||
+            std::any_of(children.begin(),children.end(),[](uint32_t value){return value!=0;})) {
+            throw std::runtime_error("Malformed native child vector must clear partial results");
+        }
+    };
+    word(0x200a8,0x32004+128*4); refusedChildren(); word(0x200a8,0x32004);
+    word(0x32000,0x20000); refusedChildren(); word(0x32000,0x21000);
+    word(0x200a8,0x32008); word(0x32004,0x21000); refusedChildren(); word(0x200a8,0x32004);
+    const auto longThunk = [&](uint32_t address,uint32_t target) {
+        unsigned char code[16]{0x2b,0x49,0xfc,0x81,0xe9,0x34,0x01,0x00,0x00,0xe9};
+        const int32_t relative=static_cast<int32_t>(target-address-14);
+        std::memcpy(code+10,&relative,4);write(address,code,sizeof(code));
+    };
+    longThunk(0x26200,0xa4d8e0);longThunk(0x26300,0xa4ecd0);
+    word(0x251e8,0x26200);word(0x25194,0x26300);word(0x2023c,0);word(0x20240,0x25100);
+    if (!h5::ui::ReadNativeWindow(read,0x20240,window) || std::strcmp(window.name,"Root") ||
+        !h5::ui::ReadNativeWindowChildren(read,0x20240,children,count) || count!=1 || children[0]!=0x21160) {
+        throw std::runtime_error("Long native root thunk must resolve the same widget and children");
+    }
+    unsigned beginReads=0;
+    auto changingRead = [&](uint32_t address,void* output,size_t length) {
+        if (address==0x200a4 && ++beginReads==2) { word(0x200a4,0x32004); }
+        return read(address,output,length);
+    };
+    if (h5::ui::ReadNativeWindowChildren(changingRead,0x20160,children,count) || count) {
+        throw std::runtime_error("Changing native child vector must be rejected");
+    }
+    if (h5::ui::native_detail::Read(read,UINT32_MAX,window.name,2) ||
+        h5::ui::native_detail::Read(read,0x10000,window.name,SIZE_MAX)) {
+        throw std::runtime_error("Native UI address ranges must not wrap");
+    }
+    // Invalid finite geometry overflows during admission, before any game
+    // call. The complete mutation API must still preserve both FP units.
+    nativeUiFixtureReader=read;
+    thunk(0x26700,0x48e7a0);word(0x25010,0x26700);
+    const unsigned char modalInputSetter[]{0x8a,0x44,0x24,0x04,0x88,0x81,0x08,0xff,0xff,0xff,0xc2,0x04,0x00};
+    write(0x48e7a0,modalInputSetter,sizeof(modalInputSetter));memory[0x21014]=2;
+    if (h5::ui::SetNativeWindowModalInput(game,0x21160,true).state!=NativeWindowMutationState::Refused || memory[0x21014]!=2) {
+        throw std::runtime_error("Invalid native input flag must refuse before executing game code");
+    }
+    memory[0x21014]=0;memory[0x48e7a0]=0x90;
+    if (h5::ui::SetNativeWindowModalInput(game,0x21160,true).state!=NativeWindowMutationState::Refused || memory[0x21014]) {
+        throw std::runtime_error("An altered native input setter cannot mutate a widget");
+    }
+    const float maximum=std::numeric_limits<float>::max();
+    write(0x21064,&maximum,4);write(0x330a4,&maximum,4);
+    alignas(16) unsigned char originalFloatingState[512];
+    __asm { lea eax, originalFloatingState }
+    __asm { fxsave [eax] }
+    _clearfp();
+    unsigned ignoredControl=0;
+    _controlfp_s(&ignoredControl,_MCW_EM,_MCW_EM);
+    _mm_setcsr((_mm_getcsr()|0x1f80u)&~0x3fu);
+    const unsigned beforeSimd=_mm_getcsr();
+    unsigned short beforeX87=0, afterX87=0;
+    __asm { fnstsw beforeX87 }
+    const auto rejected=h5::ui::CreateNativeWindowChild(game,0x20160,0x21160);
+    const unsigned afterSimd=_mm_getcsr();
+    __asm { fnstsw afterX87 }
+    __asm { lea eax, originalFloatingState }
+    __asm { fxrstor [eax] }
+    nativeUiFixtureReader={};
+    DestroyWindow(game);UnregisterClassW(L"H5",definition.hInstance);
+    if (rejected.state!=NativeWindowMutationState::Refused || rejected.child ||
+        beforeSimd!=afterSimd || beforeX87!=afterX87) {
+        throw std::runtime_error("Native UI refusal changed entry FP state");
+    }
+}
 extern uint32_t committedArmyMethods[1],committedWorldMethods[34];
 const uint32_t* __fastcall CommittedDefinitionGetter(uint32_t);
 bool __fastcall CommittedActiveActor(const void*,void*);
@@ -17,7 +347,6 @@ bool __fastcall CommittedActiveActor(const void*,void*);
 #include <xmmintrin.h>
 #include <float.h>
 #include <iostream>
-#include <future>
 #include <thread>
 
 namespace {
@@ -663,6 +992,7 @@ int main(int count, char** arguments) {
             h5::army::ReadCreatureDisplayName(3, nullptr, 8)) {
             throw std::runtime_error("Invalid creature-name request crossed the native boundary");
         }
+        VerifyNativeWindowReaders();
         VerifyCommittedDeploymentBoundaries();
         VerifyResidentBuffers(arguments[1], arguments[2]);
         VerifyConsoleAdmission();

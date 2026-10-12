@@ -28,6 +28,24 @@ if(PROJECT_IS_TOP_LEVEL)
     string(REPLACE "0x89fbf0" "reinterpret_cast<uintptr_t>(CommittedDefinitionGetter)" actor_fixture "${actor_fixture}")
     string(REPLACE "0xa6d490" "reinterpret_cast<uintptr_t>(CommittedActiveActor)" actor_fixture "${actor_fixture}")
     file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/actor_input_fixture.hpp" "${actor_fixture}")
+    # Substitute only external memory reads for deterministic mutation admission
+    # tests. The production parsing, FP wrapper and operation control flow run
+    # unchanged; these fixtures refuse before any fixed native call is reached.
+    set(native_ui_source "${CMAKE_CURRENT_SOURCE_DIR}/include/h5/native_ui.hpp")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${native_ui_source}")
+    file(READ "${native_ui_source}" native_ui_fixture)
+    set(native_ui_read [=[inline bool ReadLocal(uint32_t address, void* output, size_t bytes) {
+    __try { std::memcpy(output, reinterpret_cast<const void*>(address), bytes); return true; }
+    __except (EXCEPTION_EXECUTE_HANDLER) { return false; }
+}]=])
+    string(FIND "${native_ui_fixture}" "${native_ui_read}" native_ui_read_at)
+    if(native_ui_read_at EQUAL -1)
+        message(FATAL_ERROR "Native UI memory-read fixture seam changed.")
+    endif()
+    string(REPLACE "${native_ui_read}" [=[inline bool ReadLocal(uint32_t address, void* output, size_t bytes) {
+    return ::ReadNativeUiFixture(address, output, bytes);
+}]=] native_ui_fixture "${native_ui_fixture}")
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/native_ui_fixture.hpp" "${native_ui_fixture}")
     target_include_directories(game_api_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
     target_link_libraries(game_api_test PRIVATE heroes5_game_api)
     target_compile_definitions(game_api_test PRIVATE NOMINMAX WIN32_LEAN_AND_MEAN)
